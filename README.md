@@ -1,0 +1,3 @@
+# com.alibinshao.AppDemo
+学习springboot框架的web应用
+建立在SpringToolSuite4工具上
