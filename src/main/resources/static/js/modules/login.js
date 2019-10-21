@@ -50,10 +50,16 @@ var Login = {
 				// success(result.message, result.data);
                 var content = '<i class="fa fa-smile-o"></i> '+result.message;
                 layer.msg(content);
-                if (result.redirect.url) {
+                /*if (result.redirect.url) {
                     var sleepTime = result.redirect.sleep || 3000;
                     setTimeout(function() {
                     	location.href = result.redirect.url;
+                    }, sleepTime);
+                }*/
+                if (result.url) {
+                    var sleepTime = 3000;
+                    setTimeout(function() {
+                    	location.href = result.url;
                     }, sleepTime);
                 }
 			}

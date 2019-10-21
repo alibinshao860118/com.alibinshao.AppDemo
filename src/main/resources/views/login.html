@@ -26,7 +26,7 @@
 <body>
 	<div class="login_box">
 	    <div class="login_l_img animated bounceInLeft">
-	        <span>知识分享平台</span>
+	        <span>知识分享平台SNAPSHOT</span>
 	        <img src="/images/logo_new.png" />
 	    </div>
 	    <div class="login">
@@ -93,5 +93,17 @@
 	        <a style="color: #d8d8d8;" target="_blank" href="https://github.com/phachon/MM-Wiki">MM-Wiki Version {{.version}}</a>
 	    </div>
 	</div>
+<script type="text/javascript">
+    if (self != top ) {
+        parent.location.href = "/"
+    }
+    function KeyDown(element) {
+        if (event.keyCode == 13) {
+            event.returnValue = false;
+            event.cancel = true;
+            $(element).click();
+        }
+    }
+</script>
 </body>
 </html>
