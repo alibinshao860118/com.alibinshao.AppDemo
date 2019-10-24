@@ -18,6 +18,11 @@ public class HelloController {
     public String hello(){
         return "main/index";
     }
+	
+	@RequestMapping(value="main/default")
+    public String mainDefault(){
+        return "main/default";
+    }
 	@RequestMapping(value="login")
     public String login(){
         return "/login";

@@ -2,31 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-<meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-   <link type="favicon" rel="shortcut icon" th:href="@{/images/favicon.ico}" />
-    
-    <link th:href="@{/plugins/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
-    <link th:href="@{/css/animate.css}" rel="stylesheet" />
-    <link th:href="@{/css/login.css}" rel="stylesheet">
-    
-    <link type="text/css" rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
-
-    <script type="text/javascript" th:src="@{/plugins/jquery/jquery1.11.js}"></script>
-    <script type="text/javascript" th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
-    <script th:src="@{/plugins/jquery/jquery.form.js}"></script>
-    
-    <script type="text/javascript" th:src="@{/plugins/layui/layer/layer.js}"></script>
-    <script th:src="@{/js/modules/login.js}"></script>
-    
-    
-
-</head>
+<!--共用头部-->
+<header id="login-header" th:include="common-header::html"></header>
 <body>
 	<div class="login_box">
 	    <div class="login_l_img animated bounceInLeft">
-	        <span>知识分享平台SNAPSHOT</span>
+	        <span>平台SNAPSHOT</span>
 	        <img src="/images/logo_new.png" />
 	    </div>
 	    <div class="login">
@@ -83,14 +64,14 @@
 	                </section>
 	            </div>
 	            <div class="text-center" style="margin-top: 30px; font-size: 10px;color: #7d7d7d;">
-	                * 请使用 Firefox, Chrome, IE9+ 浏览器达到更好效果 *
+	                * 请使用360急速, Firefox, Chrome, IE9+ 浏览器达到更好效果 *
 	            </div>
 	        </div>
 	    </div>
 	    <div class="copyright">
-	        © {{.copyright}}
+	        © 2019-2020
 	        &nbsp;<i class="glyphicon glyphicon-hand-right"></i>
-	        <a style="color: #d8d8d8;" target="_blank" href="https://github.com/phachon/MM-Wiki">MM-Wiki Version {{.version}}</a>
+	        <a style="color: #d8d8d8;" target="_blank" href="https://www.alibinshao.com/index"> Version 1.0</a>
 	    </div>
 	</div>
 <script type="text/javascript">
