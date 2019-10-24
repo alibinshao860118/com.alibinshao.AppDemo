@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhonghong.university.kq.dao.IKqBsxxDao">
+	
+	<sql id="kqBsxxColumns">
+		a.ID as "id" , 
+		a.ORG_ID as "orgId" , 
+		a.KQ_YF as "kqYf" , 
+		a.KQ_MF as "kqMf" , 
+		a.KQ_ZT as "kqZt" , 
+		a.REMARKS as "remarks" , 
+		a.ENABLE_FLAG as "enableFlag" , 
+		a.DEL_FLAG as "delFlag" , 
+		a.CREATE_BY as "createBy" , 
+		a.CREATE_DATE as "createDate" , 
+		a.UPDATE_BY as "updateBy" , 
+	    a.UPDATE_DATE as "updateDate",
+	   	org.org_code as "orgCode",
+		org.org_name as "orgName",
+		org.full_org_codes as "fullOrgCodes",
+		org.full_org_names as "fullOrgNames",
+		(select NAME from Fbidp_sys_user t where t.id=a.CREATE_BY) createNameBy,
+		DATE_FORMAT(a.CREATE_DATE , '%Y-%m-%d') createDateStr
+	</sql>
+	
+	<sql id="kqBsxxJoins">
+		inner join fbidp_sys_org org on a.org_id=org.id
+	</sql>
+	
+	<select id="get" resultType="com.zhonghong.university.kq.entity.KqBsxx">
+		SELECT 
+			<include refid="kqBsxxColumns"/>
+		FROM t_kq_bsxx a
+		<include refid="kqBsxxJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM t_kq_bsxx a
+		<include refid="kqBsxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="kqYf!=null and kqYf!=''">
+				and a.KQ_YF = #{kqYf}
+			</if>
+			<if test="kqMf!=null and kqMf!=''">
+				and a.KQ_MF = #{kqMf}
+			</if>			
+		</where>
+	</select>
+	
+	<select id="findList" resultType="com.zhonghong.university.kq.entity.KqBsxx">
+		SELECT 
+			<include refid="kqBsxxColumns"/>
+		FROM t_kq_bsxx a
+		<include refid="kqBsxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="kqYf!=null and kqYf!=''">
+				and a.KQ_YF = #{kqYf}
+			</if>
+			<if test="kqMf!=null and kqMf!=''">
+				and a.KQ_MF = #{kqMf}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.zhonghong.university.kq.entity.KqBsxx">
+		SELECT 
+			<include refid="kqBsxxColumns"/>
+		FROM t_kq_bsxx a
+		<include refid="kqBsxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="kqYf!=null and kqYf!=''">
+				and a.KQ_YF = #{kqYf}
+			</if>
+			<if test="kqMf!=null and kqMf!=''">
+				and a.KQ_MF = #{kqMf}
+			</if>			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_kq_bsxx(
+			ID ,
+			ORG_ID ,
+			KQ_YF ,
+			KQ_MF ,
+			KQ_ZT ,
+			REMARKS ,
+			ENABLE_FLAG ,
+			DEL_FLAG ,
+			CREATE_BY ,
+			CREATE_DATE ,
+			UPDATE_BY ,
+			UPDATE_DATE
+		) values(
+			#{id} , 
+			#{orgId} , 
+			#{kqYf} , 
+			#{kqMf} , 
+			#{kqZt} , 
+			#{remarks} , 
+			#{enableFlag} , 
+			#{delFlag} , 
+			#{createBy} , 
+			#{createDate} , 
+			#{updateBy} , 
+			#{updateDate} 
+		)
+	</insert>
+	
+	<update id="update">
+		update t_kq_bsxx
+		<set>
+			ORG_ID = #{orgId} ,
+			KQ_YF = #{kqYf} ,
+			KQ_MF = #{kqMf} ,
+			KQ_ZT = #{kqZt} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE t_kq_bsxx SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+	
+	<select id="getBsmxBy" resultType="com.zhonghong.university.kq.entity.KqBsmx">
+		select 
+			a.ID as "id" , 
+			a.BS_ID as "bsId" , 
+			b.id as "ryId" , 
+			b.name as "xm" , 
+			b.ZGBH as "zgbh" ,
+			a.KQ_YF as "kqYf" , 
+			a.KQ_MF as "kqMf" ,  
+			a.BJ_TS as "bjTs" , 
+			a.SJ_TS as "sjTs" , 
+			a.TQJ_TS as "tqjTs" , 
+			a.HSJ_TS as "hsjTs" , 
+			a.CJ_TS as "cjTs" , 
+			a.QT_TS as "qtTs" , 
+			a.REMARKS as "remarks" 
+		from t_ry_jbxx b
+		left join t_kq_bsmx a on b.id = a.ry_id and a.KQ_YF=#{kqYf} and a.KQ_MF=#{kqMf}
+		where b.org_id=#{orgId}
+	</select>
+
+</mapper>
+

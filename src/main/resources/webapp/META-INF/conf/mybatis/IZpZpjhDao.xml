@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhonghong.university.zp.dao.IZpZpjhDao">
+	
+	<sql id="zpZpjhColumns">
+			a.ID as "id" , 
+				a.JH_BH as "jhBh" , 
+				a.JH_BT as "jhBt" , 
+				a.JH_ND as "jhNd" , 
+				a.JH_KSSJ as "jhKssj" , 
+				a.JH_JSSJ as "jhJssj" , 
+				a.REMARKS as "remarks" , 
+				a.FB_SJ as "fbSj" , 
+				a.FBR_BY as "fbrBy" , 
+				a.ENABLE_FLAG as "enableFlag" , 
+				a.DEL_FLAG as "delFlag" , 
+				a.CREATE_BY as "createBy" , 
+				a.CREATE_DATE as "createDate" , 
+				a.UPDATE_BY as "updateBy" , 
+			    a.UPDATE_DATE as "updateDate"
+	</sql>
+	
+	<sql id="zpZpjhJoins">
+	</sql>
+	
+	<select id="get" resultType="com.zhonghong.university.zp.entity.ZpZpjh">
+		SELECT 
+			<include refid="zpZpjhColumns"/>
+		FROM t_zp_zpjh a
+		<include refid="zpZpjhJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="getByJhbh" resultType="com.zhonghong.university.zp.entity.ZpZpjh">
+		SELECT 
+			<include refid="zpZpjhColumns"/>
+		FROM t_zp_zpjh a
+		<include refid="zpZpjhJoins"/>
+		<where>
+			a.del_flag = '0'
+			and a.JH_BH = #{jhBh}
+		</where>
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM t_zp_zpjh a
+		<include refid="zpZpjhJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="jhBh != null and jhBh!=''">
+				and a.JH_BH = #{jhBh}
+			</if>
+			<if test="jhNd != null and jhNd!=''">
+				and a.JH_ND = #{jhNd}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findList" resultType="com.zhonghong.university.zp.entity.ZpZpjh">
+		SELECT 
+			<include refid="zpZpjhColumns"/>
+		FROM t_zp_zpjh a
+		<include refid="zpZpjhJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="jhBh != null and jhBh!=''">
+				and a.JH_BH = #{jhBh}
+			</if>
+			<if test="jhNd != null and jhNd!=''">
+				and a.JH_ND = #{jhNd}
+			</if>
+		</where>
+		order by JH_BH desc
+	</select>
+	
+	<select id="findAllList" resultType="com.zhonghong.university.zp.entity.ZpZpjh">
+		SELECT 
+			<include refid="zpZpjhColumns"/>
+		FROM t_zp_zpjh a
+		<include refid="zpZpjhJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_zp_zpjh(
+			ID ,
+				JH_BH ,
+				JH_BT ,
+				JH_ND ,
+				JH_KSSJ ,
+				JH_JSSJ ,
+				REMARKS ,
+				FB_SJ ,
+				FBR_BY ,
+				ENABLE_FLAG ,
+				DEL_FLAG ,
+				CREATE_BY ,
+				CREATE_DATE ,
+				UPDATE_BY ,
+				UPDATE_DATE
+			) values(
+    		#{id} , 
+	    		#{jhBh} , 
+	    		#{jhBt} , 
+	    		#{jhNd} , 
+	    		#{jhKssj} , 
+	    		#{jhJssj} , 
+	    		#{remarks} , 
+	    		#{fbSj} , 
+	    		#{fbrBy} , 
+	    		#{enableFlag} , 
+	    		#{delFlag} , 
+	    		#{createBy} , 
+	    		#{createDate} , 
+	    		#{updateBy} , 
+	    		#{updateDate} 
+			)
+	</insert>
+	
+	<update id="update">
+		update t_zp_zpjh
+		<set>
+			JH_BH = #{jhBh} ,
+			JH_BT = #{jhBt} ,
+			JH_ND = #{jhNd} ,
+			JH_KSSJ = #{jhKssj} ,
+			JH_JSSJ = #{jhJssj} ,
+			FB_SJ = #{fbSj} ,
+			FBR_BY = #{fbrBy} ,
+			ENABLE_FLAG = #{enableFlag} , 
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE t_zp_zpjh SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+
+</mapper>
+

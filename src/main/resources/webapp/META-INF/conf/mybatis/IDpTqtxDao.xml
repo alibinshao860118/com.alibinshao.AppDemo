@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhonghong.university.dp.dao.IDpTqtxDao">
+	
+	<sql id="dpTqtxColumns">
+		a.ID as "id" , 
+		a.RY_ID as "ryId" , 
+		a.XM as "xm" , 
+		a.ZGBH as "zgbh" , 
+		a.YTX_RQ as "ytxRq" , 
+		a.TQ_YS as "tqYs" , 
+		a.TQ_YY as "tqYy" , 
+		a.REMARKS as "remarks" , 
+		a.ENABLE_FLAG as "enableFlag" , 
+		a.DEL_FLAG as "delFlag" , 
+		a.CREATE_BY as "createBy" , 
+		a.CREATE_DATE as "createDate" , 
+		a.UPDATE_BY as "updateBy" , 
+	    a.UPDATE_DATE as "updateDate"
+</sql>
+	
+	<sql id="dpTqtxJoins">
+	</sql>
+	
+	<select id="get" resultType="com.zhonghong.university.dp.entity.DpTqtx">
+		SELECT 
+			<include refid="dpTqtxColumns"/>
+		FROM t_dp_tqtx a
+		<include refid="dpTqtxJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM t_dp_tqtx a
+		<include refid="dpTqtxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<select id="findList" resultType="com.zhonghong.university.dp.entity.DpTqtx">
+		SELECT 
+			<include refid="dpTqtxColumns"/>
+		FROM t_dp_tqtx a
+		<include refid="dpTqtxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.zhonghong.university.dp.entity.DpTqtx">
+		SELECT 
+			<include refid="dpTqtxColumns"/>
+		FROM t_dp_tqtx a
+		<include refid="dpTqtxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_dp_tqtx(
+			ID ,
+			RY_ID ,
+			XM ,
+			ZGBH ,
+			YTX_RQ ,
+			TQ_YS ,
+			TQ_YY ,
+			REMARKS ,
+			ENABLE_FLAG ,
+			DEL_FLAG ,
+			CREATE_BY ,
+			CREATE_DATE ,
+			UPDATE_BY ,
+			UPDATE_DATE
+		) values(
+			#{id} , 
+			#{ryId} , 
+			#{xm} , 
+			#{zgbh} , 
+			#{ytxRq} , 
+			#{tqYs} , 
+			#{tqYy} , 
+			#{remarks} , 
+			#{enableFlag} , 
+			#{delFlag} , 
+			#{createBy} , 
+			#{createDate} , 
+			#{updateBy} , 
+			#{updateDate} 
+		)
+	</insert>
+	
+	<update id="update">
+		update t_dp_tqtx
+		<set>
+			RY_ID = #{ryId} ,
+			XM = #{xm} ,
+			ZGBH = #{zgbh} ,
+			YTX_RQ = #{ytxRq} ,
+			TQ_YS = #{tqYs} ,
+			TQ_YY = #{tqYy} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE t_dp_tqtx SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+
+</mapper>
+

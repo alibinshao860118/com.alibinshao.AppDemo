@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	 /*if(<%=prop.getProperty("tjzt")%>==1){
+		$(".tjzt01").css("color","blue");
+		$(".tjzt01").eq(2).text("已申报");
+		$(".tjzt02 a").attr("class","btn1 btn_01");
+	};*/
+	
+	//模拟从服务端取数
+	$("body").append("<div class='bg'>"
+			 +'<iframe src="load.html" frameborder="none"  style="width:100%; height:100%;"></iframe>'
+			 +"</div>");
+	//$("body").css({overflow:'hidden'})//定义滚动条不滚动
+	 $(".bg").animate({opacity:'0.6'},500)
+	 setTimeout("removeLoad()",500);
+	
+});
+
+function removeLoad(){
+	//todo 加载数据
+	document.firstFrame.document.getElementById("dataTr1").style.display ="";
+	document.firstFrame.document.getElementById("dataTr2").style.display ="";
+	
+	document.firstFrame.document.getElementById("pageTable").style.display ="";
+	$(".bg").remove();
+}
+
+
+</script>
+<title>税收情况查询</title>
+</head>
+
+<body>
+<div class="gd_list">
+
+<ul>
+<li class="sh_dq"><iframe src="P07.html" frameborder="none"  style="width:100%; height:360px;" id="firstFrame"  name="firstFrame"></iframe>
+<div class="btnbox">
+    <button type="button" class="btn btn_success btn_next">下一步</button>
+            </div>
+</li>
+<li><iframe src="P08.html" frameborder="none"  style="width:100%; height:420px;" id="secondFrame"  name="secondFrame"></iframe>
+<div class="btnbox">
+    <button type="button" class="btn btn_success btn_pre">上一步</button>
+    <button type="button" class="btn btn_success btn_next2 " >缴款</button>
+            </div>
+</li>
+<li><iframe src="jkhz.html" frameborder="none"   style="width:100%; height:650px;"></iframe></li>
+</ul>
+</div>
+
+<div class="tc" style="display:none;margin:-150px 0px 0px -300px; width:600px; " >
+<div class="tc_tit">提示</div>
+<a href="#" class="close_btn" >×</a>
+<div class="tc_box">
+   <table width="100%" class="alertbox" border="0" cellspacing="20" cellpadding="0">
+  <tr>
+    <td><div class="biaozhi bz02"><i class="fa fa-question-circle"></i></div></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您本次缴纳税款合计￥300.00,扣账号2010023701020637359（中国工商银行股份有限公司广州支行）,请您保证账号余额不少于￥300.00,否则将扣款失败,影响您正常清缴税款。</td>
+  </tr>
+  
+</table>
+<div class="btnbox" style="float:right;">
+         <button type="button" class="btn btn_qx" onClick="jkqx();">取消</button>
+    <button type="button" class="btn btn_success" onClick="jkqd();">确 定</button>
+      </div>
+</div>
+</div>
+</body>
+</html>

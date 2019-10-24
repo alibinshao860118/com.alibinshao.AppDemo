@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+<script language=JavaScript >
+$(document).ready(function() {
+	//模拟从服务端取数
+	$("body").append("<div class='bg'>"
+			 +'<iframe src="load.html" frameborder="none"  style="width:100%; height:100%;"></iframe>'
+			 +"</div>");
+	//$("body").css({overflow:'hidden'})//定义滚动条不滚动
+	 $(".bg").animate({opacity:'0.6'},500)	 
+	 setTimeout("removeLoad()",500);	
+	//document.getElementById("dataTr1").style.display ="";
+});
+function removeLoad(){
+	//todo 加载数据
+	document.getElementById("dataTr1").style.display ="";
+	$(".bg").remove();
+}
+	function clikcNsrsbh(url){
+		/* var tc_width=$(".tc").width()/2;
+		 var tc_height=$(".tc").height()/2;
+		 $(".tc").animate({marginTop:-(tc_height+20),marginLeft:-tc_width})
+		 $("body").append("<div class='bg'></div>");
+		//$("body").css({overflow:'hidden'})//定义滚动条不滚动
+		 $(".bg").animate({opacity:'0.9'},500);
+		 $("#surfaceFrame").attr("src",url);
+		 $(".tc").fadeIn();*/
+		 //window.open(url);
+		 
+		/*$('#tablis', parent.document).children().removeClass("unlike");
+		//alert($("#tablis").children("li:last-child").html());
+		$('#tablis', parent.document).children("li:last-child").after("<li class='unlike'><span onClick='onClickTabNavi();'>纳税人基础信息</span><span class='close'>×</span></li>");
+		
+		$("#divTabs", parent.document).children().css('display','none');
+		var divID = 'divFrame'+top.index;
+		var iframeID = 'workingFrame'+top.index;
+		$("#divTabs", parent.document).children("div:last-child").after('<div id='+divID+'><table width="100%" border="0" cellspacing="0" cellpadding="0">'
+        +'<tr>'
+        +'<td>'
+        +'<iframe src="'+url+'" frameborder="none" class="iframe1" style="width:100%;" name="workingFrame" id="'+iframeID+'" ></iframe>'
+        +'</td>'
+        +'</tr>'
+        +'</table></div>');
+	
+		$("#"+iframeID, parent.document).css({height:$(window).height()-85});*/
+		
+		window.parent.clikcMenu(url,"纳税人基础信息");
+	}
+
+</script>
+<title>申报缴款</title>
+</head>
+
+<body>
+<div class="TableBox ">
+  <div class="Tableh2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong>纳税人基本信息</strong></td>
+    
+  </tr>
+</table>
+</div>
+  <div class="Table01 ">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong>纳税人识别号:</strong><a href="#" onClick=clikcNsrsbh("table01/P04.html")> 440100123456789</a></td>
+    <td><strong>纳税人类型:</strong> 增值税一般纳税人</td>
+     <td><strong>纳税人状态:</strong> <span class="zt00 zt01">●</span>&nbsp;&nbsp;&nbsp;&nbsp;（正常）</td>
+    </tr>
+    </table>
+ 
+  </div>
+  <div class="Tableh2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong>申报清册</strong></td>
+    <td><!--<table border="0" align="right" cellpadding="0" cellspacing="2">
+      <tr>
+        <td><a href="#" class="btn01">扫描</a></td>
+        <td><a href="#" class="btn01">打印</a></td>
+      </tr>
+    </table>--></td>
+  </tr>
+</table>
+</div>
+  <div class="Table02">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+  	<th style="text-align:center" width="10px">序号</th>
+    <th align="center">申报表</th>
+   <!--  <th align="center">下载</th> -->
+    <th align="center">申报情况 </th>
+    <th align="center">税款所属期起 </th>
+    <th align="center">税款所属期止</th>
+    <th align="center">本次申报期限</th>
+    <th align="center">申报期限</th>
+    <th align="center">操作</th>
+    </tr>
+  <tr style="display:none" id="dataTr1">
+  		<td align="center">1</td>
+	    <td style="color: blue;">增值税一般纳税人申报</td>
+	    <!-- <td ><a href="http://localhost:8080/etax/bizfront/pdfsb33.do" >下载 </a></td> -->
+	    <td align="center"  style="color: blue;">已申报 </td>
+	    <td align="center" style="color: blue;">2015-10-01</td>
+	    <td align="center" style="color: blue;">2015-10-31</td>
+	    <td align="center" style="color: blue;">2015-11-16</td>
+	    <td align="center" style="color: blue;">按月</td>
+	    <td style="width: 230.26px; padding-left: 30px;"><a class="btn1 btn_01" href="#" >查看</a> <a class="btn1 btn_01" href="#" style="margin-left: 5px;">作废</a> <a class="btn1 btn_01" href="#" style="margin-left: 5px;">缴款</a> <a class="btn1 btn_01" href="#" style="margin-left: 5px;">更正</a></td>
+	 
+    </tr>
+     
+  <tr style="display: none;">
+  <td align="center">2</td>
+  <td style="color:blue">烟类应税消费品消费税申报</td>
+    <td><a href="http://localhost:8080/etax/bizfront/pdfsb33.do" style="color:blue">下载 </a></td>
+   <td style="color:blue">已申报 </td>
+    <td align="right" style="color:blue">2015-09-01</td>
+    <td align="right" style="color:blue">2015-09-30</td>
+    <td align="right" style="color:blue">2015-10-20</td>
+    <td style="color:blue">按月</td>
+    <td><a class="btn1 btn_01" href="#">查看</a> <a class="btn1 btn_01" href="#">作废</a> <a class="btn1 btn_01" href="#">缴款</a> <a class="btn1 btn_01" href="#">更正</a></td>
+    </tr>
+    <tr style="display: none;">
+  		<td align="center">3</td>
+	    <td >增值税一般纳税人申报</td>
+	    <td ><a href="http://localhost:8080/etax/bizfront/pdfsb33.do" >下载 </a></td>
+	    <td >未申报 </td>
+	    <td align="right" >2015-09-01</td>
+	    <td align="right" >2015-09-30</td>
+	    <td align="right" >2015-10-20</td>
+	    <td >按月</td>
+	    <td><a class="btn1 btn_02" href="#">查看</a> <a class="btn1 btn_02" href="#">作废</a> <a class="btn1 btn_02" href="#">缴款</a> <a class="btn1 btn_02" href="#">更正</a></td>
+	 
+    </tr>
+    <tr style="display: none;">    
+    <td align="center">4</td>
+  <td>酒及酒精消费税申报</td>
+    <td><a href="http://localhost:8080/etax/bizfront/pdfsb33.do">下载 </a></td>
+   <td>未申报 </td>
+    <td align="right">2015-09-01</td>
+    <td align="right">2015-09-30</td>
+    <td align="right">2015-10-20</td>
+    <td>按月</td>
+    <td><a class="btn1 btn_02" href="#">查看</a> <a class="btn1 btn_02" href="#">作废</a> <a class="btn1 btn_02" href="#">缴款</a> <a class="btn1 btn_02" href="#">更正</a></td>
+    </tr>
+    <tr style="display: none;">
+    <td align="center">5</td>
+  <td>居民企业所得税月(季)度预缴纳税申报(适用查账征收)</td>
+    <td><a href="http://localhost:8080/etax/bizfront/pdfsb33.do">下载 </a></td>
+   <td>未申报 </td>
+    <td align="right">2015-09-01</td>
+    <td align="right">2015-09-30</td>
+    <td align="right">2015-10-20</td>
+    <td>按月</td>
+    <td><a class="btn1 btn_02" href="#">查看</a> <a class="btn1 btn_02" href="#">作废</a> <a class="btn1 btn_02" href="#">缴款</a> <a class="btn1 btn_02" href="#">更正</a></td>
+    </tr>
+    <tr style="display: none;">
+    <td align="center">6</td>
+  <td>文化事业建设费申报</td>
+    <td><a href="http://localhost:8080/etax/bizfront/pdfsb33.do">下载 </a></td>
+   <td>未申报 </td>
+    <td align="right">2015-09-01</td>
+    <td align="right">2015-09-30</td>
+    <td align="right">2015-10-20</td>
+    <td>按月</td>
+    <td><a class="btn1 btn_02" href="#">查看</a> <a class="btn1 btn_02" href="#">作废</a> <a class="btn1 btn_02" href="#">缴款</a> <a class="btn1 btn_02" href="#">更正</a></td>
+    </tr>
+  
+    <tr style="display: none;">
+    <td align="center">7</td>
+  <td>教育费附加申报</td>
+    <td><a href="http://localhost:8080/etax/bizfront/pdfsb33.do">下载 </a></td>
+   <td>未申报 </td>
+    <td align="right">2015-09-01</td>
+    <td align="right">2015-09-30</td>
+    <td align="right">2015-10-20</td>
+    <td>按月</td>
+    <td><a class="btn1 btn_02" href="#">查看</a> <a class="btn1 btn_02" href="#">作废</a> <a class="btn1 btn_02" href="#">缴款</a> <a class="btn1 btn_02" href="#">更正</a></td>
+    </tr>
+    <tr style="display: none;">
+    <td align="center">8</td>
+  <td>废弃电器电子产品处理基金申报</td>
+    <td><a href="http://localhost:8080/etax/bizfront/pdfsb33.do">下载 </a></td>
+   <td>未申报 </td>
+    <td align="right">2015-09-01</td>
+    <td align="right">2015-09-30</td>
+    <td align="right">2015-10-20</td>
+    <td>按次</td>
+    <td><a class="btn1 btn_02" href="#">查看</a> <a class="btn1 btn_02" href="#">作废</a> <a class="btn1 btn_02" href="#">缴款</a> <a class="btn1 btn_02" href="#">更正</a></td>
+    </tr>
+  
+    </table>
+
+ 
+  </div>
+  <div class="page" style="display: none;">
+       <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>总共<span class="font01">1</span>条信息</td>
+    <td align="right">
+        <div class="pagebut" >
+        <ul><span>< 上一页</span>
+             <li class="lihover">1</li>
+             <span>下一页 ></span>
+        </ul>     
+        </div>
+    </td>
+  </tr>
+</table>
+
+  </div>
+</div>
+</body>
+</html>

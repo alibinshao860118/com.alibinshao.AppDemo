@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+
+<title>案卷管理</title>
+</head>
+
+<body>
+
+<div class="rightWin">
+     <div class="win"></div>
+</div>
+<div class="TableBox nav_nav">
+  <div class="Tableh1">批量扫描
+  </div>
+<div class="Tableh2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><table border="0" align="right" cellpadding="0" cellspacing="2">
+      <tr>
+        <td><a href="#" class="btn01">合并</a></td>
+        <td><a href="#" class="btn01">左旋</a>
+          </td>
+        <td><a href="#" class="btn01">右旋</a></td>
+        <td><a href="#" class="btn01">清空</a></td>
+        <td><a href="#" class="btn01">扫描</a></td>
+        <td><a href="#" class="btn01">设置</a></td>
+        <td><a href="#" class="btn01">删除</a></td>
+        <td><a href="#" class="btn01">上传</a></td>
+        
+        </tr>
+    </table></td>
+  </tr>
+</table>
+</div>
+   <div class="Table06">
+     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="treeleft"> 
+
+<div class="treetitle">已扫描文件</div>
+<div class="treebox">
+<div id="esunTree" class="tree"></div>
+
+ 
+<script type="text/javascript">
+
+try{document.execCommand("BackgroundImageCache",false,true)}catch(e){};
+
+function Tree(data, el) {
+
+this.app=function(par,tag){return par.appendChild(document.createElement(tag))};
+
+this.create(document.getElementById(el),data)
+
+};
+
+Tree.fn = Tree.prototype = {
+
+create: function (par,group){
+
+var host=this, length = group.length;
+
+for (var i = 0; i < length; i++) {
+
+var dl =this.app(par,'DL'), dt = this.app(dl,'DT'), dd = this.app(dl,'DD');
+
+dt.innerHTML='<a href="javascript:void(0)">'+group[i]['t']+'</a>';
+
+if (!group[i]['s'])continue;
+
+dt.group=group[i]['s'];
+
+dt.className+=" node-close";
+
+dt.onclick=function (){
+
+var dd= this.nextSibling;
+
+if (!dd.hasChildNodes()){
+
+host.create(dd,this.group);
+
+this.className='node-open'
+
+}else{
+
+var set=dd.style.display=='none'?['','node-open']:['none','node-close'];
+
+dd.style.display=set[0];
+
+this.className=set[1]
+
+}
+
+}
+
+}
+
+}
+
+};
+
+var data=[{
+
+t:'腾讯网络限公司',s:[
+
+{t:'人力资源',s:[{t:'张A'}]},
+
+{t:'风险控制',s:[{t:'李B'},{t:'赵C'},{t:'吴D'},{t:'司马E'},{t:'潭F'},{t:'袁G'}]},
+
+{t:'系统平台',s:[{t:'资讯组',s:[{t:'王五'}]},{t:'游戏组',s:[{t:'肖十三'}]}]}
+
+]
+
+},
+
+{t:'拍拍网',s:[{t:'胡一刀'}]},
+
+{t:'盛大网络',s:[{t:'热血传奇',s:[{t:'在线充值'}]},{t:'陈天桥'}]},
+
+{t:'新浪微博',s:[{t:'凤姐'}]}
+
+];
+
+var et=new Tree(data,'esunTree');
+
+//]]>
+
+</script>
+</div>
+ 
+
+
+</td>
+    <td align="center" valign="middle">
+    <div style=" width:400px; margin:auto;">
+         <table width="100%" class="alertbox" border="0" cellspacing="20" cellpadding="0">
+  <tr>
+    <td><div class="biaozhi bz01"><i class="fa fa-exclamation-triangle"></i></div></td>
+    <td>已经封卷，是否将答案卷交接给库房管理员？</td>
+  </tr>
+  
+</table>
+    </div>
+    <img src="../../images/table02/ioc01.png" /></td>
+  </tr>
+</table>
+
+   </div>
+
+</div>
+</body>
+</html>

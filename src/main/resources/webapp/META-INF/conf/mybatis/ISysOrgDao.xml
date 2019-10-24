@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhonghong.fdp.sys.dao.ISysOrgDao">
+	
+	<sql id="sysOrgColumns">
+	   t.id,
+	   t.ORG_CODE orgcode,
+	   t.ORG_NAME orgname,
+	   t.ORG_CODE oldOrgCode,
+	   t.ORG_NAME oldOrgName,
+	   t.ORG_SHORT_NAME orgShortName, 
+	   t.ORG_SHORT_NAME oldOrgShortName, 
+	   t.FULL_ORG_IDS fullOrgIds,
+	   t.FULL_ORG_CODES fullOrgCodes,
+	   t.FULL_ORG_NAMES fullOrgNames,
+	   t.FULL_ORG_IDS oldFullOrgIds,
+	   t.FULL_ORG_CODES oldFullOrgCodes,
+	   t.FULL_ORG_NAMES oldFullOrgNames,
+	   t1.name leaderName, 
+       t.phone, 
+       t.status,
+       t.showorder,
+       t.remarks,
+       t.address ,
+       t.ENABLE_FLAG as "enableFlag", 
+       t.PARENT_ORG_ID parentOrgId,
+       t.PARENT_ORG_CODE parentOrgCode,
+       (select tt.ORG_NAME from fbidp_sys_org tt where tt.id=t.PARENT_ORG_ID) parentOrgName,
+       (select count(1) from fbidp_sys_org tt where tt.PARENT_ORG_ID=t.id and tt.del_flag='0') childNum,
+       (select case when count(1)>0 then 'closed' else 'open' end state  
+          from fbidp_sys_org tt 
+         where tt.PARENT_ORG_ID=t.id and tt.del_flag='0') state,
+        t.org_type as "orgType",
+        t.bz_lb as "bzlb",
+        t.bz_rs as "bzrs"
+	</sql>
+	
+	<sql id="sysOrgJoins">
+	</sql>
+	
+	<select id="get" resultType="com.zhonghong.fdp.sys.entity.SysOrg">
+		SELECT 
+			<include refid="sysOrgColumns"/>
+		from fbidp_sys_org t 
+		left join fbidp_sys_user t1 on t.principal=t1.login_id
+		WHERE t.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM fbidp_sys_org t
+		<include refid="sysOrgJoins"/>
+		<where>
+			t.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="parentOrgId!=null and parentOrgId!=''">
+				<if test="withSelf">
+					and (t.PARENT_ORG_ID = #{parentOrgId} or t.id = #{parentOrgId} )
+				</if>
+				<if test="!withSelf">
+					and (t.PARENT_ORG_ID = #{parentOrgId})
+				</if>
+			</if>
+			<if test="parentOrgCode!=null and parentOrgCode!=''">
+				and t.PARENT_ORG_CODE = #{parentOrgCode}
+			</if>
+			<if test="orgCode!=null and orgCode!=''">
+				and t.org_code = #{orgCode}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findList" resultType="com.zhonghong.fdp.sys.entity.SysOrg">
+		SELECT 
+			<include refid="sysOrgColumns"/>
+		from fbidp_sys_org t 
+		left join fbidp_sys_user t1 on t.principal=t1.login_id
+		<where>
+			t.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="parentOrgId!=null and parentOrgId!=''">
+				<if test="withSelf">
+					and (t.PARENT_ORG_ID = #{parentOrgId} or t.id = #{parentOrgId} )
+				</if>
+				<if test="!withSelf">
+					and (t.PARENT_ORG_ID = #{parentOrgId})
+				</if>
+			</if>
+			<if test="parentOrgCode!=null and parentOrgCode!=''">
+				<if test="withSelf">
+					and (t.PARENT_ORG_CODE = #{parentOrgCode} or t.org_code = #{parentOrgCode} )
+				</if>
+				<if test="!withSelf">
+					and (t.PARENT_ORG_CODE = #{parentOrgCode})
+				</if>
+			</if>
+			<if test="orgCode!=null and orgCode!=''">
+				and t.org_code = #{orgCode}
+			</if>
+			<if test="fullOrgCodes != null and fullOrgCodes !='' ">
+				and T.FULL_ORG_CODES like 
+				<if test="dbName == 'oracle'">#{fullOrgCodes}||'%'</if>
+				<if test="dbName == 'mysql'">CONCAT(#{fullOrgCodes}, '%')</if>
+			</if>
+			
+			<if test="fullOrgCodeList != null and fullOrgCodeList.size > 0 ">
+				AND 
+				<foreach collection="fullOrgCodeList" item="fullOrgCode" index="index"
+		            open="(" close=")" separator="or">
+		            T.FULL_ORG_CODES like 
+		            <if test="dbName == 'oracle'">#{fullOrgCode}||'%'</if>
+					<if test="dbName == 'mysql'">CONCAT(#{fullOrgCode}, '%')</if>
+		        </foreach>
+	        </if>
+		</where>
+		order by t.FULL_ORG_CODES,showorder
+	</select>
+	
+	<select id="findAllList" resultType="com.zhonghong.fdp.sys.entity.SysOrg">
+		SELECT 
+			<include refid="sysOrgColumns"/>
+		from fbidp_sys_org t 
+		left join fbidp_sys_user t1 on t.principal=t1.login_id
+		<where>
+			t.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="parentOrgId!=null and parentOrgId!=''">
+				and t.PARENT_ORG_ID = #{parentOrgId}
+			</if>
+			<if test="parentOrgCode!=null and parentOrgCode!=''">
+				and t.PARENT_ORG_CODE = #{parentOrgCode}
+			</if>
+			<if test="orgCode!=null and orgCode!=''">
+				and t.org_code = #{orgCode}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insert">
+		insert into  fbidp_sys_org(
+		    id,
+			org_code,
+			org_name,
+			org_short_name,
+			leader, 
+		    phone, 
+		    status,
+		    showorder,
+		    address ,
+		    parent_org_id,
+		    parent_org_code,
+		    FULL_ORG_IDS,
+		    FULL_ORG_CODES,
+		    FULL_ORG_NAMES,
+		    ENABLE_FLAG , 
+		    DEL_FLAG , 
+			CREATE_BY , 
+			CREATE_DATE , 
+			UPDATE_BY , 
+			UPDATE_DATE,
+			REMARKS ,
+			org_type,
+        	bz_lb,
+        	bz_rs
+		 ) values (
+		 	#{id},
+		 	#{orgCode},
+		 	#{orgName},
+		 	#{orgShortName},
+		 	#{leaderId},
+		 	#{phone},
+		 	#{status},
+		 	#{showOrder},
+		 	#{address},
+		 	#{parentOrgId},
+		 	#{parentOrgCode},
+		 	#{fullOrgIds},
+		 	#{fullOrgCodes},
+		 	#{fullOrgNames},
+		 	#{enableFlag} ,
+		 	#{delFlag} , 
+			#{createBy} , 
+			#{createDate} , 
+			#{updateBy} , 
+			#{updateDate} ,  
+			#{remarks} ,
+			#{orgType},
+			#{bzlb},
+			#{bzrs}
+		 )
+	</insert>
+	
+	<update id="update">
+		update fbidp_sys_org
+		<set> 
+			org_code=#{orgCode},
+			org_name=#{orgName},
+			org_short_name=#{orgShortName},
+		 	leader=#{leaderId},
+		 	phone=#{phone},
+		 	status=#{status},
+		 	showorder=#{showOrder},
+		 	PARENT_ORG_ID=#{parentOrgId},
+            PARENT_ORG_CODE=#{parentOrgCode},
+		 	FULL_ORG_IDS=#{fullOrgIds},
+		 	FULL_ORG_CODES=#{fullOrgCodes},
+		 	FULL_ORG_NAMES=#{fullOrgNames},
+		 	address=#{address},
+		 	update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks},
+			org_type = #{orgType},
+        	bz_lb = #{bzlb},
+        	bz_rs = #{bzrs}
+		</set>
+		 where ID=#{id}
+	</update>
+	
+	<update id="updateFullOrgCodes">
+		update fbidp_sys_org
+		set FULL_ORG_CODES = REPLACE(FULL_ORG_CODES,#{oldFullOrgCodes},#{fullOrgCodes}) ,
+		 	FULL_ORG_NAMES = REPLACE(FULL_ORG_NAMES,#{oldFullOrgNames},#{fullOrgNames}),
+		 	PARENT_ORG_CODE = #{parentOrgCode}
+		where FULL_ORG_CODES like
+			<if test="dbName == 'mysql'">
+				 CONCAT(#{oldFullOrgCodes}, '%') 
+			</if>
+			<if test="dbName == 'oracle'">
+				#{oldFullOrgCodes}||'%'
+			</if>
+	</update>
+
+	<delete id="delete" >
+		UPDATE fbidp_sys_org SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE ID = #{id}
+	</delete>
+
+</mapper>
+

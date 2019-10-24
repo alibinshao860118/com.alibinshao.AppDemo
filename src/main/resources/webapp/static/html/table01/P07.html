@@ -1,0 +1,415 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+	.yhPic img{ border:2px solid #dbdbdb; }
+.yhPic img:hover{ border:2px solid red; }
+.sjpic{ background-image:url(../../images/new/temp01.png); width:583px; height:333px; margin:auto;}
+.sjpic span{ display:block; padding-top:270px; margin-left:110px; width:130px; color:#fff; line-height:18px;}
+.btn_success,.btn_qx{ border:1px solid #1e42a3;text-shadow:0px -1px 0px #11258b;
+box-shadow:inset 1px 1px 0px #3e8acb,inset -1px -1px 0px #295aae,1px 2px 2px #ccc;
+	background: -moz-linear-gradient(TOP, #3371bf 0%, #2651a8 100%); /* FF3.6+ */
+				background: -webkit-gradient(top, color-stop(0%,#3371bf), color-stop(100%,#2651a8)); /* Chrome,Safari4+ */
+				background: -webkit-linear-gradient(TOP, #3371bf 0%,#2651a8 100%); /* Chrome10+,Safari5.1+ */
+				background: -o-linear-gradient(TOP, #3371bf 0%,#2651a8 100%); /* Opera11.10+ */
+				background: -ms-linear-gradient(TOP, #3371bf 0%,#2651a8 100%); /* IE10+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3371bf', endColorstr='#2651a8',GradientType=0 ); /* IE6-9 */
+				background: linear-gradient(TOP, #3371bf 0%,#2651a8 100%); /* W3C */
+	}
+	.btn:hover{ opacity:0.9;}
+	.btn {
+display: inline-block; letter-spacing:1px; border-radius:2px; 
+border: 1px solid transparent;white-space: nowrap;
+
+font-weight: 400;
+text-align: center;
+vertical-align: middle;
+cursor: pointer; line-height:27px;
+padding: 0px 20px; color:#fff;
+}
+.sh2_navhelp{background-color: #fcf8e3;box-shadow:0 0 5px rgba(0,0,0,0.1); clear:both; padding:6px 6px 6px 10px; margin-top:10px; }
+</style>
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+<script language=JavaScript >
+
+
+	function checkFormAjax(){
+		 $("body").append("<div class='bg'>"
+				 +'<iframe src="load.html" frameborder="none"  style="width:100%; height:100%;"></iframe>'
+				 +"</div>");
+		//$("body").css({overflow:'hidden'})//定义滚动条不滚动
+		 $(".bg").animate({opacity:'0.6'},500);
+		 if($("#sbjg option:selected").text()=="山东地税纳税服务平台测试用户370188888888888，山东省国家税务局"){
+			 document.getElementById("dataTr1").style.display ="none";
+			document.getElementById("dataTr2").style.display ="none";
+		 }else{
+	
+				document.getElementById("dataTr3").style.display ="none";
+				document.getElementById("dataTr4").style.display ="none";
+		 }
+		
+		 
+		 setTimeout("removeLoad1()",300);
+	}
+	
+	function removeLoad1(){
+		//todo 加载数据
+		 if($("#sbjg option:selected").text()=="山东地税纳税服务平台测试用户370188888888888，山东省国家税务局"){
+		document.getElementById("dataTr3").style.display ="";
+		document.getElementById("dataTr4").style.display ="";
+		$("#yh").text("2440091000020140000144");
+		 }else{
+			 document.getElementById("dataTr1").style.display ="";
+				document.getElementById("dataTr2").style.display ="";
+				$("#yh").text("2440091000020140000930");
+		 }
+		
+		$(".bg").remove();
+	}
+	function jk(){
+		window.location.href="jkhz.html";
+	}
+</script>
+<title>税收情况查询</title>
+</head>
+
+<body>
+<div class="TableBox">
+
+  <div class="Tableh2"  ><strong style="width: 84px">查询条件</strong></div>
+  <div class="Table03">
+     <table width="100%" border="0" cellspacing="12" cellpadding="0">
+          <tr>
+             <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">请选择您的国地税信息:</td>
+                   <td><select class="select01" id="sbjg">
+                     <option>广东省国家税务局电子税务局测试用户440100123456789，广东省国家税务局</option>
+                   </select></td>
+                 </tr>
+               </table>
+             </div></td>
+             
+             <td width="80"> <div class="btnbox" style="float:right">
+              
+            
+               
+            </div></td>
+           </tr> 
+         </table>
+         
+     
+  </div>
+  <div class="Tableh2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong style="width: 84px">待缴款信息</strong></td>
+    <td><table border="0" align="right" cellpadding="0" cellspacing="2">
+      <tr>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</div>
+  <div class="Table02">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+   <th style="text-align:center" width="10px">序号</th>
+    <th width="50px">是否扣缴&nbsp;<input type="checkbox" name="checkbox2" id="checkbox2"  checked></th>
+    <th width="141px">应征凭证序号</th>
+    <th width="70px">税（费）种</th>
+    <th width="70px">税（品）目</th>
+    <th width="84px">税款所属期起</th>
+    <th width="84px">税款所属期止</th>
+    <th width="70px">缴税期限</th>
+    <th width="70px">应补退税额 </th>
+    <!-- <th>未清缴税额</th> -->
+    <th width="70px">实缴金额</th>
+    <th width="37px">滞纳金</th>
+    <th >是否逾期</th>
+  </tr>
+   <tr  id="dataTr1">
+    <td align="center">1</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2" checked></td>
+    <td align="center">10015215000003681650</td>
+    <td>增值税</td>
+    <td>商业(17%)</td>
+    <td align="center">2015-10-01</td>
+    <td align="center">2015-10-31</td>
+    <td align="center">2015-11-16</td>
+    <td align="right">1100.00</td>
+   <td align="right"><input name=""  type="text" style="width:70px;text-align: right;" value="1111.00" ></td>
+    <td align="right">11.00</td>
+    <td align="center">是</td>
+  </tr>
+   <tr style="display:none" id="dataTr2">
+     <td align="center">2</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2" checked></td>
+    <td align="center">10015215000003681650</td>
+    <td>增值税</td>
+    <td>商业(13%)</td>
+    <td align="center">2015-09-01</td>
+    <td align="center">2015-09-30</td>
+    <td align="center">2015-10-30</td>
+    <td align="right">100.00</td>
+   <td><input name=""  type="text" style="width:70px" value="100.00" align="right"></td>
+    <td align="right">0.00</td>
+    <td align="center">否</td>
+  </tr>
+   <tr style="display:none" id="dataTr3">
+    <td align="center">1</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2" checked></td>
+    <td align="center">10015215000003681650</td>
+    <td>增值税</td>
+    <td>商业(17%)</td>
+    <td align="center">2015-10-01</td>
+    <td align="center">2015-10-31</td>
+    <td align="center">2015-11-16</td>
+    <td align="right">200.00</td>
+   <td><input name=""  type="text" style="width:70px" value="200.00" align="right"></td>
+    <td align="right">0.00</td>
+    <td align="center">否</td>
+  </tr>
+   <tr style="display:none" id="dataTr4">
+      <td align="center">2</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2" checked></td>
+    <td align="center">10015215000003681650</td>
+    <td>增值税</td>
+    <td>商业(13%)</td>
+    <td align="center">2015-10-01</td>
+    <td align="center">2015-10-31</td>
+    <td align="center">2015-11-16</td>
+    <td align="right">100.00</td>
+   <td><input name=""  type="text" style="width:70px" value="100.00" align="right"></td>
+    <td align="right">0.00</td>
+    <td align="center">否</td>
+    </tr>
+    </table>
+	<div class="sh2_navhelp" style="text-align:right;">
+
+ 
+共选择<span style="color: red;">1</span>条欠税记录。应补退税额<span style="color: red;">1100.00</span>元，滞纳金<span style="color: red;">11.00</span>元，合计 <span style="font-size:30px; margin:0 20px;color: red;">1111.00</span> 元。
+
+
+</div>
+  </div>
+  
+<!--   <div class="Tableh2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="13%"><strong  onClick="location='P07.html'">三方协议缴款</strong></td>
+    
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</div> -->
+ <div class="tabbox BoxCss01" >
+    <div class="tabM" >
+         <ul class="tabmenu03">
+                 
+             <li class="hover" >三方协议缴款 </li>             
+             <li >网银缴款</li>             
+             <li >支付宝缴款</li>
+             <li >微信缴款 </li>
+             <li >银联卡缴费 </li>
+            
+         </ul>
+    </div>
+    <div class="tabCenter" style="background-color:#fff; padding:0px;">
+         <div class="Centerbox">
+              <table width="100%" border="0" cellspacing="10" cellpadding="0">
+  <tr>
+    <td>
+      <div class="Table02">
+ 
+           <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th width="30" >序号</th>
+    <th width="30">选择</th>
+    <th>银行网点</th>
+    <th>银行账号</th>
+    <th>三方协议号</th>
+    <th>协议有效日期</th>
+    <th>协议有效期止</th>
+    </tr>
+ <tr  id="dataTr1">
+    <td align="center">1</td>
+    <td align="center"><input type="radio" name="checkbox2" id="checkbox1" checked></td>
+    <td>中国工商银行股份有限公司</td>
+    <td>2010023701020637359</td>
+    <td align="center">2440091000020140000930</td>
+    <td align="center">2010-01-01</td>
+    <td>&nbsp;</td>
+    </tr>
+   <tr  id="dataTr2">
+    <td align="center">2</td>
+    <td align="center"><input type="radio" name="checkbox2" id="checkbox2"></td>
+    <td>中国农业银行股份有限公司</td>
+    <td>6228480082612062511</td>
+    <td align="center">2440091000020150000930</td>
+    <td align="center">2010-01-01</td>
+    <td>&nbsp;</td>
+    </tr>
+    </table>
+
+      </div>
+    </td>
+    </tr>
+  <tr>
+    <td><button type="button" class="btn btn_success btn_next2 " >缴款</button></td>
+  </tr>
+            </table>
+
+         </div>
+         <div class="Centerbox" style="display:none;">
+              <table width="100%" border="0" cellspacing="10" cellpadding="0">
+  <tr>
+    <td>
+   
+ 
+           <div class="yhPic">
+           
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="10">
+  <tr>
+    <td align="center"><img src="../../images/new/yh01.png"/></td>
+    <td align="center"><img src="../../images/new/yh02.png"/></td>
+    <td align="center"><img src="../../images/new/yh03.png"/></td>
+    <td align="center"><img src="../../images/new/yh04.png"/></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="../../images/new/yh05.png"/></td>
+    <td align="center"><img src="../../images/new/yh06.png"/></td>
+    <td align="center"><img src="../../images/new/yh07.png"/></td>
+    <td align="center"><img src="../../images/new/yh08.png"/></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="../../images/new/yh09.png"/></td>
+    <td align="center"><img src="../../images/new/yh10.png"/></td>
+    <td align="center"><img src="../../images/new/yh11.png"/></td>
+    <td align="center"><img src="../../images/new/yh12.png"/></td>
+  </tr>
+                </table>
+
+           </div>
+ 
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><button type="button" class="btn btn_success"  style="margin:10px 0px;">到网上银行支付</button></td>
+      </tr>
+    </table>
+
+    </td>
+    </tr>
+            </table>
+
+         </div>
+         
+         
+          <div class="Centerbox" style="display:none;">
+              <table width="100%" border="0" cellspacing="10" cellpadding="0">
+  <tr>
+    <td>
+   
+ 
+           <div class="yhPic">
+           
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="10">
+  <tr>
+    <td align="left"><a href="buy04.html" target="_blank"><img src="../../images/new/yh13.png"/></a></td>
+    </tr>
+                </table>
+
+           </div>
+ 
+  
+    </td>
+    </tr>
+            </table>
+
+         </div>
+         
+         
+          <div class="Centerbox" style="display:none;">
+              <table width="100%" border="0" cellspacing="10" cellpadding="0">
+  <tr>
+    <td>
+   
+ 
+           <div class="sjpic">
+             <span>扫描上方的二维码，完成缴款</span></div>
+ 
+  
+    </td>
+    </tr>
+            </table>
+
+         </div>
+         
+         <div class="Centerbox" style="display:none;">
+              <table width="100%" border="0" cellspacing="10" cellpadding="0">
+  <tr>
+    <td>
+   
+ 
+           <div class="yhPic">
+           
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="10">
+  <tr>
+    <td align="left"><img src="../../images/new/yh14.png"  /></td>
+    </tr>
+                </table>
+
+           </div>
+ 
+  
+    </td>
+    </tr>
+            </table>
+
+         </div>
+          
+    </div>
+</div>
+  <div class="gd_list">
+
+<ul>
+<li class="sh_dq">
+ <div class="btnbox" >
+  <table >
+  	<tr>
+  		<td style="padding-left: 0px">
+  		<!-- <button type="button" class="btn btn_success btn_next2 " style="margin-top: 10px;width: 100px">实时缴款</button> -->
+  		</td>
+  		<td width="80%"></td>
+  	</tr>
+  </table>
+   
+            </div> 
+</li>
+</ul>
+</div>
+<div class="tc" style="display:none;margin:-150px 0px 0px -300px; width:600px; " >
+<div class="tc_tit">提示</div>
+<a href="#" class="close_btn" >×</a>
+<div class="tc_box">
+   <table width="100%" class="alertbox" border="0" cellspacing="20" cellpadding="0">
+  <tr>
+    <td><div class="biaozhi bz02"><i class="fa fa-question-circle"></i></div></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您本次缴纳税款合计￥1111.00,扣账号2010023701020637359（中国工商银行股份有限公司）,请您保证账号余额不少于￥1111.00,否则将扣款失败,影响您正常清缴税款。</td>
+  </tr>
+</table>
+<div class="btnbox" style="float:right;">
+         <button type="button" class="btn btn_qx" onClick="jkqx();">取消</button>
+    <button type="button" class="btn btn_success" onClick="jk();">确 定</button>
+      </div>
+</div>
+</div>
+</div>
+</body>
+</html>

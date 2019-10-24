@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+
+<title>案卷管理</title>
+</head>
+
+<body>
+
+<div class="rightWin">
+     <div class="win"></div>
+</div>
+<div class="TableBox nav_nav">
+  <div class="Tableh1">案卷管理</div>
+  <div class="tabbox">
+  
+    <div class="tabM" >
+         <ul class="tabmenu03">
+             <li class="hover" >未封卷</li>
+             <li >已封卷</li>
+             
+         </ul>
+    </div>
+    <div class="tabCenter">
+         <div class="Centerbox">
+               <table width="100%" border="0" cellspacing="12" cellpadding="0">
+           <tr>
+             <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt"> 案卷条形码:</td>
+                   <td><input type="text" class="input02 " style="width:100%"></td>
+                 </tr>
+               </table>
+             </div></td>
+          
+             
+              <td><div class="inputbox">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="1" class="inputtxt">保管期限:</td>
+                    <td><input type="text" class="input02" style="width:100%"></td>
+                  </tr>
+                </table>
+             </div></td>
+             <td width="165"><div class="btnbox" style="float:right">
+               <button type="button" class="btn btn_success">查 询</button>
+               <button type="button" class="btn btn_qx">重 置</button>
+             </div></td>
+             </tr> 
+         </table>
+         </div>
+         <div class="Centerbox" style="display:none;">
+           <table width="100%" border="0" cellspacing="12" cellpadding="0">
+           <tr>
+             <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt"> 案卷条形码:</td>
+                   <td><input type="text" class="input02 " style="width:100%"></td>
+                 </tr>
+               </table>
+             </div></td>
+          
+             
+              <td><div class="inputbox">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="1" class="inputtxt">保管期限:</td>
+                    <td><input type="text" class="input02" style="width:100%"></td>
+                  </tr>
+                </table>
+             </div></td>
+             <td width="165"><div class="btnbox" style="float:right">
+               <button type="button" class="btn btn_success">查 询</button>
+               <button type="button" class="btn btn_qx">重 置</button>
+             </div></td>
+             </tr> 
+         </table>
+      </div>
+          
+    </div>
+</div>
+  
+  <div class="Tableh2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>案卷列表</td>
+    <td><table border="0" align="right" cellpadding="0" cellspacing="2">
+      <tr>
+      <td><a href="#" class="btn01">新建</a></td>
+      <td><a href="#" class="btn01">拆卷</a></td>
+        <td><a href="#" class="btn01 down">封卷</a>
+        <div class="tc" style="display:none;margin:-150px 0px 0px -300px; width:600px; " >
+<div class="tc_tit">提示</div>
+<a href="#" class="close_btn" >×</a>
+<div class="tc_box">
+   <table width="100%" class="alertbox" border="0" cellspacing="20" cellpadding="0">
+  <tr>
+    <td><div class="biaozhi bz01"><i class="fa fa-exclamation-triangle"></i></div></td>
+    <td>已经封卷，是否将答案卷交接给库房管理员？</td>
+  </tr>
+  
+</table>
+<div class="btnbox" style="float:right;">
+         <button type="button" class="btn btn_success">确 定</button>
+    <button type="button" class="btn btn_qx">取 消</button>
+      </div>
+</div>
+</div>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</div>
+  <div class="Table02">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th align="center"><input type="checkbox" name="checkbox" id="checkbox">
+      </th>
+    <th align="left">案卷条形码</th>
+    <th align="left">保管期限</th>
+    <th align="left">年度 </th>
+    <th align="left">创建时间 </th>
+    <th align="left">档案数</th>
+    <th align="left">页数</th>
+    <th align="left">操作</th>
+  </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></td>
+    <td>4401150000001 </td>
+    <td>10年 </td>
+    <td>2015 </td>
+    <td>2015-10-01 13:14:15 </td>
+    <td>2 </td>
+    <td> 11 </td>
+    <td>查看 修改 </td>
+  </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox3" id="checkbox3"></td>
+    <td>4401150000001 </td>
+    <td>10年 </td>
+    <td>2015 </td>
+    <td>2015-10-01 13:14:15 </td>
+    <td>2 </td>
+    <td> 11 </td>
+    <td>查看 修改 </td>
+    </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox4" id="checkbox4"></td>
+    <td>4401150000001 </td>
+    <td>10年 </td>
+    <td>2015 </td>
+    <td>2015-10-01 13:14:15 </td>
+    <td>2 </td>
+    <td> 11 </td>
+    <td>查看 修改 </td>
+    </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox5" id="checkbox5"></td>
+    <td>4401150000001 </td>
+    <td>10年 </td>
+    <td>2015 </td>
+    <td>2015-10-01 13:14:15 </td>
+    <td>2 </td>
+    <td> 11 </td>
+    <td>查看 修改 </td>
+    </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox6" id="checkbox6"></td>
+    <td>4401150000001 </td>
+    <td>10年 </td>
+    <td>2015 </td>
+    <td>2015-10-01 13:14:15 </td>
+    <td>2 </td>
+    <td> 11 </td>
+    <td>查看 修改 </td>
+    </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox7" id="checkbox7"></td>
+    <td>4401150000001 </td>
+    <td>10年 </td>
+    <td>2015 </td>
+    <td>2015-10-01 13:14:15 </td>
+    <td>2 </td>
+    <td> 11 </td>
+    <td>查看 修改 </td>
+    </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox8" id="checkbox8"></td>
+    <td>4401150000001 </td>
+    <td>10年 </td>
+    <td>2015 </td>
+    <td>2015-10-01 13:14:15 </td>
+    <td>2 </td>
+    <td> 11 </td>
+    <td>查看 修改 </td>
+    </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox9" id="checkbox9"></td>
+    <td>4401150000001 </td>
+    <td>10年 </td>
+    <td>2015 </td>
+    <td>2015-10-01 13:14:15 </td>
+    <td>2 </td>
+    <td> 11 </td>
+    <td>查看 修改 </td>
+    </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox10" id="checkbox10"></td>
+    <td>4401150000001 </td>
+    <td>10年 </td>
+    <td>2015 </td>
+    <td>2015-10-01 13:14:15 </td>
+    <td>2 </td>
+    <td> 11 </td>
+    <td>查看 修改 </td>
+    </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox10" id="checkbox11"></td>
+    <td>4401150000001 </td>
+    <td>10年 </td>
+    <td>2015 </td>
+    <td>2015-10-01 13:14:15 </td>
+    <td>2 </td>
+    <td> 11 </td>
+    <td>查看 修改 </td>
+    </tr>
+    </table>
+
+ 
+  </div>
+  <div class="page">
+       <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>总共<span class="font01">20 </span>条信息</td>
+    <td align="right">
+        <div class="pagebut" >
+        <ul><span>< 上一页</span>
+             <li class="lihover">1</li>
+             <li>2</li>
+             <li>3</li>
+             <li>4</li>
+             <span>下一页 ></span>
+        </ul>     
+        </div>
+    </td>
+  </tr>
+</table>
+
+  </div>
+</div>
+</body>
+</html>

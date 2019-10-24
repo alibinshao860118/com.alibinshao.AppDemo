@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhonghong.university.zp.dao.IZpZpxqDao">
+	
+	<sql id="zpZpxqColumns">
+			a.ID as "id" , 
+			a.ZPJH_ID as "zpjhId" , 
+			t.JH_BH as 'zpjhBh' ,
+			t.JH_BT as 'zpjhMc' ,
+			a.ZPBM_ID as "zpbmId" , 
+			a.ZPBM_MC as "zpbmMc" , 
+			a.ZP_GW as "zpGw" , 
+			a.ZP_RS as "zpRs" , 
+			a.ZY_YQ as "zyYq" , 
+			a.XL_YQ as "xlYq" , 
+			a.NL_YQ as "nlYq" , 
+			a.QT_YQ as "qtYq" , 
+			a.LXR as "lxr" , 
+			a.SHOW_ORDER as "showOrder" , 
+			a.REMARKS as "remarks" , 
+			a.ENABLE_FLAG as "enableFlag" , 
+			a.DEL_FLAG as "delFlag" , 
+			a.CREATE_BY as "createBy" , 
+			a.CREATE_DATE as "createDate" , 
+			a.UPDATE_BY as "updateBy" , 
+		    a.UPDATE_DATE as "updateDate"
+	</sql>
+	
+	<sql id="zpZpxqJoins">
+		left join t_zp_zpjh t on t.id=a.ZPJH_ID
+	</sql>
+	
+	<select id="get" resultType="com.zhonghong.university.zp.entity.ZpZpxq">
+		SELECT 
+			<include refid="zpZpxqColumns"/>
+		FROM T_ZP_ZPXQ a
+		<include refid="zpZpxqJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM T_ZP_ZPXQ a
+		<include refid="zpZpxqJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="zpjhId!=null and zpjhId!=''">
+				and a.ZPJH_ID = #{zpjhId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findList" resultType="com.zhonghong.university.zp.entity.ZpZpxq">
+		SELECT 
+			<include refid="zpZpxqColumns"/>
+		FROM T_ZP_ZPXQ a
+		<include refid="zpZpxqJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="zpjhId != null and zpjhId!=''">
+				and a.ZPJH_ID = #{zpjhId}
+			</if>
+		</where>
+		order by SHOW_ORDER
+	</select>
+	
+	<select id="findAllList" resultType="com.zhonghong.university.zp.entity.ZpZpxq">
+		SELECT 
+			<include refid="zpZpxqColumns"/>
+		FROM T_ZP_ZPXQ a
+		<include refid="zpZpxqJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO T_ZP_ZPXQ(
+			ID ,
+				ZPJH_ID ,
+				ZPBM_ID ,
+				ZP_GW ,
+				ZP_RS ,
+				ZY_YQ ,
+				XL_YQ ,
+				NL_YQ ,
+				QT_YQ ,
+				LXR ,
+				SHOW_ORDER ,
+				REMARKS ,
+				ENABLE_FLAG ,
+				DEL_FLAG ,
+				CREATE_BY ,
+				CREATE_DATE ,
+				UPDATE_BY ,
+				UPDATE_DATE
+			) values(
+    		#{id} , 
+	    		#{zpjhId} , 
+	    		#{zpbmId} , 
+	    		#{zpGw} , 
+	    		#{zpRs} , 
+	    		#{zyYq} , 
+	    		#{xlYq} , 
+	    		#{nlYq} , 
+	    		#{qtYq} , 
+	    		#{lxr} , 
+	    		#{showOrder} , 
+	    		#{remarks} , 
+	    		#{enableFlag} , 
+	    		#{delFlag} , 
+	    		#{createBy} , 
+	    		#{createDate} , 
+	    		#{updateBy} , 
+	    		#{updateDate} 
+			)
+	</insert>
+	
+	<update id="update">
+		update T_ZP_ZPXQ
+		<set>
+			ZPJH_ID = #{zpjhId} ,
+			ZPBM_ID = #{zpbmId} ,
+			ZP_GW = #{zpGw} ,
+			ZP_RS = #{zpRs} ,
+			ZY_YQ = #{zyYq} ,
+			XL_YQ = #{xlYq} ,
+			NL_YQ = #{nlYq} ,
+			QT_YQ = #{qtYq} ,
+			LXR = #{lxr} ,
+			SHOW_ORDER = #{showOrder} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE T_ZP_ZPXQ SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+
+</mapper>
+

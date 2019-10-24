@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+<script language=JavaScript >
+
+	function clikcNsrsbh(url){
+		/* var tc_width=$(".tc").width()/2;
+		 var tc_height=$(".tc").height()/2;
+		 $(".tc").animate({marginTop:-(tc_height+20),marginLeft:-tc_width})
+		 $("body").append("<div class='bg'></div>");
+		//$("body").css({overflow:'hidden'})//定义滚动条不滚动
+		 $(".bg").animate({opacity:'0.9'},500);
+		 $("#surfaceFrame").attr("src",url);
+		 $(".tc").fadeIn();*/
+		 //window.open(url);
+		 
+		/*$('#tablis', parent.document).children().removeClass("unlike");
+		//alert($("#tablis").children("li:last-child").html());
+		$('#tablis', parent.document).children("li:last-child").after("<li class='unlike'><span onClick='onClickTabNavi();'>纳税人基础信息</span><span class='close'>×</span></li>");
+		
+		$("#divTabs", parent.document).children().css('display','none');
+		var divID = 'divFrame'+top.index;
+		var iframeID = 'workingFrame'+top.index;
+		$("#divTabs", parent.document).children("div:last-child").after('<div id='+divID+'><table width="100%" border="0" cellspacing="0" cellpadding="0">'
+        +'<tr>'
+        +'<td>'
+        +'<iframe src="'+url+'" frameborder="none" class="iframe1" style="width:100%;" name="workingFrame" id="'+iframeID+'" ></iframe>'
+        +'</td>'
+        +'</tr>'
+        +'</table></div>');
+	
+		$("#"+iframeID, parent.document).css({height:$(window).height()-85});*/
+		
+		window.parent.clikcMenu(url,"纳税人基础信息");
+	}
+
+</script>
+<title></title>
+</head>
+
+<body>
+<span style="font-size: 60px;">  办税桌面 </span>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script language="javascript" type="text/javascript" src="../../js/My97DatePicker/WdatePicker.js"></script>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+<style type="text/css">
+	 .sb{height: 18px;
+	 margin-top: 6px
+	} 
+	.btn_success,.btn_qx{ border:1px solid #1e42a3;text-shadow:0px -1px 0px #11258b;
+box-shadow:inset 1px 1px 0px #3e8acb,inset -1px -1px 0px #295aae,1px 2px 2px #ccc;
+	background: -moz-linear-gradient(TOP, #3371bf 0%, #2651a8 100%); /* FF3.6+ */
+				background: -webkit-gradient(top, color-stop(0%,#3371bf), color-stop(100%,#2651a8)); /* Chrome,Safari4+ */
+				background: -webkit-linear-gradient(TOP, #3371bf 0%,#2651a8 100%); /* Chrome10+,Safari5.1+ */
+				background: -o-linear-gradient(TOP, #3371bf 0%,#2651a8 100%); /* Opera11.10+ */
+				background: -ms-linear-gradient(TOP, #3371bf 0%,#2651a8 100%); /* IE10+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3371bf', endColorstr='#2651a8',GradientType=0 ); /* IE6-9 */
+				background: linear-gradient(TOP, #3371bf 0%,#2651a8 100%); /* W3C */
+	}
+	.btn:hover{ opacity:0.9;}
+	.btn {
+display: inline-block; letter-spacing:1px; border-radius:2px; 
+border: 1px solid transparent;white-space: nowrap;
+
+font-weight: 400;
+text-align: center;
+vertical-align: middle;
+cursor: pointer; line-height:27px;
+padding: 0px 20px; color:#fff;
+}
+</style>
+<script language=JavaScript >
+
+$(document).ready(function() {
+	 /*if(<%=prop.getProperty("tjzt")%>==1){
+		$(".tjzt01").css("color","blue");
+		$(".tjzt01").eq(2).text("已申报");
+		$(".tjzt02 a").attr("class","btn1 btn_01");
+	};*/
+	setDate(1);
+	//模拟从服务端取数
+	$("body").append("<div class='bg'>"
+			 +'<iframe src="load.html" frameborder="none"  style="width:100%; height:100%;"></iframe>'
+			 +"</div>");
+	//$("body").css({overflow:'hidden'})//定义滚动条不滚动
+	 $(".bg").animate({opacity:'0.6'},500)
+	 setTimeout("removeLoad()",500);
+	
+});
+
+function removeLoad(){
+	//todo 加载数据
+	document.getElementById("dataTr1").style.display ="";
+//	document.getElementById("dataTr2").style.display ="";
+	//document.getElementById("dataTr3").style.display ="";
+	
+	document.getElementById("pageTable").style.display ="";
+	$(".bg").remove();
+}
+
+	function checkFormAjax(){
+		 $("body").append("<div class='bg'>"
+				 +'<iframe src="load.html" frameborder="none"  style="width:100%; height:100%;"></iframe>'
+				 +"</div>");
+		//$("body").css({overflow:'hidden'})//定义滚动条不滚动
+		 $(".bg").animate({opacity:'0.6'},500)
+		 document.getElementById("dataTr1").style.display ="none";
+		document.getElementById("dataTr2").style.display ="none";
+		//document.getElementById("dataTr3").style.display ="";
+	
+		document.getElementById("pageTable").style.display ="none";
+		 
+		 setTimeout("removeLoad1()",500);
+	}
+	
+	function removeLoad1(){
+		//todo 加载数据
+		
+		document.getElementById("dataTr1").style.display ="";
+	//	document.getElementById("dataTr2").style.display ="";
+		//document.getElementById("dataTr3").style.display ="";
+		
+		document.getElementById("pageTable").style.display ="";
+		$(".bg").remove();
+	}
+	
+	function dyjkpz(url){
+		window.parent.clikcMenu(url,"打印缴款凭证");
+	//	window.showModalDialog ("yys.html","","location:No;scroll:no;status:No;help:No;dialogWidth:1260px;dialogHeight:690px;");
+	
+	}
+	function setDate(num){
+		var date=new Date();
+		var day=date.getDate();
+		var temp="";
+		if(day<10){
+			temp="0";
+		}
+		if(num==1&&$("#sb1").is(":checked")){
+			$("#sb02").val("2015-10-"+temp+day);
+			$("#sb03").val("2015-11-"+temp+day);
+			$("#sb12").val("2015-10-01");
+			$("#sb13").val("2015-10-31");
+			$("#sb2").attr("checked",false);
+		}else if(num==2&&$("#sb2").is(":checked")){
+			$("#sb02").val("2015-09-"+temp+day);
+			$("#sb03").val("2015-11-"+temp+day);
+			$("#sb1").attr("checked",false);
+		}
+	}
+</script>
+<title>申报结果查询</title>
+</head>
+
+<body>
+<div class="TableBox">
+ 
+   <div class="Tableh2">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="10%"><strong>查询条件</strong></td>
+    <td><table border="0" align="right" cellpadding="0" cellspacing="2">
+      <tr>
+        <td><a  class="btn01 more_search">更多></a>
+        <script>
+        $(document).ready(function(e) {
+          $(".more_search").click(function(){
+			  $(".last_line").fadeToggle()
+			  })  
+        });
+        </script>
+        </td>
+        <td></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+  </div>
+   <div class="Table03">
+     <table width="100%" border="0" cellspacing="6" cellpadding="0">
+           <tr>
+             <td><div class="inputbox inputbox2">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">纳税人识别号:</td>
+                   <td><input type="text" class="input02 "  style="width:100%" value="440100123456789" disabled="disabled"></td>
+                 </tr>
+               </table>
+             </div></td>
+          
+             
+              <td colspan="2"><div class="inputbox inputbox2">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">纳税人名称:</td>
+                   <td><input type="text" class="input02" style="width:100%" value="广东省国家税务局电子税务局测试用户" disabled="disabled"></td>
+                 </tr>
+               </table>
+             </div></td>
+             <!-- <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">税款所属期起:</td>
+                   <td><input type="text" class="input02" style="width:100%"></td>
+                 </tr>
+               </table>
+             </div></td> -->
+             
+             <td></td>
+           </tr>
+          <tr>
+             <td width="30%"><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">申报时间:</td>
+                   <td align="center"><table  border="0" height="27" cellspacing="0"cellpadding="0">
+                         <tr>
+                         <td width="6"></td>
+                           <td valign="middle" ><input  class="sb" type="radio"   id="sb1" checked="checked" onclick="setDate(1)" ></td>
+                           <td>&nbsp;&nbsp;最近一个月 </td>
+                           <td width="6"></td>
+                           <td valign="middle"><input   class="sb" type="radio" id="sb2" onclick="setDate(2)" ></td>
+                           <td>&nbsp;&nbsp;最近二个月</td>
+                         </tr>
+                       </table></td>
+                 </tr>
+               </table>
+             </div></td>
+             
+             
+              <td width="30%"></td>
+             
+             <td width="20%"></td>
+             <td width="20%"> <div class="btnbox" style="float:middle">
+         <button type="button" class="btn btn_success" onclick="checkFormAjax();">查 询</button>
+    <button type="button" class="btn btn_qx">重 置</button>
+    
+      </div></td>
+           </tr>
+           <tr class="last_line" style="display:none">
+             <td width="30%"><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">申报时间起:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                   <td><input type="text" class="Wdate input02" style="width:100%" id="sb02" onClick="WdatePicker()"></td>
+                 </tr>
+               </table>
+             </div></td>
+             
+             
+              <td width="30%"><div class="inputbox">
+               
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">申报时间止:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                   <td><input type="text" class="Wdate input02" style="width:100%" id="sb03" onClick="WdatePicker()"></td>
+                 </tr>
+               </table>
+             </div></td>
+             <td></td>
+             
+             <td width="160">&nbsp;</td>
+           </tr> 
+           <tr class="last_line" style="display:none">
+             <td width="30%"><div class="inputbox">
+               
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">税款所属期起:&nbsp;&nbsp;</td>
+                   <td><input type="text" class="Wdate input02" style="width:100%" onClick="WdatePicker()" id="sb12"></td>
+                 </tr>
+               </table>
+             </div></td>
+             
+             
+              <td width="30%"><div class="inputbox">
+               
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">税款所属期止:&nbsp;&nbsp;</td>
+                   <td><input type="text" class="Wdate input02" style="width:100%" onClick="WdatePicker()" id="sb13"></td>
+                 </tr>
+               </table>
+             </div></td>
+             <td>&nbsp;</td>
+             
+             <td></td>
+           </tr>
+         </table>
+         
+     
+  </div>
+  <div class="Tableh2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong>查询结果</strong></td>
+    <td><table border="0" align="right" cellpadding="0" cellspacing="2">
+      <tr>
+        
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</div>
+  <div class="Table02">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th style="text-align:center" width="10px">序号</th>
+    <th align="center" width="30">选择</th>
+    <th>电子税票号码</th>
+    <th>应征凭证序号</th>
+    <th>税（费）种</th>
+    <th>税（品）目</th>
+    <th>税款所属期起</th>
+    <th>税款所属期止</th>
+    <th>缴款日期</th>
+    <th>应纳税额</th>
+    <th>应补退税额</th>
+    <th>实缴金额</th>
+  </tr>
+  <tr style="display:none" id="dataTr1">
+    <td align="center" >1</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2" checked="checked"></td>
+    <td>320150106000000103</td>
+    <td align="center">10015215000003681650</td>
+    <td>增值税</td>
+    <td>商业(17%)</td>
+    <td align="center">2015-10-01</td>
+    <td align="center">2015-10-31</td>
+     <td align="center">2015-11-18</td>
+     <td align="right">1100.00</td>
+    <td align="right">1100.00</td>
+    <td align="right">1111.00</td>
+  </tr>  <tr style="display:none" id="dataTr2">
+    <td align="center">2</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></td>
+    <td>320150106000000103</td>
+    <td align="center">10015215000003681650</td>
+    <td>增值税</td>
+    <td>商业(13%)</td>
+    <td align="center">2015-09-01</td>
+    <td align="center">2015-09-30</td>
+    <td align="center">2015-10-20</td> 
+    <td align="right">2600.00</td>
+    <td align="right">100.00</td> 
+    <td align="right">100.00</td>
+  </tr>
+    <tr style="display:none" id="dataTr3">
+    <td align="center">3</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="right">300.00</td>
+    <td align="right">300.00</td>
+     <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+    <tr style="display:none" id="dataTr4">
+    <td align="center">4</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+     <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+    </table>
+
+ 
+  </div>
+  <div class="page">
+       <table width="100%" border="0" cellspacing="0" cellpadding="0" id="pageTable" style="display:none">
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;总共<span class="font01">1 </span>条信息</td>
+    <td align="right">
+        <div class="pagebut" >
+        <ul><span>< 上一页</span>
+             <li class="lihover">1</li>
+             <span>下一页 ></span>
+        </ul>     
+        </div>
+    </td>
+  </tr>
+</table>
+
+  </div>
+  
+  <div class="btnbox">
+    <button type="button" class="btn btn_success"  onClick="dyjkpz('table01/dzjkpz.pdf');">打印完税凭证</button>
+  
+            </div>
+  <p>&nbsp;</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhonghong.university.rygl.dao.IRyZcxxDao">
+	
+	<sql id="ryZcxxColumns">
+		a.ID as "id" , 
+		a.ryjbxx_id as "ryjbxxId" , 
+		a.zc as "zc" , 
+		a.pzwh as "pzwh" , 
+		a.pzsj as "pzsj" , 
+		a.kssj as "kssj" , 
+		a.jssj as "jssj" , 
+		a.bz as "bz" , 
+		a.REMARKS as "remarks" , 
+		a.ENABLE_FLAG as "enableFlag" , 
+		a.DEL_FLAG as "delFlag" , 
+		a.CREATE_BY as "createBy" , 
+		a.CREATE_DATE as "createDate" , 
+		a.UPDATE_BY as "updateBy" , 
+	    a.UPDATE_DATE as "updateDate",
+	    j.name as "name" , 
+		j.zgbh as "zgbh" , 
+		j.org_id as "orgId" , 
+		org.org_code as "orgCode",
+		org.org_name as "orgName",
+		org.full_org_codes as "fullOrgCodes",
+		org.full_org_names as "fullOrgNames"
+	</sql>
+	
+	<sql id="ryZcxxJoins">
+	</sql>
+	
+	<select id="get" resultType="com.zhonghong.university.rygl.entity.RyZcxx">
+		SELECT 
+			<include refid="ryZcxxColumns"/>
+		FROM t_ry_zcxx a
+		<include refid="ryZcxxJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM t_ry_zcxx a
+		<include refid="ryZcxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<sql id="findList_condition">
+		<if test="id !=null and id != '' ">
+			and a.id=#{id}
+		</if>
+		<if test="ryjbxxId !=null and ryjbxxId != '' ">
+			and a.ryjbxx_id = #{ryjbxxId}
+		</if>
+			<if test="zgbh !=null and zgbh != '' ">
+				and j.zgbh=#{zgbh}
+			</if>
+		<if test="name !=null and name != '' ">
+			and j.name like
+			<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+			<if test="dbName == 'mysql'">CONCAT('%',#{name}, '%')</if>
+		</if>
+		<if test="fullOrgCodes != null and fullOrgCodes !='' ">
+			and org.FULL_ORG_CODES like 
+			<if test="dbName == 'oracle'">#{fullOrgCodes}||'%'</if>
+			<if test="dbName == 'mysql'">CONCAT(#{fullOrgCodes}, '%')</if>
+		</if>
+	</sql>
+	
+	<select id="findList" resultType="com.zhonghong.university.rygl.entity.RyZcxx">
+		SELECT 
+			<include refid="ryZcxxColumns"/>
+		FROM t_ry_zcxx a,
+		     T_RY_JBXX j,
+		     fbidp_sys_org org 
+		<where>
+		    j.id = a.ryjbxx_id
+		    and j.org_id=org.id		
+			and a.del_flag = #{DEL_FLAG_NORMAL}
+			<include refid="findList_condition"/>
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.zhonghong.university.rygl.entity.RyZcxx">
+		SELECT 
+			<include refid="ryZcxxColumns"/>
+		FROM t_ry_zcxx a
+		<include refid="ryZcxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_ry_zcxx(
+			ID ,
+				ryjbxx_id ,
+				zc ,
+				pzwh ,
+				pzsj ,
+				kssj ,
+				jssj ,
+				bz ,
+				REMARKS ,
+				ENABLE_FLAG ,
+				DEL_FLAG ,
+				CREATE_BY ,
+				CREATE_DATE ,
+				UPDATE_BY ,
+				UPDATE_DATE
+			) values(
+    		#{id} , 
+	    		#{ryjbxxId} , 
+	    		#{zc} , 
+	    		#{pzwh} , 
+	    		#{pzsj} , 
+	    		#{kssj} , 
+	    		#{jssj} , 
+	    		#{bz} , 
+	    		#{remarks} , 
+	    		#{enableFlag} , 
+	    		#{delFlag} , 
+	    		#{createBy} , 
+	    		#{createDate} , 
+	    		#{updateBy} , 
+	    		#{updateDate} 
+			)
+	</insert>
+	
+	<update id="update">
+		update t_ry_zcxx
+		<set>
+			ryjbxx_id = #{ryjbxxId} ,
+			zc = #{zc} ,
+			pzwh = #{pzwh} ,
+			pzsj = #{pzsj} ,
+			kssj = #{kssj} ,
+			jssj = #{jssj} ,
+			bz = #{bz} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE t_ry_zcxx SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+
+</mapper>
+

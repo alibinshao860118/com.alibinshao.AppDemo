@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhonghong.university.cxtj.dao.ISysRsxxzhtjDao">
+	
+	<sql id="sysRsxxzhtjColumns">
+		a.ID as "id" , 
+		a.nls as "nls" , 
+		a.xls as "xls" , 
+		a.xbs as "xbs" , 
+		a.REMARKS as "remarks" , 
+		a.ENABLE_FLAG as "enableFlag" , 
+		a.DEL_FLAG as "delFlag" , 
+		a.CREATE_BY as "createBy" , 
+		a.CREATE_DATE as "createDate" , 
+		a.UPDATE_BY as "updateBy" , 
+	    a.UPDATE_DATE as "updateDate"
+</sql>
+	
+	<sql id="sysRsxxzhtjJoins">
+	</sql>
+	
+	<select id="get" resultType="com.zhonghong.university.cxtj.entity.SysRsxxzhtj">
+		SELECT 
+			<include refid="sysRsxxzhtjColumns"/>
+		FROM T_SYS_rsxxzhtj a
+		<include refid="sysRsxxzhtjJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM T_SYS_rsxxzhtj a
+		<include refid="sysRsxxzhtjJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<select id="findList" resultType="com.zhonghong.university.cxtj.entity.SysRsxxzhtj">
+		SELECT 
+			<include refid="sysRsxxzhtjColumns"/>
+		FROM T_SYS_rsxxzhtj a
+		<include refid="sysRsxxzhtjJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.zhonghong.university.cxtj.entity.SysRsxxzhtj">
+		SELECT 
+			<include refid="sysRsxxzhtjColumns"/>
+		FROM T_SYS_rsxxzhtj a
+		<include refid="sysRsxxzhtjJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO T_SYS_rsxxzhtj(
+			ID ,
+			nls ,
+			xls ,
+			xbs ,
+			REMARKS ,
+			ENABLE_FLAG ,
+			DEL_FLAG ,
+			CREATE_BY ,
+			CREATE_DATE ,
+			UPDATE_BY ,
+			UPDATE_DATE
+		) values(
+			#{id} , 
+			#{nls} , 
+			#{xls} , 
+			#{xbs} , 
+			#{remarks} , 
+			#{enableFlag} , 
+			#{delFlag} , 
+			#{createBy} , 
+			#{createDate} , 
+			#{updateBy} , 
+			#{updateDate} 
+		)
+	</insert>
+	
+	<update id="update">
+		update T_SYS_rsxxzhtj
+		<set>
+			nls = #{nls} ,
+			xls = #{xls} ,
+			xbs = #{xbs} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE T_SYS_rsxxzhtj SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+
+</mapper>
+

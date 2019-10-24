@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>VC3——连接用户与开发商云端起舞的桥梁</title>
+<link href="../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../css/buy.css" rel="stylesheet" type="text/css" />
+
+
+<style>
+body{ margin:0px; padding:0px;}
+.liucheng li{ float:left; width:33%; background-color:#ccc; line-height:32px; text-indent:32px; font-size:15px; color:#fff; }
+.liucheng  .lc_dq{ background-color:#00a3cd;font-weight:bold!important}
+.liucheng  .lc_dq2{ background-color:#9CDDF5;font-weight:bold!important}
+.lc_jj{ position:relative; width:100%;}
+.lc_jj div{background-color:#ccc; height:22px; width:22px; position:absolute;
+TOP:-28PX; right:-11px;
+border-right:2px solid #fff; border-radius:2px;
+border-top:2px solid #fff;
+transform: rotate(45deg);
+-ms-transform: rotate(45deg);		/* IE 9 */
+-webkit-transform: rotate(45deg);	/* Safari and Chrome */
+-o-transform: rotate(45deg);		/* Opera */
+-moz-transform: rotate(45deg);	}
+
+.liucheng  .lc_dq .lc_jj div{background-color:#00a3cd;}
+.liucheng  .lc_dq2 .lc_jj div{background-color:#9CDDF5}
+
+.lc_tab{ color:#333; background-color:#fff; line-height:22px;}
+.lc_tab td{ padding:8px 0px;}
+.lc_name{  border-bottom:1px solid #eee; text-indent:30px; font-weight:bold}
+.lc_lie{ background-color:#f2f2f2;  font-weight:bold; color:#111}
+.lc_order { text-align:right; padding:20px 0; line-height:24px;}
+.lc_order input,.order_list input{ width:auto; height:auto;}
+
+.lc_span1{ color:#ff3300; display:block; padding-bottom:20px;}
+.cl_jq span{ font-size:30px; color:#ff3300; font-family:Verdana, Geneva, sans-serif;}
+
+.buy_pay{ border:1px solid #eee; background-color:#fff; color:#666;}
+.buy_pay input{ height:auto; width:auto;}
+.ordr_massage{ border-bottom:1px dashed #eee; line-height:48px; margin:0px 16px; font-size:20px;}
+.ordr_ms1{ color:#888; padding:0px 16px; line-height:60px;  border-bottom:3px solid #ddd;}
+.ordr_ms1 p{ margin:0; padding:0 0 5px 0; line-height:18px;}
+.ordr_ms1 span{ color:#222; margin:0; padding:3px 0;}
+.order_msq{ height:48px; text-align:right; margin-top:-48px; line-height:48px; padding-right:16px; font-weight:bold; color:#666; font-size:20px}
+.order_msq2{ line-height:60px; margin-top:-60px;padding-right:16px; text-align:right; color:#888; }
+.order_tit{ border-left:2px solid #FF9A00; background-color:#F7F7F7; height:48px; margin:16px;}
+.order_tit li{ float:left; line-height:46px; padding:0px 20px; color:#666; cursor:pointer;}
+.order_tit input{ width:auto; height:auto;}
+.order_tit .hover{border-top:2px solid #ff3300; background-color:#fff; border-left:1px solid #eee; border-right:1px solid #eee;color:#333}
+.order_list{padding:16px; overflow:hidden;}
+.order_line { border-bottom:1px dashed #ddd; margin:30px 0; float:left; width:100%;}
+.order_money{ float:right; line-height:46px; padding:0px 5px; font-size:16px; color:#666;}
+.order_money span{ color:#F30; font-weight:bold;}
+
+.order_list ul{margin:0 0 0 20px; padding:0; width:90%;}
+.order_list ul li{margin:5px 0; padding:0; width:26%; float:left;}
+
+
+/*****/
+
+
+.tb_head{ width:100%; background-color:#81868B; height:30px; line-height:30px;}
+.tb_top{ width:950px; margin:0px auto; text-align:right}
+.tb_top,.tb_top a{ color:#fff;}
+.tb_box{ width:950px; margin:0px auto;}
+.tb_ddx{ background-color:#DEEAFF; padding:20px; color:#244D75; border-bottom:3px solid #85AED4; position:absolute; z-index:100;
+width:910px;}
+.tb_ddx1{background-color:#eff0f1;border-bottom:3px solid #A6A6A6; overflow:hidden;}
+.tb_jyh{ font-size:14px; font-weight:bold; padding-top:10px;}
+.tb_jyh span{ font-size:12px; font-weight:normal; padding-left:15px;}
+.tb_yc{ line-height:24px; padding-top:15px; font-size:12px; }
+.tb_butt{color: #fff; position:absolute; cursor:pointer; right:20px; bottom:-30px; width:90px; height:30px; text-indent:25px; line-height:30px; background-color:#85AED4;}
+.tb_butt div{border: 5px solid #85AED4;
+  border-top-color: #fff; position:absolute; top:13px; left:10px;
+  width: 0;
+  height: 0;}
+.tb_butt1{color: #fff; float:right;  margin-right:50px; cursor:pointer; width:76px; text-align:center; height:24px;line-height:24px; 
+background-color:#b3b3b3; font-size:12px;}
+.tb_butt div{border: 5px solid #85AED4;
+  border-top-color: #fff; position:absolute; top:13px; left:10px;
+  width: 0;
+  height: 0;}
+.tb_money{ text-align:right; font-family:Verdana, Geneva, sans-serif; font-weight:bold; margin-top:-17px;
+
+font-size: 22px;
+line-height: 22px;
+color: #f60;}
+
+.tb_money span{ font-size:12px; font-weight:normal; color:#244D75;}
+.tb_ku{ border:3px solid #A6A6A6;}
+.tb_name1{font-size: 22px;color: #000;}
+.tb_use,tb_use a{ font-size:14px; line-height:22px;}
+.tb_bt1{color: #000;
+font-size: 20px;
+background-color: #fff;
+ line-height:36px;
+border-bottom: 2px solid #cbcbcb;}
+
+.tb_bt2 a{color: #1589ca;}
+.tb_bt2{font-size: 16px;
+font-weight: 700;
+text-decoration: none;
+color: #1589ca;
+border-bottom: 2px solid #cbcbcb; text-align:right}
+
+.tb_input input{height: 24px;padding: 7px 10px;
+border: 1px solid #CCC;
+border-top-color: #a6a6a6;
+color: #4d4d4d;
+vertical-align: top;
+width: 328px;
+font-size: 14px;}
+
+.xiayibu a{line-height: 38px;
+text-align: center;
+color: #fefefe;
+font-size: 14px; border:1px solid #F57403;
+font-weight: bold; background-color:#F57403; border-radius:3px; display:block;}
+.xiayibu a:hover{ border:1px solid #D86E0F; background-color:#FB8318;}
+.tb_copy{ padding:25px; text-align:center; color:#888;}
+
+.tb_foot{ background:#F7F7F7 url(../../images/new/foot_tb.png) no-repeat center center; height:70px;}
+
+.tb_fk{ background-color:#fff;  padding:20px; overflow:hidden; border-bottom:3px solid #a6a6a6;}
+.tb_fukuan{ border:3px solid #728ec9; line-height:52px;}
+.tb_btt1 li{ border-radius:2px; background-color:#738fcb; padding:3px 4px; float:left; margin-left:3px; font-size:12px; line-height:12px; color:#fff;}
+.tb_gd a{  display:block; float:left; line-height:36px; padding:0px 30px; border:1px solid #cccccc; color:#0088cc;}
+.tb_gd2 a{  display:block; float:left; line-height:36px; padding:0px 30px; border:1px dashed #cccccc; color:#0088cc;}
+.tb_gd3{  display:block; float:left;  padding:0px 30px 0px 50px; border:1px dashed #cccccc; color:#0088cc;}
+.tb_gd3 a{ position:relative; top:-8px;}
+.tb_gd3  span{ position:relative; left:-22px; top:10px; background-color:#339933; color:#fff; width:16px; height:16px; line-height:16px; text-align:center; display:block;}
+
+.tb_fuk1 a{ display:block; font-size:14px; font-weight:bold; float:left; background-color:#f57403; border:1px solid #d66500; line-height:30px; padding:0px 25px; color:#fff; border-radius:2px;}
+.tb_fuk1 { float:left; margin:45px 0;}
+.tb_fuk1 a:hover{ background-color:#fb8318;}
+.tb_lts{ line-height:54px; margin:10px 0 0px 0; text-indent:24px; clear:both; border-top:1px solid #ccc; border-bottom:1px solid #ddd;}
+.tb_lts div{ border:3px solid #fff; cursor:pointer;}
+.tb_lts span{ color:#0088cc;}
+.tb_lts div:hover{ border:3px solid #cad6ef;}
+.tb_head01{ background-color:#fff; width:100%; height:50px;box-shadow: 0 1px 1px #ddd; position:absolute; z-index:10000;}
+.tb_top01{ width:950px; margin:0px auto; background:url(../../images/new/zfb_02.png) no-repeat left center; height:50px; line-height:50px;}
+
+.tb_top01 a,.tb_top01 span{ display:block; float:right; padding:0px 15px; font-size:12px;}
+.tb_top01 .tb_qddd{ background-color:#81a1d1; color:#fff!important;}
+</style>
+</head>
+
+<body>
+
+<div class="tb_head">
+<div class="tb_top">你好，欢迎使用支付宝付款！ |  <a href="#">常见问题</a></div>
+</div>
+
+<div class="tb_box">
+<div class="tb_logo"><img src="../../images/new/tb.jpg"/></div>
+  <div class="tb_ddx">
+    <p>正在使用即时到账交易 [?]</p>
+    <div class="tb_jyh">充值:阿里云服务购买,业务交易号:102435829280605 <span>收款方：阿里云计算有限公司</span></div> 
+    
+     
+     <div class="tb_yc"  id="content1" style="DISPLAY: none">收款方：	 阿里云计算有限公司<br />
+       订单号：	201504263119616069<br />
+       商品名称：	 充值:阿里云服务购买,业务交易号:102435829280605<br />
+       商品描述：	阿里云服务购买<br />
+    交易金额：	1111.00</div>
+    
+    <div class="tb_money">1111.00 <span>元</span></div>
+    
+    <div class="tb_butt" onClick="turnit(1,1);"><div></div>订单详情</div>
+      <script language="javascript" type="text/javascript">;
+function turnit(ss,ii){
+ //循环判断，ss为总列表数,ii为当前列
+ for (i=1;i<=ss;i++){
+   //错误过滤，当i=1至ss中有一项以上出错，自动过滤
+  try{
+   //当i=ii时展开目录数，否则关闭
+   if (i==ii){
+    //判断i列的目录数是否展开，没有就展开，否则关闭
+    if (window.eval("content"+i).style.display=="none"){
+     window.eval("content"+i).style.display="";
+        window.eval("img"+i).src="../../../style/images-swzj-01/common/b_02.gif";
+    }else{
+     window.eval("content"+i).style.display="none"; 
+        window.eval("img"+i).src="../../../style/images-swzj-01/common/a_01.gif";
+    }
+   }else{
+    window.eval("content"+i).style.display="none"; 
+       window.eval("img"+i).src="../../../style/images-swzj-01/common/a_01.gif";
+   }
+  }catch(e){}
+ }
+}
+</script>
+
+
+  </div>
+  <div style="height:97px;"></div>
+ <div class="tb_ku">
+ 
+ 
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="370" align="center">
+    <div class="tb_name1">扫码支付</div>
+    <img style="margin:10px auto" src="../../images/new/tb_erwm.jpg" width="199" height="196" />
+    <div class="tb_use">使用支付宝钱包扫码完成付款
+    <br />
+    <a href="#">支付宝钱包下载</a> ｜ <a href="#">如何使用？</a> </div>
+    
+    </td>
+    <td width="13"><img src="../../images/new/tb_line.jpg" /></td>
+    <td>
+    <table style="margin:0px auto; line-height:36px; font-size:14px;" width="350" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr class="tb_bt">
+    <td class="tb_bt1">登录支付宝账户付款</td>
+    <td class="tb_bt2"><a href="#">新用户注册</a></td>
+  </tr>
+  <tr>
+  <td colspan="2" height="36px;"></td>
+  </tr>
+  <tr>
+    <td>账户名：</td>
+    <td align="right"><a href="#">忘记账户名？</a></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="tb_input"><label for="textfield"></label>
+      <input type="text" name="textfield" id="textfield" /></td>
+    </tr>
+    <tr>
+  <td colspan="2" height="20px;"></td>
+  </tr>
+  <tr>
+    <td>支付密码：</td>
+    <td align="right"><a href="#">忘记密码？</a></td>
+  </tr>
+  <tr>
+    <td colspan="2"  class="tb_input"><input type="text" name="textfield2" id="textfield2" /></td>
+    </tr>
+  <tr>
+    <td colspan="2" style="color:#999; font-size:12px;">请输入账户的 <span style="color:red">支付密码</span>，不是登录密码</td>
+    </tr>
+  <tr>
+    <td colspan="2">
+    
+    <div class="xiayibu"><a href="buy05.html">下一步</a></div>
+    </td>
+    </tr>
+</table>
+
+    </td>
+  </tr>
+</table>
+
+ 
+ 
+ </div>  
+<div class="tb_copy">支付宝版权所有 2004-2015 ICP证：浙B2-20120045</div>
+</div>
+<div class="tb_foot"></div>
+</body>
+</html>

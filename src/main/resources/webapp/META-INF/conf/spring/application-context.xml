@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:jdbc="http://www.springframework.org/schema/jdbc"  
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:util="http://www.springframework.org/schema/util" xmlns:task="http://www.springframework.org/schema/task" xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.1.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.1.xsd"
+	default-lazy-init="true">
+
+	<context:annotation-config />
+	<context:property-placeholder location="classpath*:env.properties"/>  
+	
+	<!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
+	<context:component-scan base-package="com.zhonghong"><!-- base-package 如果多个，用“,”分隔 -->
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>	
+	
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close" >
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="filters" value="stat" />
+		<property name="maxActive" value="50" />
+		<property name="initialSize" value="1" />
+		<property name="maxWait" value="60000" />
+		<property name="minIdle" value="1" />
+
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+
+		<property name="validationQuery" value="SELECT 'x'" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+	</bean>
+
+	<!-- MyBatis begin -->
+	<bean id="sqlSessionFactory" class="com.zhonghong.fdp.common.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation">
+			<value>classpath:/META-INF/conf/mybatis-config.xml</value>
+		</property>
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:/META-INF/conf/mybatis/*.xml" />
+		<property name="plugins">
+        <array>
+            <bean class="com.github.pagehelper.PageInterceptor">
+                <!-- 这里的几个配置主要演示如何使用，如果不理解，一定要去掉下面的配置 -->
+                <property name="properties">
+                    <value>
+                        helperDialect=mysql
+                    </value>
+                </property>
+            </bean>
+        </array>
+    </property>
+	</bean>
+	
+	 <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.zhonghong.**.dao" />
+		<property name="annotationClass" value="com.zhonghong.fdp.common.persistence.annotation.MyBatisDao" />
+		<!-- <property name="sqlSessionFactory" ref="sqlSessionFactory" /> sqlSessionFactory注入会导致spring 
+			先加载sqlSessionFactory，再加载properties配置文件，这样jdbc的变量不会被替换 改用sqlSessionFactoryBeanName，用名称进行注入 -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+	
+	<!-- 定义事务 -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 配置 Annotation 驱动，扫描@Transactional注解的类定义事务  -->
+	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+    <!-- MyBatis end -->
+    
+    <!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+	<bean id="beanValidator" class="org.springframework.validation.beanvalidation.BeanValidationPostProcessor" />
+	<bean id="methodValidator" class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor" /> -->
+		
+</beans>

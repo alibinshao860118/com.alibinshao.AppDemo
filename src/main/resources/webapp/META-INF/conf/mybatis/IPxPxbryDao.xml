@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhonghong.university.pxgl.dao.IPxPxbryDao">
+	
+	<sql id="pxPxbryColumns">
+		a.ID as "id" , 
+		a.PXB_ID as "pxbId" , 
+		b.pxb_mc as "pxbMc",
+		a.RY_ID as "ryId" , 
+		a.XM as "xm" , 
+		a.ZGBH as "zgbh" , 
+		a.KQ_FS as "kqFs" , 
+		a.PS_FS as "psFs" , 
+		a.ZH_FS as "zhFs" , 
+		a.JYZ_BH as "jyzBh" , 
+		a.REMARKS as "remarks" , 
+		a.ENABLE_FLAG as "enableFlag" , 
+		a.DEL_FLAG as "delFlag" , 
+		a.CREATE_BY as "createBy" , 
+		a.CREATE_DATE as "createDate" , 
+		a.UPDATE_BY as "updateBy" , 
+	    a.UPDATE_DATE as "updateDate"
+</sql>
+	
+	<sql id="pxPxbryJoins">
+	left join  t_px_pxb b  on b.id=a.PXB_ID
+	</sql>
+	
+	<select id="get" resultType="com.zhonghong.university.pxgl.entity.PxPxbry">
+		SELECT 
+			<include refid="pxPxbryColumns"/>
+		FROM t_px_pxbry a
+		<include refid="pxPxbryJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM t_px_pxbry a
+		<include refid="pxPxbryJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<select id="findList" resultType="com.zhonghong.university.pxgl.entity.PxPxbry">
+		SELECT 
+			<include refid="pxPxbryColumns"/>
+		FROM t_px_pxbry a
+		<include refid="pxPxbryJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="pxbId !=null and pxbId != '' ">
+			and a.pxb_id = #{pxbId}
+			</if>
+			<if test="xm !=null and xm != '' ">
+			and a.xm = #{xm}
+			</if>
+			<if test="zgbh !=null and zgbh != '' ">
+			and a.zgbh = #{zgbh}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.zhonghong.university.pxgl.entity.PxPxbry">
+		SELECT 
+			<include refid="pxPxbryColumns"/>
+		FROM t_px_pxbry a
+		<include refid="pxPxbryJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_px_pxbry(
+			ID ,
+			PXB_ID ,
+			RY_ID ,
+			XM ,
+			ZGBH ,
+			KQ_FS ,
+			PS_FS ,
+			ZH_FS ,
+			JYZ_BH ,
+			REMARKS ,
+			ENABLE_FLAG ,
+			DEL_FLAG ,
+			CREATE_BY ,
+			CREATE_DATE ,
+			UPDATE_BY ,
+			UPDATE_DATE
+		) values(
+			#{id} , 
+			#{pxbId} , 
+			#{ryId} , 
+			#{xm} , 
+			#{zgbh} , 
+			#{kqFs} , 
+			#{psFs} , 
+			#{zhFs} , 
+			#{jyzBh} , 
+			#{remarks} , 
+			#{enableFlag} , 
+			#{delFlag} , 
+			#{createBy} , 
+			#{createDate} , 
+			#{updateBy} , 
+			#{updateDate} 
+		)
+	</insert>
+	
+	<update id="update">
+		update t_px_pxbry
+		<set>
+			PXB_ID = #{pxbId} ,
+			RY_ID = #{ryId} ,
+			XM = #{xm} ,
+			ZGBH = #{zgbh} ,
+			KQ_FS = #{kqFs} ,
+			PS_FS = #{psFs} ,
+			ZH_FS = #{zhFs} ,
+			JYZ_BH = #{jyzBh} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE t_px_pxbry SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+	
+	<select id="selectPxbList" resultType="com.zhonghong.university.pxgl.entity.PxPxbry">
+		SELECT 
+			id as "pxbId",
+			pxb_mc as "pxbMc"		
+		FROM t_px_pxb a
+		<where>
+			a.del_flag = '0'
+		</where>
+		order by a.CREATE_DATE
+	</select>
+	
+</mapper>
+
