@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.zhonghong.fdp.common.persistence.DataEntity;
 
-import lombok.Data;
 
 /**
  * <pre>
@@ -21,7 +20,7 @@ import lombok.Data;
  *    修改后版本:     修改人：  修改日期:     修改内容: 
  * </pre>
  */
- @Data
+
 public class SysRoleMenu extends DataEntity<SysRoleMenu>{
 	private static final long serialVersionUID = 1L;
 	
@@ -31,5 +30,29 @@ public class SysRoleMenu extends DataEntity<SysRoleMenu>{
 	private String menuId;  //菜单ID
 	
 	private String menuIds;
+
+	public String getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getMenuId() {
+		return menuId;
+	}
+
+	public void setMenuId(String menuId) {
+		this.menuId = menuId;
+	}
+
+	public String getMenuIds() {
+		return menuIds;
+	}
+
+	public void setMenuIds(String menuIds) {
+		this.menuIds = menuIds;
+	}
 
 }

@@ -112,4 +112,96 @@ public class KqBsmx extends DataEntity<KqBsmx>{
 		return this.qtTs;
 	}
 
+	public String getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(String orgId) {
+		this.orgId = orgId;
+	}
+
+	public String getBsId() {
+		return bsId;
+	}
+
+	public void setBsId(String bsId) {
+		this.bsId = bsId;
+	}
+
+	public String getRyId() {
+		return ryId;
+	}
+
+	public void setRyId(String ryId) {
+		this.ryId = ryId;
+	}
+
+	public String getOrgCode() {
+		return orgCode;
+	}
+
+	public void setOrgCode(String orgCode) {
+		this.orgCode = orgCode;
+	}
+
+	public String getFullOrgCodes() {
+		return fullOrgCodes;
+	}
+
+	public void setFullOrgCodes(String fullOrgCodes) {
+		this.fullOrgCodes = fullOrgCodes;
+	}
+
+	public String getFullOrgNames() {
+		return fullOrgNames;
+	}
+
+	public void setFullOrgNames(String fullOrgNames) {
+		this.fullOrgNames = fullOrgNames;
+	}
+
+	public void setKqYf(String kqYf) {
+		this.kqYf = kqYf;
+	}
+
+	public void setKqMf(String kqMf) {
+		this.kqMf = kqMf;
+	}
+
+	public void setXm(String xm) {
+		this.xm = xm;
+	}
+
+	public void setZgbh(String zgbh) {
+		this.zgbh = zgbh;
+	}
+
+	public void setBjTs(Integer bjTs) {
+		this.bjTs = bjTs;
+	}
+
+	public void setSjTs(Integer sjTs) {
+		this.sjTs = sjTs;
+	}
+
+	public void setTqjTs(Integer tqjTs) {
+		this.tqjTs = tqjTs;
+	}
+
+	public void setHsjTs(Integer hsjTs) {
+		this.hsjTs = hsjTs;
+	}
+
+	public void setCjTs(Integer cjTs) {
+		this.cjTs = cjTs;
+	}
+
+	public void setQtTs(Integer qtTs) {
+		this.qtTs = qtTs;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
 }

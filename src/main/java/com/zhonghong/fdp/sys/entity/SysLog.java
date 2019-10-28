@@ -6,16 +6,16 @@ import java.util.Map;
 import com.zhonghong.fdp.common.persistence.DataEntity;
 import com.zhonghong.fdp.common.utils.StringUtils;
 
-import lombok.Data;
+
 
 
 
 /**
  * 日志Entity
- * @author gulong
+ * @author 
  * @version 2014-8-19
  */
-@Data
+
 public class SysLog extends DataEntity<SysLog> {
 
 	private static final long serialVersionUID = 1L;
@@ -52,5 +52,105 @@ public class SysLog extends DataEntity<SysLog> {
 			params.append(StringUtils.abbr(StringUtils.endsWithIgnoreCase(param.getKey(), "password") ? "" : paramValue, 100));
 		}
 		this.params = params.toString();
+	}
+
+
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public String getRemoteAddr() {
+		return remoteAddr;
+	}
+
+
+	public void setRemoteAddr(String remoteAddr) {
+		this.remoteAddr = remoteAddr;
+	}
+
+
+	public String getRequestUri() {
+		return requestUri;
+	}
+
+
+	public void setRequestUri(String requestUri) {
+		this.requestUri = requestUri;
+	}
+
+
+	public String getMethod() {
+		return method;
+	}
+
+
+	public void setMethod(String method) {
+		this.method = method;
+	}
+
+
+	public String getParams() {
+		return params;
+	}
+
+
+	public void setParams(String params) {
+		this.params = params;
+	}
+
+
+	public String getUserAgent() {
+		return userAgent;
+	}
+
+
+	public void setUserAgent(String userAgent) {
+		this.userAgent = userAgent;
+	}
+
+
+	public String getException() {
+		return exception;
+	}
+
+
+	public void setException(String exception) {
+		this.exception = exception;
+	}
+
+
+	public Date getBeginDate() {
+		return beginDate;
+	}
+
+
+	public void setBeginDate(Date beginDate) {
+		this.beginDate = beginDate;
+	}
+
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 }

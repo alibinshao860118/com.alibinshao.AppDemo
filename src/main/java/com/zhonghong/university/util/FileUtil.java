@@ -230,7 +230,7 @@ public class FileUtil {
 				bouts.close();
 			}
 		} catch (IOException e) {
-			log.error("文件下载出错", e);
+			//logger.error("文件下载出错", e);
 		}
 	}
 

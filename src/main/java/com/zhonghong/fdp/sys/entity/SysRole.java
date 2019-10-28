@@ -9,7 +9,7 @@ import java.util.List;
 import com.zhonghong.fdp.common.persistence.DataEntity;
 import com.zhonghong.fdp.common.utils.excel.annotation.ExcelField;
 
-import lombok.Data;
+
 
 /**
  * <pre>
@@ -22,7 +22,7 @@ import lombok.Data;
  *    修改后版本:     修改人：  修改日期:     修改内容: 
  * </pre>
  */
- @Data
+
 public class SysRole extends DataEntity<SysRole>{
 	private static final long serialVersionUID = 1L;
 	
@@ -85,6 +85,94 @@ public class SysRole extends DataEntity<SysRole>{
 	@ExcelField(title="备注", type=1, align=1, sort=20)
 	public String getRemarks(){
 		return this.remarks;
+	}
+
+	public String getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(String orgId) {
+		this.orgId = orgId;
+	}
+
+	public String getScope() {
+		return scope;
+	}
+
+	public void setScope(String scope) {
+		this.scope = scope;
+	}
+
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
+	public String getOrgCode() {
+		return orgCode;
+	}
+
+	public void setOrgCode(String orgCode) {
+		this.orgCode = orgCode;
+	}
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
+	public String getFullOrgCodes() {
+		return fullOrgCodes;
+	}
+
+	public void setFullOrgCodes(String fullOrgCodes) {
+		this.fullOrgCodes = fullOrgCodes;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public SysUser getUser() {
+		return user;
+	}
+
+	public void setUser(SysUser user) {
+		this.user = user;
+	}
+
+	public List<SysMenu> getMenuList() {
+		return menuList;
+	}
+
+	public void setMenuList(List<SysMenu> menuList) {
+		this.menuList = menuList;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setShowOrder(Integer showOrder) {
+		this.showOrder = showOrder;
+	}
+
+	public void setFullOrgNames(String fullOrgNames) {
+		this.fullOrgNames = fullOrgNames;
 	}
 
 }

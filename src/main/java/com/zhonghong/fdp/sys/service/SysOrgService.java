@@ -5,7 +5,7 @@ package com.zhonghong.fdp.sys.service;
 
 import java.util.List;
 
-import org.apache.commons.codec.binary.StringUtils;
+import com.zhonghong.fdp.common.utils.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

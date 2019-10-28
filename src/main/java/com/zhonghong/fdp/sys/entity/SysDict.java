@@ -3,15 +3,15 @@ package com.zhonghong.fdp.sys.entity;
 import com.zhonghong.fdp.common.persistence.DataEntity;
 import com.zhonghong.fdp.common.utils.excel.annotation.ExcelField;
 
-import lombok.Data;
+
 
 
 /**
  * 字典Entity
- * @author gulong
+ * @author 
  * @version 2013-05-15
  */
-@Data
+
 public class SysDict extends DataEntity<SysDict> {
 
 	private static final long serialVersionUID = 1L;
@@ -52,6 +52,42 @@ public class SysDict extends DataEntity<SysDict> {
 	@ExcelField(title="备注", type=1, align=1, sort=6)
 	public String getRemarks(){
 		return this.remarks;
+	}
+
+	public String getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 
 	

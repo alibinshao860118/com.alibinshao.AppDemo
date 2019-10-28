@@ -67,11 +67,22 @@
 			<version>2.0</version>
 		</dependency>
 		<dependency>
+			<groupId>com.github</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+		<dependency>
 			<groupId>com.google</groupId>
 			<artifactId>google-gson-sdk</artifactId>
 			<version>2.2.4</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>com.google.collect</groupId>
+			<artifactId>com.springsource.com.google.common.collect</artifactId>
+			<version>0.8.0.20080820</version>
+		</dependency>
+
+
 		<dependency>
 		    <groupId>com.apache</groupId>
 		    <artifactId>log4j</artifactId>
@@ -80,8 +91,18 @@
 		
 		<dependency>
 		  <groupId>org.mybatis</groupId>
-		  <artifactId>mybatis2</artifactId>
-		  <version>2.3.7</version>
+		  <artifactId>mybatis</artifactId>
+		  <version>3.5.3</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.mybatis</groupId>
+		  <artifactId>mybatis-spring</artifactId>
+		  <version>2.0.3</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-jdbc</artifactId>
+		  <version>5.2.0.RELEASE</version>
 		</dependency>
 		
 		
@@ -90,12 +111,33 @@
 		    <artifactId>commons-lang3</artifactId>
 		    <version>3.7</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>com.springsource.org.apache.commons.io</artifactId>
+		    <version>1.4.0</version>
+		</dependency>
  
 		<dependency>
 			<groupId>org.apache.ibatis</groupId>
 			<artifactId>ibatis-core</artifactId>
 			<version>3.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>org.apache.poi</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>org.apache.poi.ooxml</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>org.apache.poi.ooxml.schemas</artifactId>
+			<version>3.9</version>
+		</dependency>
+		
 		
 		 <dependency>
             <groupId>org.dom4j</groupId>
@@ -132,6 +174,29 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>utf-8</encoding>
+				</configuration>
+			</plugin>
+ 			<!-- <plugin>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok-maven-plugin</artifactId>
+              <version>1.16.8.0</version>
+              <executions>
+                  <execution>
+                      <phase>generate-sources</phase>
+                      <goals>
+                          <goal>delombok</goal>
+                      </goals>
+                  </execution>
+              </executions>
+          </plugin> -->
 		</plugins>
 	</build>
 

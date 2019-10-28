@@ -9,20 +9,18 @@ import java.util.List;
 import com.zhonghong.fdp.common.persistence.DataEntity;
 import com.zhonghong.fdp.common.utils.excel.annotation.ExcelField;
 
-import lombok.Data;
-
 /**
  * <pre>
  * 对应数据库表(fbidp_sys_org)的实体类
  * </pre>
- * @author gulong 
+ * @author  
  * @version 1.00.00
  * <pre>
  * 修改记录
  *    修改后版本:     修改人：  修改日期:     修改内容: 
  * </pre>
  */
- @Data
+
 public class SysOrg extends DataEntity<SysOrg>{
 	private static final long serialVersionUID = 1L;
 	
@@ -117,6 +115,218 @@ public class SysOrg extends DataEntity<SysOrg>{
 	@ExcelField(title="备注", type=1, align=1, sort=7)
 	public String getRemarks(){
 		return this.remarks;
+	}
+
+	public String getOrgShortName() {
+		return orgShortName;
+	}
+
+	public void setOrgShortName(String orgShortName) {
+		this.orgShortName = orgShortName;
+	}
+
+	public String getParentOrgId() {
+		return parentOrgId;
+	}
+
+	public void setParentOrgId(String parentOrgId) {
+		this.parentOrgId = parentOrgId;
+	}
+
+	public String getParentOrgCode() {
+		return parentOrgCode;
+	}
+
+	public void setParentOrgCode(String parentOrgCode) {
+		this.parentOrgCode = parentOrgCode;
+	}
+
+	public String getParentOrgName() {
+		return parentOrgName;
+	}
+
+	public void setParentOrgName(String parentOrgName) {
+		this.parentOrgName = parentOrgName;
+	}
+
+	public String getFullOrgIds() {
+		return fullOrgIds;
+	}
+
+	public void setFullOrgIds(String fullOrgIds) {
+		this.fullOrgIds = fullOrgIds;
+	}
+
+	public String getFullOrgCodes() {
+		return fullOrgCodes;
+	}
+
+	public void setFullOrgCodes(String fullOrgCodes) {
+		this.fullOrgCodes = fullOrgCodes;
+	}
+
+	public String getFullOrgNames() {
+		return fullOrgNames;
+	}
+
+	public void setFullOrgNames(String fullOrgNames) {
+		this.fullOrgNames = fullOrgNames;
+	}
+
+	public String getLeaderId() {
+		return leaderId;
+	}
+
+	public void setLeaderId(String leaderId) {
+		this.leaderId = leaderId;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public boolean isWithSelf() {
+		return withSelf;
+	}
+
+	public void setWithSelf(boolean withSelf) {
+		this.withSelf = withSelf;
+	}
+
+	public String getOldOrgCode() {
+		return oldOrgCode;
+	}
+
+	public void setOldOrgCode(String oldOrgCode) {
+		this.oldOrgCode = oldOrgCode;
+	}
+
+	public String getOldOrgName() {
+		return oldOrgName;
+	}
+
+	public void setOldOrgName(String oldOrgName) {
+		this.oldOrgName = oldOrgName;
+	}
+
+	public String getOldOrgShortName() {
+		return oldOrgShortName;
+	}
+
+	public void setOldOrgShortName(String oldOrgShortName) {
+		this.oldOrgShortName = oldOrgShortName;
+	}
+
+	public String getOldFullOrgIds() {
+		return oldFullOrgIds;
+	}
+
+	public void setOldFullOrgIds(String oldFullOrgIds) {
+		this.oldFullOrgIds = oldFullOrgIds;
+	}
+
+	public String getOldFullOrgCodes() {
+		return oldFullOrgCodes;
+	}
+
+	public void setOldFullOrgCodes(String oldFullOrgCodes) {
+		this.oldFullOrgCodes = oldFullOrgCodes;
+	}
+
+	public String getOldFullOrgNames() {
+		return oldFullOrgNames;
+	}
+
+	public void setOldFullOrgNames(String oldFullOrgNames) {
+		this.oldFullOrgNames = oldFullOrgNames;
+	}
+
+	public List<String> getFullOrgCodeList() {
+		return fullOrgCodeList;
+	}
+
+	public void setFullOrgCodeList(List<String> fullOrgCodeList) {
+		this.fullOrgCodeList = fullOrgCodeList;
+	}
+
+	public List<SysOrg> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<SysOrg> children) {
+		this.children = children;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public int getChildNum() {
+		return childNum;
+	}
+
+	public void setChildNum(int childNum) {
+		this.childNum = childNum;
+	}
+
+	public void setOrgCode(String orgCode) {
+		this.orgCode = orgCode;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
+	public void setOrgType(String orgType) {
+		this.orgType = orgType;
+	}
+
+	public void setLeaderName(String leaderName) {
+		this.leaderName = leaderName;
+	}
+
+	public void setShowOrder(int showOrder) {
+		this.showOrder = showOrder;
+	}
+
+	public void setBzlb(String bzlb) {
+		this.bzlb = bzlb;
+	}
+
+	public void setBzrs(Integer bzrs) {
+		this.bzrs = bzrs;
 	}
 
 }

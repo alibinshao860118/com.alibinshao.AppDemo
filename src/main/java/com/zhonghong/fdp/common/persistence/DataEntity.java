@@ -1,3 +1,4 @@
+
 package com.zhonghong.fdp.common.persistence;
 
 import java.io.Serializable;
@@ -10,14 +11,13 @@ import com.zhonghong.fdp.common.utils.IdGen;
 import com.zhonghong.fdp.sys.entity.SysUser;
 import com.zhonghong.fdp.sys.utils.UserUtils;
 
-import lombok.Data;
 
 /**
  * 数据Entity类
  * @author gulong
  * @version 2014-05-16
  */
-@Data
+
 public abstract class DataEntity<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -35,6 +35,7 @@ public abstract class DataEntity<T> implements Serializable {
 	protected Long limit;
 	protected Long count;
 	
+
 	protected Long page;
 	protected Long rows;
 	
@@ -62,7 +63,7 @@ public abstract class DataEntity<T> implements Serializable {
 	 * 插入之前执行方法，需要手动调用
 	 */
 	public void preInsert(){
-		setId(IdGen.uuid());
+		this.setId(IdGen.uuid());
 		SysUser user = UserUtils.getUser();
 		if (StringUtils.isNotBlank(user.getId())){
 			this.updateBy = user.getId();
@@ -82,5 +83,125 @@ public abstract class DataEntity<T> implements Serializable {
 		}
 		this.updateDate = new Date();
 	}
-	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+	public String getCreateBy() {
+		return createBy;
+	}
+
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public String getDelFlag() {
+		return delFlag;
+	}
+
+	public void setDelFlag(String delFlag) {
+		this.delFlag = delFlag;
+	}
+
+	public String getEnableFlag() {
+		return enableFlag;
+	}
+
+	public void setEnableFlag(String enableFlag) {
+		this.enableFlag = enableFlag;
+	}
+
+	public Long getStart() {
+		return start;
+	}
+
+	public void setStart(Long start) {
+		this.start = start;
+	}
+
+	public Long getLimit() {
+		return limit;
+	}
+
+	public void setLimit(Long limit) {
+		this.limit = limit;
+	}
+
+	public Long getCount() {
+		return count;
+	}
+
+	public void setCount(Long count) {
+		this.count = count;
+	}
+
+	public Long getPage() {
+		return page;
+	}
+
+	public void setPage(Long page) {
+		this.page = page;
+	}
+
+	public Long getRows() {
+		return rows;
+	}
+
+	public void setRows(Long rows) {
+		this.rows = rows;
+	}
+
+	public String getDbName() {
+		return dbName;
+	}
+
+	public void setDbName(String dbName) {
+		this.dbName = dbName;
+	}
 }
+

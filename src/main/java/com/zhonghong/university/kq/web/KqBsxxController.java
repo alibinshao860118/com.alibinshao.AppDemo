@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.druid.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import com.zhonghong.fdp.common.persistence.Page;
 import com.zhonghong.fdp.common.web.BaseController;
 import com.zhonghong.university.kq.entity.KqBsmx;

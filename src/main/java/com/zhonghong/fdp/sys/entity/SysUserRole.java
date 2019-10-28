@@ -5,7 +5,7 @@ package com.zhonghong.fdp.sys.entity;
 
 import com.zhonghong.fdp.common.persistence.DataEntity;
 
-import lombok.Data;
+
 
 /**
  * <pre>
@@ -18,7 +18,7 @@ import lombok.Data;
  *    修改后版本:     修改人：  修改日期:     修改内容: 
  * </pre>
  */
- @Data
+
 public class SysUserRole extends DataEntity<SysUserRole>{
 	private static final long serialVersionUID = 1L;
 	
@@ -31,7 +31,43 @@ public class SysUserRole extends DataEntity<SysUserRole>{
 	private String name;
 	private String orgCode;
 	private String orgName;
+	public String getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getOrgCode() {
+		return orgCode;
+	}
+	public void setOrgCode(String orgCode) {
+		this.orgCode = orgCode;
+	}
+	public String getOrgName() {
+		return orgName;
+	}
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
 	
-	private String ids;
+	
 
 }

@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.alibaba.druid.util.StringUtils;
+import com.zhonghong.fdp.common.utils.StringUtils;
 import com.zhonghong.fdp.common.persistence.CrudDao;
 import com.zhonghong.fdp.common.persistence.DataEntity;
 import com.zhonghong.fdp.common.persistence.Page;

@@ -73,4 +73,72 @@ public class KqBsxx extends DataEntity<KqBsxx>{
 		return this.createDateStr;
 	}
 
+	public String getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(String orgId) {
+		this.orgId = orgId;
+	}
+
+	public String getKqZt() {
+		return kqZt;
+	}
+
+	public void setKqZt(String kqZt) {
+		this.kqZt = kqZt;
+	}
+
+	public String getOrgCode() {
+		return orgCode;
+	}
+
+	public void setOrgCode(String orgCode) {
+		this.orgCode = orgCode;
+	}
+
+	public String getFullOrgCodes() {
+		return fullOrgCodes;
+	}
+
+	public void setFullOrgCodes(String fullOrgCodes) {
+		this.fullOrgCodes = fullOrgCodes;
+	}
+
+	public String getFullOrgNames() {
+		return fullOrgNames;
+	}
+
+	public void setFullOrgNames(String fullOrgNames) {
+		this.fullOrgNames = fullOrgNames;
+	}
+
+	public List<KqBsmx> getBsmxList() {
+		return bsmxList;
+	}
+
+	public void setBsmxList(List<KqBsmx> bsmxList) {
+		this.bsmxList = bsmxList;
+	}
+
+	public void setKqYf(String kqYf) {
+		this.kqYf = kqYf;
+	}
+
+	public void setKqMf(String kqMf) {
+		this.kqMf = kqMf;
+	}
+
+	public void setCreateNameBy(String createNameBy) {
+		this.createNameBy = createNameBy;
+	}
+
+	public void setCreateDateStr(String createDateStr) {
+		this.createDateStr = createDateStr;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
 }

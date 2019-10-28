@@ -6,20 +6,19 @@ package com.zhonghong.university.zp.entity;
 import com.zhonghong.fdp.common.persistence.DataEntity;
 import com.zhonghong.fdp.common.utils.excel.annotation.ExcelField;
 
-import lombok.Data;
 
 /**
  * <pre>
  * 对应数据库表(T_ZP_ZPXQ)的实体类
  * </pre>
- * @author gulong 
+ * @author  
  * @version 1.00.00
  * <pre>
  * 修改记录
  *    修改后版本:     修改人：  修改日期:     修改内容: 
  * </pre>
  */
- @Data
+ 
 public class ZpZpxq extends DataEntity<ZpZpxq>{
 
 	private static final long serialVersionUID = 1L;
@@ -98,6 +97,70 @@ public class ZpZpxq extends DataEntity<ZpZpxq>{
 	@ExcelField(title="显示顺序", type=1, align=1, sort=10)
 	public Integer getShowOrder(){
 		return this.showOrder;
+	}
+
+	public String getZpbmMc() {
+		return zpbmMc;
+	}
+
+	public void setZpbmMc(String zpbmMc) {
+		this.zpbmMc = zpbmMc;
+	}
+
+	public String getZpjhBh() {
+		return zpjhBh;
+	}
+
+	public void setZpjhBh(String zpjhBh) {
+		this.zpjhBh = zpjhBh;
+	}
+
+	public String getZpjhMc() {
+		return zpjhMc;
+	}
+
+	public void setZpjhMc(String zpjhMc) {
+		this.zpjhMc = zpjhMc;
+	}
+
+	public void setZpjhId(String zpjhId) {
+		this.zpjhId = zpjhId;
+	}
+
+	public void setZpbmId(String zpbmId) {
+		this.zpbmId = zpbmId;
+	}
+
+	public void setZpGw(String zpGw) {
+		this.zpGw = zpGw;
+	}
+
+	public void setZpRs(String zpRs) {
+		this.zpRs = zpRs;
+	}
+
+	public void setZyYq(String zyYq) {
+		this.zyYq = zyYq;
+	}
+
+	public void setXlYq(String xlYq) {
+		this.xlYq = xlYq;
+	}
+
+	public void setNlYq(String nlYq) {
+		this.nlYq = nlYq;
+	}
+
+	public void setQtYq(String qtYq) {
+		this.qtYq = qtYq;
+	}
+
+	public void setLxr(String lxr) {
+		this.lxr = lxr;
+	}
+
+	public void setShowOrder(Integer showOrder) {
+		this.showOrder = showOrder;
 	}
 
 }

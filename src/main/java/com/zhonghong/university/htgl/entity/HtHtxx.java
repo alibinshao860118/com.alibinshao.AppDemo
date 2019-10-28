@@ -114,4 +114,56 @@ public class HtHtxx extends DataEntity<HtHtxx>{
 	public String getZzRq(){
 		return this.zzRq;
 	}
+
+	public void setRyId(String ryId) {
+		this.ryId = ryId;
+	}
+
+	public void setXm(String xm) {
+		this.xm = xm;
+	}
+
+	public void setZgbh(String zgbh) {
+		this.zgbh = zgbh;
+	}
+
+	public void setHtBh(String htBh) {
+		this.htBh = htBh;
+	}
+
+	public void setHtLx(String htLx) {
+		this.htLx = htLx;
+	}
+
+	public void setHtZt(String htZt) {
+		this.htZt = htZt;
+	}
+
+	public void setSfGdqx(String sfGdqx) {
+		this.sfGdqx = sfGdqx;
+	}
+
+	public void setSyqYs(Integer syqYs) {
+		this.syqYs = syqYs;
+	}
+
+	public void setKsRq(String ksRq) {
+		this.ksRq = ksRq;
+	}
+
+	public void setDqRq(String dqRq) {
+		this.dqRq = dqRq;
+	}
+
+	public void setXqFlag(String xqFlag) {
+		this.xqFlag = xqFlag;
+	}
+
+	public void setXqRq(String xqRq) {
+		this.xqRq = xqRq;
+	}
+
+	public void setZzRq(String zzRq) {
+		this.zzRq = zzRq;
+	}
 }
