@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.btn_success,.btn_qx{ border:1px solid #1e42a3;text-shadow:0px -1px 0px #11258b;
+box-shadow:inset 1px 1px 0px #3e8acb,inset -1px -1px 0px #295aae,1px 2px 2px #ccc;
+	background: -moz-linear-gradient(TOP, #3371bf 0%, #2651a8 100%); /* FF3.6+ */
+				background: -webkit-gradient(top, color-stop(0%,#3371bf), color-stop(100%,#2651a8)); /* Chrome,Safari4+ */
+				background: -webkit-linear-gradient(TOP, #3371bf 0%,#2651a8 100%); /* Chrome10+,Safari5.1+ */
+				background: -o-linear-gradient(TOP, #3371bf 0%,#2651a8 100%); /* Opera11.10+ */
+				background: -ms-linear-gradient(TOP, #3371bf 0%,#2651a8 100%); /* IE10+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3371bf', endColorstr='#2651a8',GradientType=0 ); /* IE6-9 */
+				background: linear-gradient(TOP, #3371bf 0%,#2651a8 100%); /* W3C */
+	}
+	.btn:hover{ opacity:0.9;}
+	.btn {
+display: inline-block; letter-spacing:1px; border-radius:2px; 
+border: 1px solid transparent;white-space: nowrap;
+
+font-weight: 400;
+text-align: center;
+vertical-align: middle;
+cursor: pointer; line-height:27px;
+padding: 0px 20px; color:#fff;
+}
+</style>
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+<title>申报缴款</title>
+</head>
+
+<body>
+<div style="padding:15px 10px; line-height:20px;  border:1px solid rgba(221,185,146,0.8);background-color:rgba(255,234,211,0.8); text-align:left;
+ margin:12px 12px 0px 12px;">
+说明：申报表智慧订阅是指依据您的订阅方式定期将含期初数据的PDF报表上传至您的邮箱,云盘或者网盘，您只需查收邮件，从云盘或者网盘下载PDF报表，完成填写后提交申报；无需登录电子税务局下载。
+</div>
+
+
+<style>
+.tc_box_border{ border-left:1px solid #ddd; border-bottom:1px solid #ddd;}
+.tc_box_border td{ border-right:1px solid #ddd; border-top:1px solid #ddd; padding:0 5px}
+.tc_box_border table td{ border:none; padding:0}
+
+</style>
+
+<table width="100%" border="0" cellspacing="12" cellpadding="0">
+  <tr>
+    <td>
+    <table class="tc_box_border" style="line-height:36px;" width="100%" border="0" cellspacing="0" cellpadding="0">
+     <tr>
+        <td align="right">订阅方式：</td>
+        <td> <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><input name="" type="checkbox" value=""></td>
+            <td width="50">&nbsp;邮箱</td>
+            <td><input name="" type="checkbox" value=""></td>
+            <td width="50">&nbsp;网盘</td>
+            <td><input name="" type="checkbox" value=""></td>
+            <td width="78">&nbsp;阿里云盘</td>
+            <td><input name="" type="checkbox" value=""></td>
+            <td width="78">&nbsp;华为云盘</td>
+            <td><input name="" type="checkbox" value=""></td>
+            <td>&nbsp;百度云盘</td>
+            </tr>
+        </table></td>
+        </tr>
+     
+   <tr>
+    <td align="right" width="17%">订阅税(费)种：</td>
+    <td><table border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><input name="" type="checkbox" value=""></td>
+        <td width="70">&nbsp;增值税</td>
+        <td><input name="" type="checkbox" value=""></td>
+        <td width="70">&nbsp;消费税</td>
+        <td><input name="" type="checkbox" value=""></td>
+        <td width="85">&nbsp;企业所得税</td>
+        
+        </tr>
+    </table></td>
+    </tr>
+   <tr>
+    <td align="right">推送时间：</td>
+    <td >每月  <select class="select02" name="">
+                   			<option>---请选择---</option>
+                   				<option>1日</option>
+                   				<option>2日</option>
+                   				<option>3日</option>
+                   				<option>4日</option>
+                   				<option>5日</option>
+                   				<option>6日</option>
+                   				<option>7日</option>
+                   				<option>8日</option>
+                   				<option>9日</option>
+                   				<option>10日</option>
+                   				<option>11日</option>
+                   				<option>12日</option>
+                   				<option>13日</option>
+                   				<option>14日</option>
+                   				<option>15日</option>
+                   			</select>
+    <span style="color:red"> *</span></td>
+    </tr>
+   <tr>
+    <td align="right" valign="top">电子邮箱：</td>
+    <td class="input04"><input style="width:80%" name="" type="text">
+      <span style="color:red"> *</span>
+      <div style=" line-height:20px; color:#ff3300">说明：选择邮箱时，邮箱接收的为PDF申报表。选择网盘时，邮箱接收的为网盘分享地址及密码。</div></td>
+    </tr>
+
+  <tr>
+    <td align="right">是否短信提醒：</td>
+    <td>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><input name="rr" type="radio" value="" checked></td>
+          <td width="24">是</td>
+          <td><input name="rr" type="radio" value="" ></td>
+          <td>否</td>
+          <td>&nbsp;&nbsp;<input class="input05" name="" type="text" value="13588888888"></td>
+          </tr>
+        </table> 
+    </td>
+    </tr>  
+</table>
+
+
+<p>&nbsp;</p>
+    <div class="btnbox">
+         <button type="button" class="btn btn_qx">取 消</button>
+         <button type="button" class="btn btn_success">查看历史数据</button>
+         <button type="button" class="btn btn_success">确 定</button>
+         
+    </div>
+
+</td>
+  </tr>
+</table>
+</body>
+</html>

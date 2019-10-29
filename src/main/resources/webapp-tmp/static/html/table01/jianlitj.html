@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+</style>
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+
+<STYLE>
+input {width: 85%;}
+.bg1 table{margin:20px 5px;width:70%;}
+.bg1 table td{border: 1px solid #400040;font-size: 13px;text-align:left;height:35px;padding:0px 5px;}
+.bg1 table th{border: 1px solid #400040;text-align:center;font-size: 13px;height:35px;padding:0px 5px;}
+
+.bt1 {margin:10px 25px 5px;font-size: 21px;color: #0080c0;font-weight:bold;text-align:center;}
+</STYLE>
+<title>应聘简历提交</title>
+</head>
+
+<body>
+<div  class="TableBox" style="margin:20px;>
+        <div class="Table03"">您现在的位置：<a href="http://www.hnpu.edu.cn/">返回首页</a>><a href="zpjihua.html">招聘信息</a>>简历递交</div>
+</div> 
+<div class="bt1">湖南省事业单位公开招聘人员报名表</div>     
+
+<div id="data1" class="bg1" align="center">
+    <form name="form" method="post" action="" id="form" onSubmit="">
+    <input type="text" id="zpzttitle" name="zpzttitle" value="<?php echo $jhmc;?>" style="display:none">
+	<input type="text" id="zpztid" name="zpztid" size="20" value="<?php echo $ztid;?>" style="display:none">
+    <TABLE border="1" cellspacing="0" cellpadding="0" align=center>
+        <tr><th style="width:10%;">姓    名</th><td style="width:14%;"><input name="username" type="text" id="username"> *</td>
+            <th style="width:14%;">性    别</th><td style="width:14%;"><select name="xb" id="xb"  style="width:50px;">
+                <option value="男">男</option><option value="女">女</option></select> *</td>
+            <th style="width:12%;">民    族</th><td style="width:10%;"><input name="mz" type="text" id="mz"></td><td rowspan="6"></td></tr>
+        <tr><th>应聘职位</th><td><input type="text" id="rpzhiwei" name="rpzhiwei" value="" readonly>
+			<input type="text" id="rpzhiweiid" name="rpzhiweiid" value="" style="display:none"></td>
+			<th>应聘部门</th><td><input type="text" id="ssbm" name="ssbm" value="" readonly></td>
+			<th>岗位类型</th><td><input type="text" id="rpganwei" name="rpganwei" value="" readonly></td></tr>			
+        <tr><th>出生年月</th><td><input name="csrq" type="date" id="csrq"> *</td>
+            <th>政治面貌</th><td><input name="zzmm" type="text" id="zzmm"> *</td><th>入党（团）时间</th><td><input name="rdsj" type="date" id="rdsj"></td></tr>
+        <tr><th>籍贯</th><td><input name="jg" type="text" id="jg"> *</td>            
+            <th>户籍所在地</th><td  colspan="3"><input name="hjdz" type="text" id="hjdz"></td></tr> 
+        <tr><th colspan="2">职称、执（职）业资格</th><td colspan="2"><input name="zyzg" type="text" id="zyzg"></td>
+            <th>取得时间</th><td><input name="zyzgsj" type="date" id="zyzgsj"></td></tr>       
+        <tr><th colspan="2">档案保管单位</th><td colspan="2"><input name="rsdadw" type="text" id="rsdadw"></td>
+            <th>婚姻状况</th><td><select name="hyzk" id="hyzk"  style="width:80px;">
+                <option value="已婚">已婚</option><option value="未婚">未婚</option><option value="离异">离异</option></select></td>
+            </tr>
+        <tr><th>第一学历211</th><td><select id="dy211" name="dy211" style="width:50px;">
+                <option value="是">是</option><option value="否">否</option></select>*</td>
+			<th>最高学历211</th><td><select id="zg211" name="zg211" style="width:50px;">
+                <option value="是">是</option><option value="否">否</option></select>*</td>
+			<th>第一外语</th><td colspan="2"><input type="text" id="dywy" name="dywy"></td></tr>
+        <tr><th>第一学历</th><td><input type="text" id="dyxl" name="dyxl">*</td><th>第一学历毕业学校</th><td><input type="text" id="dyxlxx" name="dyxlxx"></td>
+			<th>在校时间</th><td colspan="2"><input type="date" id="dyxlkssj" name="dyxlkssj" style="width:120px;">——<input type="date" id="dyxljssj" name="dyxljssj" style="width:120px;"></td>
+	    <tr><th>最高学历</th><td><input name="zgxl" type="text" id="zgxl">*</td>
+			<th>最高学历毕业学校</th><td><input name="zgxlxx" type="text" id="zgxlxx"></td>
+			<th>在校时间</th><td colspan="2"><input type="date" id="zgxlkssj" name="zgxlkssj" style="width:120px;">——<input type="date" id="zgxljssj" name="zgxljssj" style="width:120px;"></td></tr>
+		<tr><th>第一学历专业</th><td><input type="text" id="dyxlzy" name="dyxlzy"></td>
+		    <th>最高学历专业</th><td><input type="text" id="sxzy" name="sxzy"></td>
+		    <th>所属学科</th><td colspan="2"><input type="text" id="xueke" name="xueke"></td></tr>
+		<tr><th>有何特长:</th><td><input name="tc" type="text" id="tc"></td>
+            <th>身份证件类型</th><td><input name="sfzlx" type="text" id="sfzlx">*</td>
+            <th>身份证号</th><td colspan="2"><input name="sfzhm" type="text" id="sfzhm">*</td></tr>    
+        <tr><th>通讯地址</th><td colspan="4"><input name="txdz" type="text" id="txdz" style="width:90%;"></td>
+            <th>邮政编码</th><td><input name="youbian" type="text" id="youbian"></td></tr>
+        <tr><th>联系电话</th><td><input name="bgdh" type="text" id="bgdh"> *</td>
+            <th>QQ号码:</th><td><input name="qq" type="text" id="qq"></td>
+            <th>EMAIL</th><td colspan="2"><input name="yx" type="text" id="yx"> *</td></tr> 
+        <tr><th style="height:160px;">简历</th><td colspan="6"><textarea id="xuelixx" name="xuelixx" rows="6" cols="100"></textarea></td></tr> 
+        <tr><th style="height:160px;">与应聘岗位<br>相关的实践<br>经历或取得<br>的成绩</th><td colspan="6"><textarea id="gzjianli" name="gzjianli" rows="6" cols="100"></textarea></td></tr> 
+        <tr><th style="height:80px;">备注</th><td colspan="7"><textarea id="gzjianli" name="gzjianli" rows="3" cols="100"></textarea></td></tr>
+        <tr><th>附件:</th><td colspan=6>附件上传控件</td></tr>
+    </table>    
+    </form>
+</div>
+  <div class="btnbox" style="margin:20px;">
+    <button type="button" class="btn btn_success"  onClick="dyjkpz('table01/dzjkpz.pdf');">提交</button>
+    <button type="button" class="btn btn_success"  onClick="location='zpjihua.html'">关闭</button>
+  </div>
+</body>
+</html>

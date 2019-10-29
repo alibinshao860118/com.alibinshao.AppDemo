@@ -1,0 +1,293 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+<script language=JavaScript >
+
+$(document).ready(function() {
+	 /*if(<%=prop.getProperty("tjzt")%>==1){
+		$(".tjzt01").css("color","blue");
+		$(".tjzt01").eq(2).text("已申报");
+		$(".tjzt02 a").attr("class","btn1 btn_01");
+	};*/
+	
+	//模拟从服务端取数
+	$("body").append("<div class='bg'>"
+			 +'<iframe src="load.html" frameborder="none"  style="width:100%; height:100%;"></iframe>'
+			 +"</div>");
+	//$("body").css({overflow:'hidden'})//定义滚动条不滚动
+	 $(".bg").animate({opacity:'0.6'},500)
+	 setTimeout("removeLoad()",500);
+	
+});
+
+function removeLoad(){
+	//todo 加载数据
+	document.getElementById("dataTr1").style.display ="";
+	document.getElementById("dataTr2").style.display ="";
+	//document.getElementById("dataTr3").style.display ="";
+	
+	document.getElementById("pageTable").style.display ="";
+	$(".bg").remove();
+}
+
+	function checkFormAjax(){
+		 $("body").append("<div class='bg'>"
+				 +'<iframe src="load.html" frameborder="none"  style="width:100%; height:100%;"></iframe>'
+				 +"</div>");
+		//$("body").css({overflow:'hidden'})//定义滚动条不滚动
+		 $(".bg").animate({opacity:'0.6'},500)
+		 document.getElementById("dataTr1").style.display ="none";
+		document.getElementById("dataTr2").style.display ="none";
+		//document.getElementById("dataTr3").style.display ="";
+	
+		document.getElementById("pageTable").style.display ="none";
+		 
+		 setTimeout("removeLoad1()",500);
+	}
+	
+	function removeLoad1(){
+		//todo 加载数据
+		
+		document.getElementById("dataTr1").style.display ="";
+		document.getElementById("dataTr2").style.display ="";
+		//document.getElementById("dataTr3").style.display ="";
+		
+		document.getElementById("pageTable").style.display ="";
+		$(".bg").remove();
+	}
+	
+	function dyjkpz(url){
+		window.parent.clikcMenu(url,"打印缴款凭证");
+	}
+
+</script>
+<title>申报结果查询</title>
+</head>
+
+<body>
+<div class="TableBox">
+ 
+  <div class="Tableh2"><strong>查询条件</strong></div>
+   <div class="Table03">
+     <table width="100%" border="0" cellspacing="6" cellpadding="0">
+           <tr>
+             <td><div class="inputbox inputbox2">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">纳税人识别号:</td>
+                   <td><td><input type="text" class="input02 " style="width:100%" value="440100123456789"></td></td>
+                 </tr>
+               </table>
+             </div></td>
+          
+             
+              <td colspan="2"><div class="inputbox inputbox2" >
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">纳税人名称:</td>
+                   <td><input type="text" class="input02" style="width:100%" value="广东省国家税务局电子税务局测试用户"></td>
+                 </tr>
+               </table>
+             </div></td>
+             
+             
+             <td> <div class="btnbox" style="float:right">
+         <button type="button" class="btn btn_success" onclick="checkFormAjax();">搜 索</button>
+    <button type="button" class="btn btn_qx">重 置</button>
+    
+      </div></td>
+           </tr>
+          <tr>
+             <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">申报时间:</td>
+                   <td>&nbsp;<input type="checkbox"  checked> 最近一个月 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" > 最近二个月</td>
+                 </tr>
+               </table>
+             </div></td>
+             
+             
+              <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">申报时间:</td>
+                   <td>&nbsp;<input type="checkbox"  checked> 最近一个月 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" > 最近二个月</td>
+                 </tr>
+               </table>
+             </div></td>
+             <td></td>
+             
+             <td width="160">&nbsp;</td>
+           </tr>
+           <tr>
+             <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">申报时间起:</td>
+                   <td><input type="text" class="input02" style="width:100%"></td>
+                 </tr>
+               </table>
+             </div></td>
+             
+             
+              <td><div class="inputbox">
+               
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">申报时间止:</td>
+                   <td><input type="text" class="input02" style="width:100%"></td>
+                 </tr>
+               </table>
+             </div></td>
+             <td></td>
+             
+             <td width="160">&nbsp;</td>
+           </tr> 
+           <tr>
+             <td><div class="inputbox">
+               
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">税款所属期起:</td>
+                   <td><input type="text" class="input02" style="width:100%"></td>
+                 </tr>
+               </table>
+             </div></td>
+             
+             
+              <td><div class="inputbox">
+               
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">税款所属期止:</td>
+                   <td><input type="text" class="input02" style="width:100%"></td>
+                 </tr>
+               </table>
+             </div></td>
+             <td>&nbsp;</td>
+             
+             <td></td>
+           </tr>
+         </table>
+         
+     
+  </div>
+  <div class="Tableh2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong>查询结果</strong></td>
+    <td><table border="0" align="right" cellpadding="0" cellspacing="2">
+      <tr>
+        
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</div>
+  <div class="Table02">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th style="text-align:center" width="10px">序号</th>
+    <th align="center" width="30">选择</th>
+    <th>电子税票号码</th>
+    <th>应征凭证序号</th>
+    <th>税（费）种</th>
+    <th>税（品）目</th>
+    <th>税款所属期起</th>
+    <th>税款所属期止</th>
+    <th>缴款日期</th>
+    <th>应纳税额</th>
+    <th>应补退税额</th>
+    <th>实缴金额</th>
+  </tr>
+  <tr style="display:none" id="dataTr1">
+    <td align="center" >1</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></td>
+    <td>320150106000000103</td>
+    <td align="center">10015215000003681650</td>
+    <td>增值税</td>
+    <td>商业(17%)</td>
+    <td align="center">2015-09-01</td>
+    <td align="center">2015-09-30</td>
+     <td align="center">2015-10-20</td>
+     <td align="right">200.00</td>
+    <td align="right">200.00</td>
+    <td align="right">200.00</td>
+  </tr>  <tr style="display:none" id="dataTr2">
+    <td align="center">2</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></td>
+    <td>320150106000000103</td>
+    <td align="center">10015215000003681650</td>
+    <td>增值税</td>
+    <td>商业(13%)</td>
+    <td align="center">2015-09-01</td>
+    <td align="center">2015-09-30</td>
+    <td align="center">2015-10-20</td> 
+    <td align="right">100.00</td>
+    <td align="right">100.00</td> 
+    <td align="right">100.00</td>
+  </tr>
+    <tr style="display:none" id="dataTr3">
+    <td align="center">3</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td align="right">13,600.00</td>
+    <td align="right">1,100.00</td>
+     <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+    <tr style="display:none" id="dataTr4">
+    <td align="center">4</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2"></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+     <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+    </table>
+
+ 
+  </div>
+  <div class="page">
+       <table width="100%" border="0" cellspacing="0" cellpadding="0" id="pageTable" style="display:none">
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;总共<span class="font01">2 </span>条信息</td>
+    <td align="right">
+        <div class="pagebut" >
+        <ul><span>< 上一页</span>
+             <li class="lihover">1</li>
+             <span>下一页 ></span>
+        </ul>     
+        </div>
+    </td>
+  </tr>
+</table>
+
+  </div>
+  
+  <div class="btnbox">
+    <button type="button" class="btn btn_success"  onClick="dyjkpz('table01/dzjkpz.pdf');">打印缴款凭证</button>
+  
+            </div>
+  <p>&nbsp;</p>
+</div>
+</body>
+</html>

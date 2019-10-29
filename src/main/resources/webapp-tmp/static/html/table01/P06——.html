@@ -1,0 +1,337 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+
+<script language=JavaScript >
+
+$(document).ready(function() {
+	 /*if(<%=prop.getProperty("tjzt")%>==1){
+		$(".tjzt01").css("color","blue");
+		$(".tjzt01").eq(2).text("已申报");
+		$(".tjzt02 a").attr("class","btn1 btn_01");
+	};*/
+	
+	//模拟从服务端取数
+	$("body").append("<div class='bg'>"
+			 +'<iframe src="load.html" frameborder="none"  style="width:100%; height:100%;"></iframe>'
+			 +"</div>");
+	//$("body").css({overflow:'hidden'})//定义滚动条不滚动
+	 $(".bg").animate({opacity:'0.6'},500)
+	 
+	 setTimeout("removeLoad()",500);
+	
+});
+
+function removeLoad(){
+	//todo 加载数据
+	document.getElementById("dataTr1").style.display ="";
+	var myDate = new Date()
+	var year= myDate.getFullYear();    
+	var month= myDate.getMonth() + 1
+	var date= myDate.getDate() ; 
+	$("#sbsjTd1").text(year+"-"+month+"-"+date);
+	/*document.getElementById("dataTr2").style.display ="";
+	document.getElementById("dataTr3").style.display ="";
+	document.getElementById("dataTr4").style.display ="";
+	document.getElementById("dataTr5").style.display ="";
+	document.getElementById("dataTr6").style.display ="";*/
+	
+	document.getElementById("pageTable").style.display ="";
+	$(".bg").remove();
+}
+
+	function checkFormAjax(){
+		 $("body").append("<div class='bg'>"
+				 +'<iframe src="load.html" frameborder="none"  style="width:100%; height:100%;"></iframe>'
+				 +"</div>");
+		//$("body").css({overflow:'hidden'})//定义滚动条不滚动
+		 $(".bg").animate({opacity:'0.6'},500)
+		 document.getElementById("dataTr1").style.display ="none";
+		 document.getElementById("pageTable").style.display ="none";
+		 setTimeout("removeLoad1()",500);
+	}
+	
+	function removeLoad1(){
+		//todo 加载数据
+		
+		document.getElementById("dataTr1").style.display ="";
+		document.getElementById("pageTable").style.display ="";
+		$(".bg").remove();
+	}
+	
+	
+	function clickBd(url){
+			
+		window.parent.clikcMenu(url,"申报补打");
+	}
+
+</script>
+<title>申报结果查询</title>
+</head>
+
+<body>
+<div class="TableBox">
+ 
+  <div class="Tableh2">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="10%"><strong>查询条件</strong></td>
+    <td><table border="0" align="right" cellpadding="0" cellspacing="2">
+      <tr>
+        <td><a href="#" class="btn01 more_search">更多></a>
+        <script>
+        $(document).ready(function(e) {
+          $(".more_search").click(function(){
+			  $(".last_line").fadeToggle()
+			  })  
+        });
+        </script>
+        </td>
+        <td></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+  </div>
+   <div class="Table03">
+   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+           <tr>
+             <td><table width="100%" border="0" cellspacing="6" cellpadding="0">
+               <tr>
+                 <td><div class="inputbox inputbox2">
+                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                     <tr>
+                       <td width="1" class="inputtxt">纳税人识别号:</td>
+                       <td><input type="text" class="input02 " style="width:100%" value="440100123456789"></td>
+                     </tr>
+                   </table>
+                 </div></td>
+                 <td colspan="2"><div class="inputbox inputbox2">
+                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                     <tr>
+                       <td width="1" class="inputtxt">纳税人名称:</td>
+                       <td><input type="text" class="input02" style="width:100%" value="广东省国家税务局电子税务局测试用户"></td>
+                     </tr>
+                   </table>
+                 </div></td>
+                 <!-- <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">税款所属期起:</td>
+                   <td><input type="text" class="input02" style="width:100%"></td>
+                 </tr>
+               </table>
+             </div></td> -->
+                 <td><div class="btnbox" style="float:right">
+                   <button type="button" class="btn btn_success" onClick="checkFormAjax();">搜 索</button>
+                   <button type="button" class="btn btn_qx">重 置</button>
+                 </div></td>
+               </tr>
+               <tr>
+                 <td><div class="inputbox">
+                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                     <tr>
+                       <td width="1" class="inputtxt">申报时间:</td>
+                       <td><table  border="0" height="27" cellspacing="0"cellpadding="0">
+                         <tr>
+                         <td width="6"></td>
+                           <td valign="middle"><input style="margin-top:6px" class="input06" type="checkbox"  checked></td>
+                           <td>最近一个月 </td>
+                           <td width="6"></td>
+                           <td valign="middle"><input  style="margin-top:6px" class="input06" type="checkbox" ></td>
+                           <td> 最近二个月</td>
+                         </tr>
+                       </table></td>
+                     </tr>
+                   </table>
+                 </div></td>
+                 <td><div class="inputbox">
+                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                     <tr>
+                       <td width="1" class="inputtxt">申报税种:</td>
+                       <td><select class="select01" name="select">
+                         <option>---请选择---</option>
+                         <option>增值税</option>
+                         <option>消费税</option>
+                         <option>企业所得税</option>
+                         <option>烟叶税</option>
+                         <option>废弃电器电子产品处理基金收入</option>
+                         <option>城镇土地使用税</option>
+                       </select></td>
+                     </tr>
+                   </table>
+                 </div></td>
+                 <td><div class="inputbox">
+                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                     <tr>
+                       <td width="1" class="inputtxt">申报结果:</td>
+                       <td><select class="select01" name="select2">
+                         <option>---请选择---</option>
+                         <option>已申报</option>
+                         <option>未申报</option>
+                       </select></td>
+                     </tr>
+                   </table>
+                 </div></td>
+                 <td width="160">&nbsp;</td>
+               </tr>
+               <tr class="last_line" style="display:none">
+                 <td><div class="inputbox">
+                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                     <tr>
+                       <td width="1" class="inputtxt">申报时间起:</td>
+                       <td><input type="text" class="input02" style="width:100%"></td>
+                       <td width="1" class="inputtxt">止</td>
+                       <td><input type="text" class="input02" style="width:100%"></td>
+                     </tr>
+                   </table>
+                 </div></td>
+                 <td><div class="inputbox">
+                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                     <tr>
+                       <td width="1" class="inputtxt">税款所属期起:</td>
+                       <td><input type="text" class="input02" style="width:100%"></td>
+                       <td width="1" class="inputtxt">止</td>
+                       <td><input type="text" class="input02" style="width:100%"></td>
+                     </tr>
+                   </table>
+                 </div></td>
+                 <td></td>
+                 <td width="160">&nbsp;</td>
+               </tr>
+             </table></td>
+             </tr>
+           </table>
+  </div>
+  <div class="Tableh2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong>查询结果</strong></td>
+    <td><table border="0" align="right" cellpadding="0" cellspacing="2">
+      <tr>
+        
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</div>
+  <div class="Table02">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+  <th style="text-align:center" width="10px">序号</th>
+    <th align="left">税（费）种</th>
+    <th align="left">凭证种类</th>
+    <th align="left">应征凭证序号</th>
+    <th align="left">税款所属期起 </th>
+    <th align="left">税款所属期止</th>
+    <th align="left">计税依据</th>
+    <th align="left">应纳税额</th>
+    <th align="left">应补退税额</th>
+    <th align="left">申报时间 </th>
+    <th align="left">操作</th>
+    
+  </tr>
+  <tr style="display:none" id="dataTr1">
+  <td align="center">1</td>
+    <td>增值税</td>
+    <td>《增值税纳税申报表（一般纳税人适用）》</td>
+    <td align="center">10015215000003681650</td>
+    <td align="center">2015-09-01</td>
+    <td align="center">2015-09-30</td>
+    <td align="right">80,000.00</td>
+    <td align="right">13,600.00</td>
+    <td align="right">1,100.00</td>
+     <td id="sbsjTd1"></td>
+    <td align="center"><a class="btn1 btn_01" href="#" onClick="clickBd('../pdf/qr.pdf')">补打</a> </td>
+  </tr>
+   <tr style="display:none" id="dataTr2">
+   <td align="center">2</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+     <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="btn1 btn_01" href="#">补打</a> </td>
+  </tr>
+   <tr style="display:none" id="dataTr3">
+   <td align="center">3</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+     <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="btn1 btn_01" href="#">补打</a> </td>
+  </tr> 
+  <tr style="display:none" id="dataTr4">
+  <td align="center">4</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="btn1 btn_01" href="#">补打</a> </td>
+  </tr>
+   <tr style="display:none" id="dataTr5">
+  <td align="center">5</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="btn1 btn_01" href="#">补打</a> </td>
+  </tr>
+   <tr style="display:none" id="dataTr6">
+  <td align="center">6</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a class="btn1 btn_01" href="#">补打</a> </td>
+  </tr>
+    </table>
+
+ 
+  </div>
+  <div class="page">
+       <table width="100%" border="0" cellspacing="0" cellpadding="0" id="pageTable" style="display:none">
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;总共<span class="font01">1 </span>条信息</td>
+    <td align="right">
+        <div class="pagebut" >
+        <ul><span>< 上一页</span>
+             <li class="lihover">1</li
+             ><span>下一页 ></span>
+        </ul>     
+        </div>
+    </td>
+  </tr>
+</table>
+
+  </div>
+</div>
+</body>
+</html>

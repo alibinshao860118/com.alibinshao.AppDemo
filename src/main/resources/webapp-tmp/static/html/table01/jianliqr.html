@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+<style type="text/css">
+
+</style>
+
+<title>应聘简历现场确认</title>
+</head>
+
+<body>
+<div class="TableBox">
+ 
+  <div class="Tableh2"><strong>查询条件</strong></div>
+   <div class="Table03">
+     <table width="100%" border="0" cellspacing="6" cellpadding="0">
+           
+           <tr>
+             <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">政治面貌:</td>
+                   <td><select class="select01" name=""  id="sb01">
+                   			<option>---请选择---</option>
+                   				<option>共产党员</option>
+                   				<option>共青团员</option>
+                   				<option>民主党派</option>
+                   				<option>群众</option>
+                   			</select></td>
+                 </tr>
+               </table>
+             </div></td>
+             
+             
+              <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">任聘部门:</td>
+                   <td><select class="select01" name=""  id="sb01">
+                   			<option>---请选择---</option>
+                   				<option>人事处</option>
+                   				<option>信息中心</option>
+                   				<option>财务处</option>
+                   				<option>计算机学院</option>
+                   				<option>党政办公室</option>
+                   				<option>团委</option>
+                   			</select></td>
+                 </tr>
+               </table>
+             </div></td>
+             <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">第一学历:</td>
+                   <td><select class="select01" name=""  id="sbjg" onchange="selectSBJG()">
+                   				<option >大专</option>
+                   				<option >本科</option>
+                   				<option >硕士</option>
+                   				<option >博士</option>
+                   				<option >其他</option>
+                   			</select>
+                   </td>
+                 </tr>
+               </table>
+             </div></td>
+             
+             <td ><div class="btnbox" style="float:right">
+                     <button type="button" class="btn btn_success" onclick="checkFormAjax();">搜 索</button>
+                     <button type="button" class="btn btn_qx">重 置</button></div>
+            </td>
+           </tr> 
+           
+          <tr>
+             <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">最高学历:</td>
+                   <td><select class="select01" name=""  id="sbjg" onchange="selectSBJG()">
+                   				<option >大专</option>
+                   				<option >本科</option>
+                   				<option >硕士</option>
+                   				<option >博士</option>
+                   				<option >其他</option>
+                   			</select></td>
+                 </tr>
+               </table>
+             </div></td>
+             
+             
+              <td><div class="inputbox">
+               
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">第一学历毕业学校:</td>
+                   <td><select class="select01" name=""  id="sbjg" onchange="selectSBJG()">
+                   				<option >211院校</option>
+                   				<option >985院校</option>
+                   				<option >其他</option>
+                   			</select></td>
+                 </tr>
+               </table>
+             </div></td>
+             <td></td>
+             
+             <td width="160">&nbsp;</td>
+           </tr> 
+           
+         </table>
+         
+     
+  </div>
+  <div class="Tableh2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong>查询结果</strong>
+        <div class="btnbox" style="float:right;margin:0px 0px;">
+           <button type="button" class="btn btn_success" onclick="">批量确认</button>
+        </div>
+    </td>
+    <td><table border="0" align="right" cellpadding="0" cellspacing="2">
+      <tr>
+        
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</div>
+  
+  <div class="Table06">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" id="dataTable">
+  <tr>
+  	<th style="text-align:center" width="10px">序号</th>
+    <th align="center">姓名</th>
+    <th align="center">性别 </th>
+    <th align="center">出生年月</th>
+    <th align="center">政治面貌</th>
+    <th align="center">任聘部门</th>
+    <th align="center">第一学历</th>
+    <th align="center">最高学历</th>
+    <th align="center">确认状态</th>
+    <th align="center"><input type="checkbox" name="checkbox2" id="checkbox2"  checked></th>
+    <th align="center" width="260px">操作</th>
+    </tr>
+  <tr  id="dataTr1">
+  		<td align="center">1</td>
+	    <td style="color:red">张三</td>
+	    <td style="color:red" align="center">男 </td>
+	    <td align="center" style="color:red" >1985-08-01</td>
+	    <td align="center" style="color:red" >党员</td>
+	    <td align="center" style="color:red" >人事处</td>
+	    <td style="color:red" align="center">本科</td>
+	    <td style="color:red" align="center">硕士</td>
+	    <td style="color:red" align="center"></td>
+	    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2"  checked></td>
+	    <td><a class="btn1 btn_01" href="jianlidy.html">查看</a> <a class="btn1 btn_01" href="#">发短信</a> <a class="btn1 btn_01" href="#" onClick="jk();">确认</a> <a class="btn1 btn_01" href="#" onClick="jk();">附件上传</a></td>
+	 
+  </tr>
+  <tr  id="dataTr2">
+  		<td align="center">2</td>
+	    <td>李四</td>
+	    <td align="center">男 </td>
+	    <td align="center" >1985-08-01</td>
+	    <td align="center">党员</td>
+	    <td align="center">人事处</td>
+	    <td align="center">本科</td>
+	    <td align="center">硕士</td>
+	    <td align="center">已确认</td>
+	    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2"  checked></td>
+	    <td><a class="btn1 btn_01" href="jianlidy.html">查看</a> <a class="btn1 btn_01" href="#">发短信</a> <a class="btn1 btn_01" href="#" onClick="jk();">确认</a> <a class="btn1 btn_01" href="#" onClick="jk();">附件上传</a></td>
+	 
+  </tr>
+  
+  
+    </table>
+
+ 
+  </div>
+  <div class="page">
+       <table width="100%" border="0" cellspacing="0" cellpadding="0" id="pageTable">
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;总共<span class="font01">1 </span>条信息</td>
+    <td align="right">
+        <div class="pagebut" >
+        <ul><span>< 上一页</span>
+             <li class="lihover">1</li><li class="lihover">2</li>
+             <span>下一页 ></span>
+        </ul>     
+        </div>
+    </td>
+  </tr>
+</table>
+
+  </div>
+  <div class="btnbox">
+    <button type="button" class="btn btn_success">打印显示</button>
+  </div>
+</div>
+</body>
+</html>

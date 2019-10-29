@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +16,8 @@ import com.alibaba.fastjson.JSON;
 @Controller
 public class HelloController {
 
+	protected Log logger = LogFactory.getLog(getClass());
+	
 	@RequestMapping(value="index")
     public String hello(){
         return "main/index";
@@ -23,9 +27,10 @@ public class HelloController {
     public String mainDefault(){
         return "main/default";
     }
-	@RequestMapping(value="login")
+	@RequestMapping(value="main/login")
     public String login(){
-        return "/login";
+		logger.info("1111");
+        return "login";
     }
 	
 	@RequestMapping(value="author/login")

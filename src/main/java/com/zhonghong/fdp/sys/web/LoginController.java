@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ import com.zhonghong.fdp.sys.utils.UserUtils;
 
 /**
  * 登录Controller
- * @author gulong
+ * @author 
  * @version 2013-5-31
  */
 @Controller
@@ -39,14 +38,14 @@ public class LoginController extends BaseController{
 	
 	@Autowired
 	private SessionDAO sessionDAO;
-	@Autowired
-	private ISysMenuDao menuDao;	
+		
 	
 	/**
 	 * 管理登录
 	 */
-	@RequestMapping(value = "${adminPath}/login", method = RequestMethod.GET)
+	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
+		logger.info("--"+request.toString());
 		Principal principal = UserUtils.getPrincipal();
 
 		// 如果已登录，再次访问主页，则退出原账号。

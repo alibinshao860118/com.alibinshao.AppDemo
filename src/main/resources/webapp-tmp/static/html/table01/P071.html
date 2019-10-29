@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/comon.css" rel="stylesheet" type="text/css" />
+<link href="../../css/index.css" rel="stylesheet" type="text/css" />
+<link href="../../css/font.css" rel="stylesheet" type="text/css" />
+<link href="../../css/tab_css.css" rel="stylesheet" type="text/css" />
+
+<SCRIPT language=JavaScript src="../../js/jquery.js"></SCRIPT>
+<SCRIPT language=JavaScript src="../../js/js.js"></SCRIPT>
+<script src="../../js/Njs.js" type="text/jscript"></script>
+<script language=JavaScript >
+
+
+	function checkFormAjax(){
+		 $("body").append("<div class='bg'>"
+				 +'<iframe src="load.html" frameborder="none"  style="width:100%; height:100%;"></iframe>'
+				 +"</div>");
+		//$("body").css({overflow:'hidden'})//定义滚动条不滚动
+		 $(".bg").animate({opacity:'0.6'},500);
+		 
+		 document.getElementById("dataTr1").style.display ="none";
+		document.getElementById("dataTr2").style.display ="none";
+		
+		document.getElementById("pageTable").style.display ="none";
+		 
+		 setTimeout("removeLoad1()",500);
+	}
+	
+	function removeLoad1(){
+		//todo 加载数据
+		
+		document.getElementById("dataTr1").style.display ="";
+		document.getElementById("dataTr2").style.display ="";
+		
+		document.getElementById("pageTable").style.display ="";
+		$(".bg").remove();
+	}
+
+</script>
+<title>税收情况查询</title>
+</head>
+
+<body>
+<div class="TableBox">
+
+  <div class="Tableh2"><strong>查询条件</strong></div>
+  <div class="Table03">
+     <table width="100%" border="0" cellspacing="12" cellpadding="0">
+          <tr>
+             <td><div class="inputbox">
+               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                 <tr>
+                   <td width="1" class="inputtxt">请选择您的国地税信息:</td>
+                   <td><select class="select01">
+                     <option>广东省国家税务局电子税务局测试用户440100123456789，广东省国家税务局</option>
+                   </select></td>
+                 </tr>
+               </table>
+             </div></td>
+             
+             <td width="80"> <div class="btnbox" style="float:right">
+               <button type="button" class="btn btn_success" onclick="checkFormAjax();">搜 索</button>
+            
+               
+            </div></td>
+           </tr> 
+         </table>
+         
+     
+  </div>
+  <div class="Tableh2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><strong>查询结果</strong></td>
+    <td><table border="0" align="right" cellpadding="0" cellspacing="2">
+      <tr>
+        
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</div>
+  <div class="Table02">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+   <th style="text-align:center" width="10px">序号</th>
+    <th width="50px">是否扣缴&nbsp;<input type="checkbox" name="checkbox2" id="checkbox2"  checked></th>
+    <th>应征凭证序号</th>
+    <th>税（费）种</th>
+    <th>税（品）目</th>
+    <th>税款所属期起</th>
+    <th>税款所属期止</th>
+    <th>缴税期限</th>
+    <th>应补退税额 </th>
+    <th>实缴金额</th>
+    <th>滞纳金</th>
+    <th>是否逾期</th>
+  </tr>
+  <tr style="display:none" id="dataTr1">
+    <td align="center">1</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2" checked></td>
+    <td align="center">10015215000003681650</td>
+    <td>增值税</td>
+    <td>商业(17%)</td>
+    <td align="center">2015-09-01</td>
+    <td align="center">2015-09-30</td>
+    <td align="center">2015-10-30</td>
+    <td align="right">200.00</td>
+   <td><input name=""  type="text" style="width:70px" value="200.00" align="right"></td>
+    <td align="right">0.00</td>
+    <td align="center">否</td>
+  </tr>
+   <tr style="display:none" id="dataTr2">
+     <td align="center">2</td>
+    <td align="center"><input type="checkbox" name="checkbox2" id="checkbox2" checked></td>
+    <td align="center">10015215000003681650</td>
+    <td>增值税</td>
+    <td>商业(13%)</td>
+    <td align="center">2015-09-01</td>
+    <td align="center">2015-09-30</td>
+    <td align="center">2015-10-30</td>
+    <td align="right">100.00</td>
+   <td><input name=""  type="text" style="width:70px" value="100.00" align="right"></td>
+    <td align="right">0.00</td>
+    <td align="center">否</td>
+  </tr>
+   <tr style="display:none" id="dataTr3">
+    <td align="center">3</td>
+    <td align="center"><input type="checkbox" name="checkbox4" id="checkbox4" checked></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+     <td>&nbsp;</td>
+    <td><input name=""  type="text" style="width:70px"></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+    </table>
+
+ 
+  </div>
+  <div class="page">
+       <table width="100%" border="0" cellspacing="0" cellpadding="0" id="pageTable" style="display:none">
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;总共<span class="font01">2 </span>条信息</td>
+    <td align="right">
+        <div class="pagebut" >
+        <ul><span>< 上一页</span>
+             <li class="lihover">1</li>
+             <span>下一页 ></span>
+        </ul>     
+        </div>
+    </td>
+  </tr>
+</table>
+
+  </div>
+<!--    <div class="btnbox">
+    <button type="button" class="btn btn_success">下一步</button>
+  
+            </div>-->
+
+  
+</div>
+</body>
+</html>

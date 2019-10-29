@@ -48,10 +48,8 @@ import com.cloopen.rest.sdk.utils.CcopHttpClient;
 import com.cloopen.rest.sdk.utils.DateUtil;
 import com.cloopen.rest.sdk.utils.EncryptUtil;
 import com.cloopen.rest.sdk.utils.LoggerUtil;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.alibaba.fastjson.*;
+
 
 public class CCPRestSDK {
 	int status;
@@ -196,11 +194,11 @@ public class CCPRestSDK {
 			HttpPost httppost = (HttpPost) getHttpRequestBase(1, BillRecords);
 			String requsetbody = "";
 			if (BODY_TYPE == BodyType.Type_JSON) {
-				JsonObject json = new JsonObject();
-				json.addProperty("appId", App_ID);
-				json.addProperty("date", date);
+				JSONObject json = new JSONObject();
+				json.put("appId", App_ID);
+				json.put("date", date);
 				if (!(isEmpty(keywords)))
-					json.addProperty("keywords", keywords);
+					json.put("keywords", keywords);
 
 				requsetbody = json.toString();
 			} else {
@@ -401,28 +399,28 @@ public class CCPRestSDK {
 			HttpPost httppost = (HttpPost) getHttpRequestBase(1, VoiceVerify);
 			String requsetbody = "";
 			if (BODY_TYPE == BodyType.Type_JSON) {
-				JsonObject json = new JsonObject();
-				json.addProperty("appId", App_ID);
-				json.addProperty("verifyCode", verifyCode);
-				json.addProperty("to", to);
+				JSONObject json = new JSONObject();
+				json.put("appId", App_ID);
+				json.put("verifyCode", verifyCode);
+				json.put("to", to);
 				if (!(isEmpty(displayNum)))
-					json.addProperty("displayNum", displayNum);
+					json.put("displayNum", displayNum);
 
 				if (!(isEmpty(playTimes)))
-					json.addProperty("playTimes", playTimes);
+					json.put("playTimes", playTimes);
 
 				if (!(isEmpty(respUrl)))
-					json.addProperty("respUrl", respUrl);
+					json.put("respUrl", respUrl);
 				if (!(isEmpty(lang)))
-					json.addProperty("lang", lang);
+					json.put("lang", lang);
 				if (!(isEmpty(userData)))
-					json.addProperty("userData", userData);
+					json.put("userData", userData);
 				if (!(isEmpty(welcomePrompt)))
-					json.addProperty("welcomePrompt", welcomePrompt);
+					json.put("welcomePrompt", welcomePrompt);
 				if (!(isEmpty(playVerifyCode)))
-					json.addProperty("playVerifyCode", playVerifyCode);
+					json.put("playVerifyCode", playVerifyCode);
 				if (!(isEmpty(maxCallTime)))
-					json.addProperty("maxCallTime", maxCallTime);
+					json.put("maxCallTime", maxCallTime);
 
 				requsetbody = json.toString();
 			} else {
@@ -560,35 +558,35 @@ public class CCPRestSDK {
 			HttpPost httppost = (HttpPost) getHttpRequestBase(1, LandingCalls);
 			String requsetbody = "";
 			if (BODY_TYPE == BodyType.Type_JSON) {
-				JsonObject json = new JsonObject();
-				json.addProperty("appId", App_ID);
-				json.addProperty("to", to);
+				JSONObject json = new JSONObject();
+				json.put("appId", App_ID);
+				json.put("to", to);
 
 				if (!(isEmpty(mediaName)))
-					json.addProperty("mediaName", mediaName);
+					json.put("mediaName", mediaName);
 
 				if (!(isEmpty(mediaTxt)))
-					json.addProperty("mediaTxt", mediaTxt);
+					json.put("mediaTxt", mediaTxt);
 
 				if (!(isEmpty(displayNum)))
-					json.addProperty("displayNum", displayNum);
+					json.put("displayNum", displayNum);
 				if (!(isEmpty(playTimes)))
-					json.addProperty("playTimes", playTimes);
+					json.put("playTimes", playTimes);
 
 				if (!(isEmpty(respUrl)))
-					json.addProperty("respUrl", respUrl);
+					json.put("respUrl", respUrl);
 				if (!(isEmpty(userData)))
-					json.addProperty("userData", userData);
+					json.put("userData", userData);
 				if (!(isEmpty(txtSpeed)))
-					json.addProperty("txtSpeed", txtSpeed);
+					json.put("txtSpeed", txtSpeed);
 				if (!(isEmpty(txtVolume)))
-					json.addProperty("txtVolume", txtVolume);
+					json.put("txtVolume", txtVolume);
 				if (!(isEmpty(txtPitch)))
-					json.addProperty("txtPitch", txtPitch);
+					json.put("txtPitch", txtPitch);
 				if (!(isEmpty(txtBgsound)))
-					json.addProperty("txtBgsound", txtBgsound);
+					json.put("txtBgsound", txtBgsound);
 				if (!(isEmpty(playMode)))
-					json.addProperty("playMode", playMode);
+					json.put("playMode", playMode);
 
 				requsetbody = json.toString();
 			} else {
@@ -711,20 +709,18 @@ public class CCPRestSDK {
 			HttpPost httppost = (HttpPost) getHttpRequestBase(1, TemplateSMS);
 			String requsetbody = "";
 			if (BODY_TYPE == BodyType.Type_JSON) {
-				JsonObject json = new JsonObject();
-				json.addProperty("appId", App_ID);
-				json.addProperty("to", to);
-				json.addProperty("templateId", templateId);
+				JSONObject json = new JSONObject();
+				json.put("appId", App_ID);
+				json.put("to", to);
+				json.put("templateId", templateId);
 				if (datas != null) {
 					StringBuilder sb = new StringBuilder("[");
 					for (String s : datas) {
 						sb.append("\"" + s + "\"" + ",");
 					}
 					sb.replace(sb.length() - 1, sb.length(), "]");
-					JsonParser parser = new JsonParser();
-					JsonArray Jarray = parser.parse(sb.toString())
-							.getAsJsonArray();
-					json.add("datas", Jarray);
+					JSONArray Jarray = JSON.parseArray(sb.toString());
+					json.put("datas", Jarray);
 				}
 				requsetbody = json.toString();
 			} else {
@@ -826,9 +822,9 @@ public class CCPRestSDK {
 					Query_SubAccountByName);
 			String requsetbody = "";
 			if (BODY_TYPE == BodyType.Type_JSON) {
-				JsonObject json = new JsonObject();
-				json.addProperty("appId", App_ID);
-				json.addProperty("friendlyName", friendlyName);
+				JSONObject json = new JSONObject();
+				json.put("appId", App_ID);
+				json.put("friendlyName", friendlyName);
 				requsetbody = json.toString();
 			} else {
 				requsetbody = "<?xml version='1.0' encoding='utf-8'?><SubAccount>"
@@ -912,12 +908,12 @@ public class CCPRestSDK {
 					Get_SubAccounts);
 			String requsetbody = "";
 			if (BODY_TYPE == BodyType.Type_JSON) {
-				JsonObject json = new JsonObject();
-				json.addProperty("appId", App_ID);
+				JSONObject json = new JSONObject();
+				json.put("appId", App_ID);
 				if (!(isEmpty(startNo)))
-					json.addProperty("startNo", startNo);
+					json.put("startNo", startNo);
 				if (!(isEmpty(offset)))
-					json.addProperty("offset", offset);
+					json.put("offset", offset);
 				requsetbody = json.toString();
 			} else {
 				StringBuilder sb = new StringBuilder(
@@ -1072,9 +1068,9 @@ public class CCPRestSDK {
 			String requsetbody = "";
 
 			if (BODY_TYPE == BodyType.Type_JSON) {
-				JsonObject json = new JsonObject();
-				json.addProperty("appId", App_ID);
-				json.addProperty("friendlyName", friendlyName);
+				JSONObject json = new JSONObject();
+				json.put("appId", App_ID);
+				json.put("friendlyName", friendlyName);
 				requsetbody = json.toString();
 			} else {
 				requsetbody = "<?xml version='1.0' encoding='utf-8'?><SubAccount>"
@@ -1160,9 +1156,9 @@ public class CCPRestSDK {
 			String requsetbody = "";
 
 			if (BODY_TYPE == BodyType.Type_JSON) {
-				JsonObject json = new JsonObject();
-				json.addProperty("appId", App_ID);
-				json.addProperty("templateId", templateId);
+				JSONObject json = new JSONObject();
+				json.put("appId", App_ID);
+				json.put("templateId", templateId);
 				requsetbody = json.toString();
 			} else {
 				requsetbody = "<?xml version='1.0' encoding='utf-8'?><Request>"
@@ -1251,13 +1247,13 @@ public class CCPRestSDK {
 			HttpPost httppost = (HttpPost) getHttpRequestBase(1, queryCallState);
 			String requsetbody = "";
 			if (BODY_TYPE == BodyType.Type_JSON) {
-				JsonObject json = new JsonObject();
-				JsonObject json2 = new JsonObject();
-				json.addProperty("Appid", App_ID);
-				json2.addProperty("callid", callid);
+				JSONObject json = new JSONObject();
+				JSONObject json2 = new JSONObject();
+				json.put("Appid", App_ID);
+				json2.put("callid", callid);
 				if (!(isEmpty(action)))
-					json2.addProperty("action", action);
-				json.addProperty("QueryCallState", json2.toString());
+					json2.put("action", action);
+				json.put("QueryCallState", json2.toString());
 				requsetbody = json.toString();
 			} else {
 				StringBuilder sb = new StringBuilder(
@@ -1466,9 +1462,10 @@ public class CCPRestSDK {
 
 	private HashMap<String, Object> jsonToMap(String result) {
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();
+		/*
 		JsonParser parser = new JsonParser();
-		JsonObject asJsonObject = parser.parse(result).getAsJsonObject();
-		Set<Entry<String, JsonElement>> entrySet = asJsonObject.entrySet();
+		JSONObject asJSONObject = parser.parse(result).getAsJSONObject();
+		Set<Entry<String, JsonElement>> entrySet = asJSONObject.entrySet();
 		HashMap<String, Object> hashMap2 = new HashMap<String, Object>();
 
 		for (Map.Entry<String, JsonElement> m : entrySet) {
@@ -1496,16 +1493,16 @@ public class CCPRestSDK {
 								break;
 							}
 							if (m.getValue().toString().contains("[]")) {
-								hashMap2.put(m.getKey(), new JsonArray());
+								hashMap2.put(m.getKey(), new JSONArray());
 								hashMap.put("data", hashMap2);
 								continue;
 							}
-							JsonArray asJsonArray = parser.parse(
+							JSONArray asJsonArray = parser.parse(
 									m.getValue().toString()).getAsJsonArray();
 							ArrayList<HashMap<String, Object>> arrayList = new ArrayList<HashMap<String, Object>>();
 							for (JsonElement j : asJsonArray) {
 								Set<Entry<String, JsonElement>> entrySet2 = j
-										.getAsJsonObject().entrySet();
+										.getAsJSONObject().entrySet();
 								HashMap<String, Object> hashMap3 = new HashMap<String, Object>();
 								for (Map.Entry<String, JsonElement> m2 : entrySet2) {
 									hashMap3.put(m2.getKey(), m2.getValue()
@@ -1515,9 +1512,9 @@ public class CCPRestSDK {
 							}
 							hashMap2.put(m.getKey(), arrayList);
 						} catch (Exception e) {
-							JsonObject asJsonObject2 = parser.parse(
-									m.getValue().toString()).getAsJsonObject();
-							Set<Entry<String, JsonElement>> entrySet2 = asJsonObject2
+							JSONObject asJSONObject2 = parser.parse(
+									m.getValue().toString()).getAsJSONObject();
+							Set<Entry<String, JsonElement>> entrySet2 = asJSONObject2
 									.entrySet();
 							HashMap<String, Object> hashMap3 = new HashMap<String, Object>();
 							for (Map.Entry<String, JsonElement> m2 : entrySet2) {
@@ -1532,9 +1529,9 @@ public class CCPRestSDK {
 					hashMap.put("data", hashMap2);
 				} else {
 
-					JsonObject asJsonObject2 = parser.parse(
-							m.getValue().toString()).getAsJsonObject();
-					Set<Entry<String, JsonElement>> entrySet2 = asJsonObject2
+					JSONObject asJSONObject2 = parser.parse(
+							m.getValue().toString()).getAsJSONObject();
+					Set<Entry<String, JsonElement>> entrySet2 = asJSONObject2
 							.entrySet();
 					HashMap<String, Object> hashMap3 = new HashMap<String, Object>();
 					for (Map.Entry<String, JsonElement> m2 : entrySet2) {
@@ -1549,8 +1546,9 @@ public class CCPRestSDK {
 				}
 			}
 		}
+		 */
 		return hashMap;
-	}
+		}
 
 	/**
 	 * @description 将xml字符串转换成map

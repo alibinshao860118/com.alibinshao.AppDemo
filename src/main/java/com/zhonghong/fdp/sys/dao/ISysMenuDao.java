@@ -5,22 +5,24 @@ package com.zhonghong.fdp.sys.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.zhonghong.fdp.common.persistence.CrudDao;
 import com.zhonghong.fdp.common.persistence.annotation.MyBatisDao;
 import com.zhonghong.fdp.sys.entity.SysMenu;
 
 /**
  * <pre>
- * DAO接口
+ * menu DAO接口
  * </pre>
- * @author gulong 
+ * @author  
  * @version 1.00.00
  * <pre>
  * 修改记录
  *    修改后版本:     修改人：  修改日期:     修改内容: 
  * </pre>
  */
- @MyBatisDao
+ @Mapper
 public interface ISysMenuDao extends CrudDao<SysMenu>{
 
 	 /**

@@ -1,0 +1,9 @@
+招聘内容显示：zpjihua.html
+简历提交：jianlitj.html
+简历浏览与打印：jianlidy.html
+简历流程：jianligl.html
+现场确认：jianliqr.html
+现场确认：jianlizgsh.html
+筛选流程：jianlisx.html
+流程详细信息：jlsxlcgl.html
+流程提交：jlsxlctj.html
