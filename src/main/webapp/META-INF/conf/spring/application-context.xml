@@ -16,7 +16,7 @@
 	<context:property-placeholder location="classpath*:env.properties"/>  
 	
 	<!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
-	<context:component-scan base-package="com.zhonghong"><!-- base-package 如果多个，用“,”分隔 -->
+	<context:component-scan base-package="com.alibinshao.zhonghong"><!-- base-package 如果多个，用“,”分隔 -->
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>	
 	
@@ -42,7 +42,7 @@
 	</bean>
 
 	<!-- MyBatis begin -->
-	<bean id="sqlSessionFactory" class="com.zhonghong.fdp.common.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="com.alibinshao.zhonghong.fdp.common.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation">
 			<value>classpath:/META-INF/conf/mybatis-config.xml</value>
 		</property>
@@ -64,8 +64,8 @@
 	
 	 <!-- 扫描basePackage下所有以@MyBatisDao注解的接口 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.zhonghong.**.dao" />
-		<property name="annotationClass" value="com.zhonghong.fdp.common.persistence.annotation.MyBatisDao" />
+		<property name="basePackage" value="com.alibinshao.zhonghong.**.dao" />
+		<property name="annotationClass" value="com.alibinshao.zhonghong.fdp.common.persistence.annotation.MyBatisDao" />
 		<!-- <property name="sqlSessionFactory" ref="sqlSessionFactory" /> sqlSessionFactory注入会导致spring 
 			先加载sqlSessionFactory，再加载properties配置文件，这样jdbc的变量不会被替换 改用sqlSessionFactoryBeanName，用名称进行注入 -->
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />

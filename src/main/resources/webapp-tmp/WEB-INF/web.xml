@@ -35,7 +35,7 @@
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>	
 	<listener>
-		<listener-class>com.zhonghong.fdp.sys.listener.WebContextListener</listener-class>
+		<listener-class>com.alibinshao.zhonghong.fdp.sys.listener.WebContextListener</listener-class>
 	</listener>
 	
 	<filter>

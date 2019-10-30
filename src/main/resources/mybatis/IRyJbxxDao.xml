@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibinshao.zhonghong.university.rygl.dao.IRyJbxxDao">
+	
+	<sql id="ryJbxxColumns">
+			a.ID as "id" , 
+				a.name as "name" , 
+				a.zgbh as "zgbh" , 
+				a.org_id as "orgId" , 
+				a.xb as "xb" , 
+				a.birthdate as "birthdate" , 
+				date_format(a.birthdate,'%Y-%m-%d-%T') as "birthdateStr",
+				a.sfjh as "sfjh" , 
+				a.zjlx as "zjlx" , 
+				a.sfzjhm as "sfzjhm" , 
+				(SELECT b.name from zidian b where a.zzmm = b.id) AS "zzmmMc",
+				(SELECT b.name from zidian b where a.mz = b.id) AS "mzMc",
+				(SELECT b.name from zidian b where a.zjlx = b.id) AS "zjlxMc",
+				a.gj as "gj" , 
+				a.mz as "mz" , 
+				a.gatq as "gatq" , 
+				a.zzmm as "zzmm" , 
+				a.birthaddress as "birthaddress" , 
+				a.jg as "jg" , 
+				a.hjzl as "hjzl" , 
+				a.remarks as "remarks" , 
+				a.ENABLE_FLAG as "enableFlag" , 
+				a.DEL_FLAG as "delFlag" , 
+				a.CREATE_BY as "createBy" , 
+				a.CREATE_DATE as "createDate" , 
+				a.UPDATE_BY as "updateBy" , 
+			    a.UPDATE_DATE as "updateDate",
+		    	org.org_code as "orgCode",
+				org.org_name as "orgName",
+				org.full_org_codes as "fullOrgCodes",
+				org.full_org_names as "fullOrgNames"
+	</sql>
+	
+	<sql id="ryJbxxJoins">
+	</sql>
+	
+	<select id="get" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyJbxx">
+		SELECT 
+			<include refid="ryJbxxColumns"/>
+		FROM T_RY_JBXX a,
+		     fbidp_sys_org org 
+		WHERE a.org_id=org.id
+			and a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM T_RY_JBXX a
+		<include refid="ryJbxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<!--基本信息页面查询  -->
+	<sql id="findList_condition">
+		<if test="id !=null and id != '' ">
+			and a.id=#{id}
+		</if>
+		<if test="orgId !=null and orgId != '' ">
+			and a.org_id=#{orgId}
+		</if>
+		<if test="sfzjhm !=null and sfzjhm != '' ">
+			and a.sfzjhm=#{sfzjhm}
+		</if>
+		<if test="zgbh !=null and zgbh != '' ">
+			and a.zgbh=#{zgbh}
+		</if>
+		<if test="name !=null and name != '' ">
+			and a.name like
+			<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+			<if test="dbName == 'mysql'">CONCAT('%',#{name}, '%')</if>
+		</if>
+		<if test="fullOrgCodes != null and fullOrgCodes !='' ">
+			and org.FULL_ORG_CODES like 
+			<if test="dbName == 'oracle'">#{fullOrgCodes}||'%'</if>
+			<if test="dbName == 'mysql'">CONCAT(#{fullOrgCodes}, '%')</if>
+		</if>
+	</sql>
+	
+	<select id="findList" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyJbxx">
+		SELECT 
+			<include refid="ryJbxxColumns"/>
+		FROM T_RY_JBXX a,
+			fbidp_sys_org org 
+		<where>
+			a.org_id=org.id
+			and a.del_flag = #{DEL_FLAG_NORMAL}
+			<include refid="findList_condition"/>
+		</where>
+		order by a.zgbh
+	</select>
+	
+	<select id="findAllList" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyJbxx">
+		SELECT 
+			<include refid="ryJbxxColumns"/>
+		FROM T_RY_JBXX a
+		<include refid="ryJbxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO T_RY_JBXX(
+			ID ,
+				name ,
+				zgbh ,
+				org_id ,
+				xb ,
+				birthdate ,
+				sfjh ,
+				zjlx ,
+				sfzjhm ,
+				gj ,
+				mz ,
+				gatq ,
+				zzmm ,
+				birthaddress ,
+				jg ,
+				hjzl ,
+				remarks,
+				ENABLE_FLAG ,
+				DEL_FLAG ,
+				CREATE_BY ,
+				CREATE_DATE ,
+				UPDATE_BY ,
+				UPDATE_DATE
+			) values(
+    		#{id} , 
+	    		#{name} , 
+	    		#{zgbh} , 
+	    		#{orgId} , 
+	    		#{xb} , 
+	    		#{birthdate} , 
+	    		#{sfjh} , 
+	    		#{zjlx} , 
+	    		#{sfzjhm} , 
+	    		#{gj} , 
+	    		#{mz} , 
+	    		#{gatq} , 
+	    		#{zzmm} , 
+	    		#{birthaddress} , 
+	    		#{jg} , 
+	    		#{hjzl} ,
+	    		#{remarks} , 
+	    		#{enableFlag} , 
+	    		#{delFlag} , 
+	    		#{createBy} , 
+	    		#{createDate} , 
+	    		#{updateBy} , 
+	    		#{updateDate} 
+			)
+	</insert>
+	
+	<update id="update">
+		update T_RY_JBXX
+		<set>
+			name = #{name} ,
+			zgbh = #{zgbh} ,
+			org_id = #{orgId} ,
+			xb = #{xb} ,
+			birthdate = #{birthdate} ,
+			sfjh = #{sfjh} ,
+			<if test="zjlx !=null and zjlx != '' ">
+			zjlx = #{zjlx} ,
+			</if>
+			<if test="sfzjhm !=null and sfzjhm != '' ">
+			sfzjhm = #{sfzjhm} ,
+			</if>
+			<if test="gj !=null and gj != '' ">
+			gj = #{gj} ,
+			</if>
+			<if test="mz !=null and mz != '' ">
+			mz = #{mz} ,
+			</if>
+			<if test="gatq !=null and gatq != '' ">
+			gatq = #{gatq} ,
+			</if>
+			<if test="zzmm !=null and zzmm != '' ">
+			zzmm = #{zzmm} ,
+			</if>
+			<if test="birthaddress !=null and birthaddress != '' ">
+			birthaddress = #{birthaddress} ,
+			</if>
+			<if test="jg !=null and jg != '' ">
+			jg = #{jg} ,
+			</if>
+			<if test="hjzl !=null and hjzl != '' ">
+			hjzl = #{hjzl} ,
+			</if>
+			<if test="remarks !=null and remarks != '' ">
+			remarks = #{remarks},
+			</if>
+			update_by = #{updateBy},
+			update_date = #{updateDate}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE T_RY_JBXX SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+
+</mapper>
+

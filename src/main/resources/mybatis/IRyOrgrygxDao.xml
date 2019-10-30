@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibinshao.zhonghong.university.rygl.dao.IRyOrgrygxDao">
+	
+	<sql id="ryOrgrygxColumns">
+		a.ID as "id" , 
+		a.ORG_ID as "orgId" , 
+		a.RY_ID as "ryId" , 
+		a.REMARKS as "remarks" , 
+		a.ENABLE_FLAG as "enableFlag" , 
+		a.DEL_FLAG as "delFlag" , 
+		a.CREATE_BY as "createBy" , 
+		a.CREATE_DATE as "createDate" , 
+		a.UPDATE_BY as "updateBy" , 
+	    a.UPDATE_DATE as "updateDate",
+	    u.name as "name" , 
+		u.zgbh as "zgbh" , 
+		u.xb as "xb" , 
+		u.sfjh as "sfjh" , 
+		u.zjlx as "zjlx" , 
+		u.sfzjhm as "sfzjhm" 
+	</sql>
+	
+	<sql id="ryOrgrygxJoins">
+		inner join T_RY_JBXX u on u.id=a.ry_id
+	</sql>
+	
+	<select id="get" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyOrgrygx">
+		SELECT 
+			<include refid="ryOrgrygxColumns"/>
+		FROM T_RY_ORGRYGX a
+		<include refid="ryOrgrygxJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM T_RY_ORGRYGX a
+		<include refid="ryOrgrygxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+	</select>
+	
+	<select id="findList" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyOrgrygx">
+		SELECT 
+			<include refid="ryOrgrygxColumns"/>
+		FROM T_RY_ORGRYGX a
+		<include refid="ryOrgrygxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="orgId!=null and orgId!=''">
+				and a.org_id = #{orgId}
+			</if>
+		</where>
+	</select>
+	
+	<select id="findNotExistOrgUser" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyOrgrygx">
+		SELECT 
+			u.ID as "id" , 
+			u.ORG_ID as "orgId" , 
+			u.ID as "ryId" , 
+		    u.name as "name" , 
+			u.zgbh as "zgbh" , 
+			u.xb as "xb" , 
+			u.sfjh as "sfjh" , 
+			u.zjlx as "zjlx" , 
+			u.sfzjhm as "sfzjhm" 
+		FROM T_RY_JBXX u
+		<where>
+			u.del_flag = '0'
+			and u.id not in (
+				select a.RY_ID from T_RY_ORGRYGX a 
+				where a.del_flag = '0'
+				and a.org_id = #{orgId}
+			)
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyOrgrygx">
+		SELECT 
+			<include refid="ryOrgrygxColumns"/>
+		FROM T_RY_ORGRYGX a
+		<include refid="ryOrgrygxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO T_RY_ORGRYGX(
+			ID ,
+			ORG_ID ,
+			RY_ID ,
+			REMARKS ,
+			ENABLE_FLAG ,
+			DEL_FLAG ,
+			CREATE_BY ,
+			CREATE_DATE ,
+			UPDATE_BY ,
+			UPDATE_DATE
+		) values(
+			#{id} , 
+			#{orgId} , 
+			#{ryId} , 
+			#{remarks} , 
+			#{enableFlag} , 
+			#{delFlag} , 
+			#{createBy} , 
+			#{createDate} , 
+			#{updateBy} , 
+			#{updateDate} 
+		)
+	</insert>
+	
+	<update id="update">
+		update T_RY_ORGRYGX
+		<set>
+			ORG_ID = #{orgId} ,
+			RY_ID = #{ryId} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE T_RY_ORGRYGX SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+	
+	<delete id="deleteById" >
+		DELETE FROM T_RY_ORGRYGX  
+		 WHERE id = #{id}
+	</delete>
+	
+	<delete id="deleteBy" >
+		DELETE FROM T_RY_ORGRYGX  
+		 WHERE ORG_ID = #{orgId}
+		   and RY_ID = #{ryId}
+	</delete>
+
+</mapper>
+

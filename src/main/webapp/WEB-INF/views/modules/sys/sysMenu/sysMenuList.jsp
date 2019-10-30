@@ -1,9 +1,31 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%
+	String ctx = request.getContextPath();
+%>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 	<head>
 		<meta name="decorator" content="default" />
-		<script type="text/javascript" src="${ctxStatic}/js/modules/sys/sysMenu/sysMenuList.js"></script>
+		<link rel="stylesheet" type="text/css" href="<%=ctx%>/layui/css/layui.css">
+		
+		<script src="${ctxStatic}/js/jquery.js" type="text/jscript"></script>
+		<script src="${ctxStatic}/js/js.js" type="text/jscript"></script>
+		<%-- <script type="text/javascript" src="${ctxStatic}/js/modules/sys/sysMenu/sysMenuList.js"></script>
+		 --%><script type="text/javascript" src="${ctxStatic}/layui/layui.js"></script>
+		<script type="text/javascript" src="${ctxStatic}/layui/modules/tree.js"></script>
+	    <script type="text/javascript">
+	    $(document).ready(function () {
+	    	//菜单树控件
+	    	$('#tt').tree({ 
+	    	    url:'<%=ctx%>/sys/sysMenu/getMenuListByParentId', 
+	    	    idField:'id', 
+	    	    treeField:'name',
+	    	    animate:true,
+	    	    rownumbers:true
+	    	});
+	    	
+	    });
+	    </script>
 	</head>
 <body>
 	<table id="tt" style="height:450px" > 

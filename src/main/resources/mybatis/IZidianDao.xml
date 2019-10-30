@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibinshao.zhonghong.university.zp.dao.IZidianDao">
+    
+	<sql id="zidianColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.bianhao AS "bianhao"
+	</sql>
+	
+	<sql id="zidianJoins">
+	</sql>
+    
+	<select id="get"   resultType="com.alibinshao.zhonghong.university.zp.entity.ZidianVo">
+		SELECT 
+			<include refid="zidianColumns"/>
+		FROM zidian a
+		<include refid="zidianJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList"   resultType="com.alibinshao.zhonghong.university.zp.entity.ZidianVo">
+		SELECT 
+			<include refid="zidianColumns"/>
+		FROM zidian a
+		<include refid="zidianJoins"/>
+		<where>
+			<if test="bianhao !=null and bianhao !='' "></if>
+				a.bianhao = #{bianhao}
+		</where>
+	</select>
+	
+	<select id="findAllList"   resultType="com.alibinshao.zhonghong.university.zp.entity.ZidianVo">
+		SELECT 
+			<include refid="zidianColumns"/>
+		FROM zidian a
+		<include refid="zidianJoins"/>
+		<where>
+			
+		</where>		
+	</select>
+	
+	<insert id="insert" >
+		INSERT INTO zidian(
+			name,
+			bianhao,
+		) VALUES (
+			#{name},
+			#{bianhao}
+		)
+	</insert>
+	
+	<update id="update" >
+		UPDATE zidian SET 	
+			name = #{name},
+			bianhao = #{bianhao},
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete" >
+		DELETE FROM zidian
+		WHERE id = #{id}
+	</update>
+	
+	<select id="findDeptSjNameList"  resultType="com.alibinshao.zhonghong.university.zp.entity.ZidianVo">
+	SELECT DISTINCT 
+	<if test="sjbianhao !=null and sjbianhao !='' ">
+	dpname ,dpbianhao,
+	</if>
+	sjbianhao,sjname
+	FROM bumen
+	<where>
+	   1=1
+		<if test="sjbianhao !=null and sjbianhao !='' ">
+		and sjbianhao=#{sjbianhao}
+		</if>
+		<if test="dpbianhao !=null and dpbianhao !='' ">
+		and dpbianhao=#{dpbianhao}
+		</if>
+	</where> 
+	</select>
+	<select id="findDeptName"  resultType="com.alibinshao.zhonghong.university.zp.entity.ZidianVo">
+		SELECT DISTINCT id,
+		dpname ,dpbianhao,
+		sjbianhao,sjname
+		FROM bumen
+		<where>
+			dpbianhao=#{dpbianhao}
+		</where> 
+	</select>
+	<select id="findDeptListByBmId"  resultType="com.alibinshao.zhonghong.university.zp.entity.ZidianVo">
+		SELECT DISTINCT id,
+		dpname ,dpbianhao,
+		sjbianhao,sjname
+		FROM bumen
+		<where>
+			id=#{id}
+		</where> 
+	</select>
+	<select id="findUsers"  resultType="com.alibinshao.zhonghong.university.zp.entity.ZidianVo">
+		SELECT DISTINCT id,
+		username 
+		FROM user
+		<where>
+			ssbmid=#{id}
+		</where> 
+	</select>
+</mapper>

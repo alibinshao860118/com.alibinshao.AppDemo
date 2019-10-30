@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibinshao.zhonghong.university.rygl.dao.IRyJtcyDao">
+	
+	<sql id="ryJtcyColumns">
+		a.ID as "id" , 
+		a.ryjbxx_id as "ryjbxxId" , 
+		a.jtcy as "jtcy" , 
+		a.gx as "gx" , 
+		a.csrq as "csrq" , 
+		a.xl as "xl" , 
+		a.mz as "mz" , 
+		a.zzmm as "zzmm" , 
+		a.gzdw as "gzdw" , 
+		a.hjszd as "hjszd" , 
+		a.bz as "bz" , 
+		a.REMARKS as "remarks" , 
+		a.ENABLE_FLAG as "enableFlag" , 
+		a.DEL_FLAG as "delFlag" , 
+		a.CREATE_BY as "createBy" , 
+		a.CREATE_DATE as "createDate" , 
+		a.UPDATE_BY as "updateBy" , 
+	    a.UPDATE_DATE as "updateDate",
+	   	j.name as "name" , 
+		j.zgbh as "zgbh" , 
+		j.org_id as "orgId" , 
+		org.org_code as "orgCode",
+		org.org_name as "orgName",
+		org.full_org_codes as "fullOrgCodes",
+		org.full_org_names as "fullOrgNames"
+	</sql>
+	
+	<sql id="ryJtcyJoins">
+	</sql>
+	
+	<select id="get" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyJtcy">
+		SELECT 
+			<include refid="ryJtcyColumns"/>
+		FROM t_ry_jtcy a
+		<include refid="ryJtcyJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM t_ry_jtcy a
+		<include refid="ryJtcyJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<sql id="findList_condition">
+		<if test="id !=null and id != '' ">
+			and a.id=#{id}
+		</if>
+		<if test="ryjbxxId !=null and ryjbxxId != '' ">
+			and a.ryjbxx_id = #{ryjbxxId}
+		</if>
+		<if test="name !=null and name != '' ">
+			and j.name=
+			<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+			<if test="dbName == 'mysql'">CONCAT('%',#{name}, '%')</if>
+		</if>
+		<if test="fullOrgCodes != null and fullOrgCodes !='' ">
+			and org.FULL_ORG_CODES like 
+			<if test="dbName == 'oracle'">#{fullOrgCodes}||'%'</if>
+			<if test="dbName == 'mysql'">CONCAT(#{fullOrgCodes}, '%')</if>
+		</if>
+	</sql>
+	
+	<select id="findList" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyJtcy">
+		SELECT 
+			<include refid="ryJtcyColumns"/>
+		FROM t_ry_jtcy a,
+			T_RY_JBXX j,
+		     fbidp_sys_org org 
+		<where>
+			j.id = a.ryjbxx_id
+		    and j.org_id=org.id
+			and a.del_flag = #{DEL_FLAG_NORMAL}
+			<include refid="findList_condition"/>
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyJtcy">
+		SELECT 
+			<include refid="ryJtcyColumns"/>
+		FROM t_ry_jtcy a
+		<include refid="ryJtcyJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_ry_jtcy(
+			ID ,
+				ryjbxx_id ,
+				jtcy ,
+				gx ,
+				<if test="csrq !=null and csrq != '' ">
+				csrq ,
+				</if>
+				xl ,
+				mz ,
+				zzmm ,
+				gzdw ,
+				hjszd ,
+				bz ,
+				REMARKS ,
+				ENABLE_FLAG ,
+				DEL_FLAG ,
+				CREATE_BY ,
+				CREATE_DATE ,
+				UPDATE_BY ,
+				UPDATE_DATE
+			) values(
+    		#{id} , 
+	    		#{ryjbxxId} , 
+	    		#{jtcy} , 
+	    		#{gx} , 
+	    		<if test="csrq !=null and csrq != '' ">
+	    		#{csrq} ,
+	    		</if> 
+	    		#{xl} , 
+	    		#{mz} , 
+	    		#{zzmm} , 
+	    		#{gzdw} , 
+	    		#{hjszd} , 
+	    		#{bz} , 
+	    		#{remarks} , 
+	    		#{enableFlag} , 
+	    		#{delFlag} , 
+	    		#{createBy} , 
+	    		#{createDate} , 
+	    		#{updateBy} , 
+	    		#{updateDate} 
+			)
+	</insert>
+	
+	<update id="update">
+		update t_ry_jtcy
+		<set>
+			ryjbxx_id = #{ryjbxxId} ,
+			jtcy = #{jtcy} ,
+			gx = #{gx} ,
+			<if test="csrq !=null and csrq != '' ">
+			csrq = #{csrq} ,
+			</if>
+			xl = #{xl} ,
+			mz = #{mz} ,
+			zzmm = #{zzmm} ,
+			gzdw = #{gzdw} ,
+			hjszd = #{hjszd} ,
+			bz = #{bz} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE t_ry_jtcy SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+
+</mapper>
+

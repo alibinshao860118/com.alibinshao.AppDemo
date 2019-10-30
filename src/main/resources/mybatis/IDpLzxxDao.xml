@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibinshao.zhonghong.university.dp.dao.IDpLzxxDao">
+	
+	<sql id="dpLzxxColumns">
+		a.ID as "id" , 
+		a.RY_ID as "ryId" , 
+		a.XM as "xm" , 
+		a.ZGBH as "zgbh" , 
+		a.LZ_LB as "lzLb" , 
+		a.LZ_SJ as "lzSj" , 
+		a.LZ_QX as "lzQx" , 
+		a.LZD_KJSJ as "lzdKjsj" , 
+		a.REMARKS as "remarks" , 
+		a.ENABLE_FLAG as "enableFlag" , 
+		a.DEL_FLAG as "delFlag" , 
+		a.CREATE_BY as "createBy" , 
+		a.CREATE_DATE as "createDate" , 
+		a.UPDATE_BY as "updateBy" , 
+	    a.UPDATE_DATE as "updateDate"
+</sql>
+	
+	<sql id="dpLzxxJoins">
+	</sql>
+	
+	<select id="get" resultType="com.alibinshao.zhonghong.university.dp.entity.DpLzxx">
+		SELECT 
+			<include refid="dpLzxxColumns"/>
+		FROM t_dp_lzxx a
+		<include refid="dpLzxxJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM t_dp_lzxx a
+		<include refid="dpLzxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<select id="findList" resultType="com.alibinshao.zhonghong.university.dp.entity.DpLzxx">
+		SELECT 
+			<include refid="dpLzxxColumns"/>
+		FROM t_dp_lzxx a
+		<include refid="dpLzxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.alibinshao.zhonghong.university.dp.entity.DpLzxx">
+		SELECT 
+			<include refid="dpLzxxColumns"/>
+		FROM t_dp_lzxx a
+		<include refid="dpLzxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_dp_lzxx(
+			ID ,
+			RY_ID ,
+			XM ,
+			ZGBH ,
+			LZ_LB ,
+			LZ_SJ ,
+			LZ_QX ,
+			LZD_KJSJ ,
+			REMARKS ,
+			ENABLE_FLAG ,
+			DEL_FLAG ,
+			CREATE_BY ,
+			CREATE_DATE ,
+			UPDATE_BY ,
+			UPDATE_DATE
+		) values(
+			#{id} , 
+			#{ryId} , 
+			#{xm} , 
+			#{zgbh} , 
+			#{lzLb} , 
+			#{lzSj} , 
+			#{lzQx} , 
+			#{lzdKjsj} , 
+			#{remarks} , 
+			#{enableFlag} , 
+			#{delFlag} , 
+			#{createBy} , 
+			#{createDate} , 
+			#{updateBy} , 
+			#{updateDate} 
+		)
+	</insert>
+	
+	<update id="update">
+		update t_dp_lzxx
+		<set>
+			RY_ID = #{ryId} ,
+			XM = #{xm} ,
+			ZGBH = #{zgbh} ,
+			LZ_LB = #{lzLb} ,
+			LZ_SJ = #{lzSj} ,
+			LZ_QX = #{lzQx} ,
+			LZD_KJSJ = #{lzdKjsj} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE t_dp_lzxx SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+
+</mapper>
+

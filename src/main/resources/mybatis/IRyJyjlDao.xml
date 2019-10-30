@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibinshao.zhonghong.university.rygl.dao.IRyJyjlDao">
+	
+	<sql id="ryJyjlColumns">
+		a.ID as "id" , 
+		a.ryjbxx_id as "ryjbxxId" , 
+		a.xw as "xw" , 
+		a.xw_mc as "xwMc" , 
+		a.xwhqsj as "xwhqsj" , 
+		a.xl as "xl" , 
+		a.xl_mc as "xlMc" , 
+		a.xlhqsj as "xlhqsj" , 
+		a.kssj as "kssj" , 
+		a.bysj as "bysj" , 
+		a.zy as "zy" , 
+		a.xz as "xz" , 
+		a.byxx as "byxx" , 
+		a.xxszgj as "xxszgj" , 
+		a.xxdz as "xxdz" , 
+		a.sfhwxl as "sfhwxl" , 
+		a.REMARKS as "remarks" , 
+		a.ENABLE_FLAG as "enableFlag" , 
+		a.DEL_FLAG as "delFlag" , 
+		a.CREATE_BY as "createBy" , 
+		a.CREATE_DATE as "createDate" , 
+		a.UPDATE_BY as "updateBy" , 
+	    a.UPDATE_DATE as "updateDate",
+	    j.name as "name" , 
+		j.zgbh as "zgbh" , 
+		j.org_id as "orgId" , 
+		org.org_code as "orgCode",
+		org.org_name as "orgName",
+		org.full_org_codes as "fullOrgCodes",
+		org.full_org_names as "fullOrgNames"
+	</sql>
+	
+	<sql id="ryJyjlJoins">
+	</sql>
+	
+	<select id="get" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyJyjl">
+		SELECT 
+			<include refid="ryJyjlColumns"/>
+		FROM t_ry_jyjl a
+		<include refid="ryJyjlJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM t_ry_jyjl a
+		<include refid="ryJyjlJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<sql id="findList_condition">
+		<if test="id !=null and id != '' ">
+			and a.id=#{id}
+		</if>
+		<if test="ryjbxxId !=null and ryjbxxId != '' ">
+			and a.ryjbxx_id = #{ryjbxxId}
+		</if>
+		<if test="zgbh !=null and zgbh != '' ">
+			and j.zgbh=#{zgbh}
+		</if>
+		<if test="name !=null and name != '' ">
+			and j.name like
+			<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+			<if test="dbName == 'mysql'">CONCAT('%',#{name}, '%')</if>
+		</if>
+		<if test="fullOrgCodes != null and fullOrgCodes !='' ">
+			and org.FULL_ORG_CODES like 
+			<if test="dbName == 'oracle'">#{fullOrgCodes}||'%'</if>
+			<if test="dbName == 'mysql'">CONCAT(#{fullOrgCodes}, '%')</if>
+		</if>
+	</sql>
+	
+	<select id="findList" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyJyjl">
+		SELECT 
+			<include refid="ryJyjlColumns"/>
+		FROM t_ry_jyjl a,
+		     T_RY_JBXX j,
+		     fbidp_sys_org org 
+		<where>
+		    j.id = a.ryjbxx_id
+		    and j.org_id=org.id
+			and a.del_flag = #{DEL_FLAG_NORMAL}
+			<include refid="findList_condition"/>
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.alibinshao.zhonghong.university.rygl.entity.RyJyjl">
+		SELECT 
+			<include refid="ryJyjlColumns"/>
+		FROM t_ry_jyjl a
+		<include refid="ryJyjlJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_ry_jyjl(
+			ID ,
+				ryjbxx_id ,
+				xw ,
+				xw_mc,
+				<if test="xwhqsj !=null and xwhqsj != '' ">
+				xwhqsj ,
+				</if>
+				xl ,
+				xl_mc,
+				<if test="xlhqsj !=null and xlhqsj != '' ">
+				xlhqsj ,
+				</if>
+				kssj ,
+				bysj ,
+				zy ,
+				xz ,
+				byxx ,
+				xxszgj ,
+				xxdz ,
+				sfhwxl ,
+				REMARKS ,
+				ENABLE_FLAG ,
+				DEL_FLAG ,
+				CREATE_BY ,
+				CREATE_DATE ,
+				UPDATE_BY ,
+				UPDATE_DATE
+			) values(
+    		#{id} , 
+	    		#{ryjbxxId} , 
+	    		#{xw} ,
+	    		 #{xwMc} ,
+	    		<if test="xwhqsj !=null and xwhqsj != '' ">
+				#{xwhqsj} , 
+				</if>
+	    		#{xl} , 
+	    		#{xlMc} ,
+	    		<if test="xlhqsj !=null and xlhqsj != '' ">
+				#{xlhqsj} , 
+				</if>
+	    		#{kssj} , 
+	    		#{bysj} , 
+	    		#{zy} , 
+	    		#{xz} , 
+	    		#{byxx} , 
+	    		#{xxszgj} , 
+	    		#{xxdz} , 
+	    		#{sfhwxl} , 
+	    		#{remarks} , 
+	    		#{enableFlag} , 
+	    		#{delFlag} , 
+	    		#{createBy} , 
+	    		#{createDate} , 
+	    		#{updateBy} , 
+	    		#{updateDate} 
+			)
+	</insert>
+	
+	<update id="update">
+		update t_ry_jyjl
+		<set>
+			ryjbxx_id = #{ryjbxxId} ,
+			xw = #{xw} ,
+			xw_mc = #{xwMc} ,
+			xwhqsj = #{xwhqsj} ,
+			xl = #{xl} ,
+			xl_mc = #{xlMc} ,
+			xlhqsj = #{xlhqsj} ,
+			kssj = #{kssj} ,
+			bysj = #{bysj} ,
+			zy = #{zy} ,
+			xz = #{xz} ,
+			byxx = #{byxx} ,
+			xxszgj = #{xxszgj} ,
+			xxdz = #{xxdz} ,
+			sfhwxl = #{sfhwxl} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE t_ry_jyjl SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+
+</mapper>
+

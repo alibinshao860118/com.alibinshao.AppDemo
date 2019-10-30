@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibinshao.zhonghong.university.pxgl.dao.IPxPxjhDao">
+	
+	<sql id="pxPxjhColumns">
+		a.ID as "id" , 
+		a.ORG_ID as "orgId" , 
+		a.JH_MC as "jhMc" , 
+		a.JH_RS as "jhRs" , 
+		a.PX_DX as "pxDx" , 
+		a.PS_QS as "psQs" , 
+		a.MQ_TS as "mqTs" , 
+		a.JH_YD as "jhYd" , 
+		a.JH_JD as "jhJd" , 
+		a.JH_YF as "jhYf" , 
+		a.PX_DD as "pxDd" , 
+		a.YS_JE as "ysJe" , 
+		a.REMARKS as "remarks" , 
+		a.ENABLE_FLAG as "enableFlag" , 
+		a.DEL_FLAG as "delFlag" , 
+		a.CREATE_BY as "createBy" , 
+		a.CREATE_DATE as "createDate" , 
+		a.UPDATE_BY as "updateBy" , 
+	    a.UPDATE_DATE as "updateDate"
+</sql>
+	
+	<sql id="pxPxjhJoins">
+	</sql>
+	
+	<select id="get" resultType="com.alibinshao.zhonghong.university.pxgl.entity.PxPxjh">
+		SELECT 
+			<include refid="pxPxjhColumns"/>
+		FROM t_px_pxjh a
+		<include refid="pxPxjhJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM t_px_pxjh a
+		<include refid="pxPxjhJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<select id="findList" resultType="com.alibinshao.zhonghong.university.pxgl.entity.PxPxjh">
+		SELECT 
+			<include refid="pxPxjhColumns"/>
+		FROM t_px_pxjh a
+		<include refid="pxPxjhJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.alibinshao.zhonghong.university.pxgl.entity.PxPxjh">
+		SELECT 
+			<include refid="pxPxjhColumns"/>
+		FROM t_px_pxjh a
+		<include refid="pxPxjhJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_px_pxjh(
+			ID ,
+			ORG_ID ,
+			JH_MC ,
+			JH_RS ,
+			PX_DX ,
+			PS_QS ,
+			MQ_TS ,
+			JH_YD ,
+			JH_JD ,
+			JH_YF ,
+			PX_DD ,
+			YS_JE ,
+			REMARKS ,
+			ENABLE_FLAG ,
+			DEL_FLAG ,
+			CREATE_BY ,
+			CREATE_DATE ,
+			UPDATE_BY ,
+			UPDATE_DATE
+		) values(
+			#{id} , 
+			#{orgId} , 
+			#{jhMc} , 
+			#{jhRs} , 
+			#{pxDx} , 
+			#{psQs} , 
+			#{mqTs} , 
+			#{jhYd} , 
+			#{jhJd} , 
+			#{jhYf} , 
+			#{pxDd} , 
+			#{ysJe} , 
+			#{remarks} , 
+			#{enableFlag} , 
+			#{delFlag} , 
+			#{createBy} , 
+			#{createDate} , 
+			#{updateBy} , 
+			#{updateDate} 
+		)
+	</insert>
+	
+	<update id="update">
+		update t_px_pxjh
+		<set>
+			ORG_ID = #{orgId} ,
+			JH_MC = #{jhMc} ,
+			JH_RS = #{jhRs} ,
+			PX_DX = #{pxDx} ,
+			PS_QS = #{psQs} ,
+			MQ_TS = #{mqTs} ,
+			JH_YD = #{jhYd} ,
+			JH_JD = #{jhJd} ,
+			JH_YF = #{jhYf} ,
+			PX_DD = #{pxDd} ,
+			YS_JE = #{ysJe} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE t_px_pxjh SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+
+</mapper>
+

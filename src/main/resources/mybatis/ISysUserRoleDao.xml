@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibinshao.zhonghong.fdp.sys.dao.ISysUserRoleDao">
+	
+	<sql id="sysUserRoleColumns">
+		a.ID as "id" , 
+		a.ROLE_ID as "roleId" , 
+		a.USER_ID as "userId" , 
+		a.REMARKS as "remarks" , 
+		a.ENABLE_FLAG as "enableFlag" , 
+		a.DEL_FLAG as "delFlag" , 
+		a.CREATE_BY as "createBy" , 
+		a.CREATE_DATE as "createDate" , 
+		a.UPDATE_BY as "updateBy" , 
+	    a.UPDATE_DATE as "updateDate"
+	</sql>
+	
+	<sql id="sysUserRoleJoins">
+	
+	</sql>
+	
+	<select id="get" resultType="com.alibinshao.zhonghong.fdp.sys.entity.SysUserRole">
+		SELECT 
+			<include refid="sysUserRoleColumns"/>
+		FROM FBIDP_SYS_USER_ROLE a
+		<include refid="sysUserRoleJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM FBIDP_SYS_USER_ROLE a
+		<include refid="sysUserRoleJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<select id="findList" resultType="com.alibinshao.zhonghong.fdp.sys.entity.SysUserRole">
+		SELECT 
+			<include refid="sysUserRoleColumns"/>
+		FROM FBIDP_SYS_USER_ROLE a
+		<include refid="sysUserRoleJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.alibinshao.zhonghong.fdp.sys.entity.SysUserRole">
+		SELECT 
+			<include refid="sysUserRoleColumns"/>
+		FROM FBIDP_SYS_USER_ROLE a
+		<include refid="sysUserRoleJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO FBIDP_SYS_USER_ROLE(
+			ID ,
+				ROLE_ID ,
+				USER_ID ,
+				REMARKS ,
+				ENABLE_FLAG ,
+				DEL_FLAG ,
+				CREATE_BY ,
+				CREATE_DATE ,
+				UPDATE_BY ,
+				UPDATE_DATE
+			) values(
+    		#{id} , 
+	    		#{roleId} , 
+	    		#{userId} , 
+	    		#{remarks} , 
+	    		#{enableFlag} , 
+	    		#{delFlag} , 
+	    		#{createBy} , 
+	    		#{createDate} , 
+	    		#{updateBy} , 
+	    		#{updateDate} 
+			)
+	</insert>
+	
+	<update id="update">
+		update FBIDP_SYS_USER_ROLE
+		<set>
+			ROLE_ID = #{roleId} ,
+			USER_ID = #{userId} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE FBIDP_SYS_USER_ROLE SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		<where> 
+			<if test="id!=null and id!=''">
+				and id = #{id}
+			</if>
+			<if test="roleId != null and roleId != ''">
+				and role_id = #{roleId}
+			</if>
+			<if test="userId != null and userId != ''">
+				and user_id = #{userId}
+			</if>
+		</where>
+	</delete>
+	
+	<delete id="deleteByUserId" >
+		DELETE FROM FBIDP_SYS_USER_ROLE WHERE user_id = #{userId}
+	</delete>
+	
+	<select id="queryNotGrantRoleById" 
+			resultType="com.alibinshao.zhonghong.fdp.sys.entity.SysRole">
+		SELECT 
+		    a.ID as "id", 
+			a.CODE as "code", 
+			a.NAME as "name",
+			org.org_code as "orgCode",
+			org.full_org_codes as "fullOrgCodes",
+			org.full_org_names as "fullOrgNames"
+		FROM FBIDP_SYS_ROLE a
+		inner join fbidp_sys_org org on a.org_id=org.id
+	   WHERE a.id not in (
+	   	  select role_id 
+	   	    from FBIDP_SYS_USER_ROLE b
+	   	   where b.user_id = #{userId}
+	   	     and b.del_flag = #{DEL_FLAG_NORMAL}
+	   )
+	   and a.del_flag = #{DEL_FLAG_NORMAL}
+	   <if test="code!=null and code!=''">
+			and a.CODE = #{code}
+		</if>
+		<if test="name!=null and name!=''">
+			<if test="dbName == 'oracle'">
+				and a.name like '%'||#{name}||'%'
+			</if>
+			<if test="dbName == 'mysql'">
+				and a.name like CONCAT('%', #{name}, '%')
+			</if>
+		</if>
+	</select>
+	
+	<select id="queryGrantRoleById" 
+			resultType="com.alibinshao.zhonghong.fdp.sys.entity.SysRole">
+		SELECT 
+		    a.ID as "id", 
+			a.CODE as "code", 
+			a.NAME as "name",
+			org.org_code as "orgCode",
+			org.full_org_codes as "fullOrgCodes",
+			org.full_org_names as "fullOrgNames"
+		FROM FBIDP_SYS_ROLE a
+		inner join fbidp_sys_org org on a.org_id=org.id
+	   WHERE a.id in (
+	   	  select role_id 
+	   	    from FBIDP_SYS_USER_ROLE b
+	   	   where b.user_id = #{userId}
+	   	     and b.del_flag = #{DEL_FLAG_NORMAL}
+	   )
+	   and a.del_flag = #{DEL_FLAG_NORMAL}
+	   <if test="code!=null and code!=''">
+			and a.CODE = #{code}
+		</if>
+		<if test="name!=null and name!=''">
+			<if test="dbName == 'oracle'">
+				and a.name like '%'||#{name}||'%'
+			</if>
+			<if test="dbName == 'mysql'">
+				and a.name like CONCAT('%', #{name}, '%')
+			</if>
+		</if>
+	</select>
+
+</mapper>
+

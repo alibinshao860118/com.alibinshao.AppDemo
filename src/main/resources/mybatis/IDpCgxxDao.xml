@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibinshao.zhonghong.university.dp.dao.IDpCgxxDao">
+	
+	<sql id="dpCgxxColumns">
+		a.ID as "id" , 
+		a.RY_ID as "ryId" , 
+		a.XM as "xm" , 
+		a.ZGBH as "zgbh" , 
+		a.CG_LB as "cgLb" , 
+		a.CG_GB as "cgGb" , 
+		a.CG_RW as "cgRw" , 
+		a.CG_FS as "cgFs" , 
+		a.CG_RQ as "cgRq" , 
+		a.YHG_RQ as "yhgRq" , 
+		a.HG_RQ as "hgRq" , 
+		a.REMARKS as "remarks" , 
+		a.ENABLE_FLAG as "enableFlag" , 
+		a.DEL_FLAG as "delFlag" , 
+		a.CREATE_BY as "createBy" , 
+		a.CREATE_DATE as "createDate" , 
+		a.UPDATE_BY as "updateBy" , 
+	    a.UPDATE_DATE as "updateDate"
+</sql>
+	
+	<sql id="dpCgxxJoins">
+	</sql>
+	
+	<select id="get" resultType="com.alibinshao.zhonghong.university.dp.entity.DpCgxx">
+		SELECT 
+			<include refid="dpCgxxColumns"/>
+		FROM t_dp_cgxx a
+		<include refid="dpCgxxJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM t_dp_cgxx a
+		<include refid="dpCgxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<select id="findList" resultType="com.alibinshao.zhonghong.university.dp.entity.DpCgxx">
+		SELECT 
+			<include refid="dpCgxxColumns"/>
+		FROM t_dp_cgxx a
+		<include refid="dpCgxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.alibinshao.zhonghong.university.dp.entity.DpCgxx">
+		SELECT 
+			<include refid="dpCgxxColumns"/>
+		FROM t_dp_cgxx a
+		<include refid="dpCgxxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_dp_cgxx(
+			ID ,
+			RY_ID ,
+			XM ,
+			ZGBH ,
+			CG_LB ,
+			CG_GB ,
+			CG_RW ,
+			CG_FS ,
+			CG_RQ ,
+			YHG_RQ ,
+			HG_RQ ,
+			REMARKS ,
+			ENABLE_FLAG ,
+			DEL_FLAG ,
+			CREATE_BY ,
+			CREATE_DATE ,
+			UPDATE_BY ,
+			UPDATE_DATE
+		) values(
+			#{id} , 
+			#{ryId} , 
+			#{xm} , 
+			#{zgbh} , 
+			#{cgLb} , 
+			#{cgGb} , 
+			#{cgRw} , 
+			#{cgFs} , 
+			#{cgRq} , 
+			#{yhgRq} , 
+			#{hgRq} , 
+			#{remarks} , 
+			#{enableFlag} , 
+			#{delFlag} , 
+			#{createBy} , 
+			#{createDate} , 
+			#{updateBy} , 
+			#{updateDate} 
+		)
+	</insert>
+	
+	<update id="update">
+		update t_dp_cgxx
+		<set>
+			RY_ID = #{ryId} ,
+			XM = #{xm} ,
+			ZGBH = #{zgbh} ,
+			CG_LB = #{cgLb} ,
+			CG_GB = #{cgGb} ,
+			CG_RW = #{cgRw} ,
+			CG_FS = #{cgFs} ,
+			CG_RQ = #{cgRq} ,
+			YHG_RQ = #{yhgRq} ,
+			HG_RQ = #{hgRq} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE t_dp_cgxx SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+
+</mapper>
+

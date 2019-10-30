@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibinshao.zhonghong.university.pxgl.dao.IPxglGnjxglDao">
+	
+	<sql id="pxglGnjxglColumns">
+			a.ID as "id" , 
+			a.ry_id as "ryId" , 
+				a.xm as "xm" , 
+				a.zgbh as "zgbh" , 
+				a.ywlx as "ywlx" , 
+				a.bklb as "bklb" , 
+				a.sqrq as "sqrq" , 
+				a.lxsj as "lxsj" , 
+				a.bkxx as "bkxx" , 
+				a.bkyx as "bkyx" , 
+				a.bkzy as "bkzy" , 
+				a.xl as "xl" , 
+				a.ksrq as "ksrq" , 
+				a.jzrq as "jzrq" , 
+				a.xxlx as "xxlx" , 
+				a.jmxf as "jmxf" , 
+				a.xyxq as "xyxq" , 
+				a.REMARKS as "remarks" , 
+				a.ENABLE_FLAG as "enableFlag" , 
+				a.DEL_FLAG as "delFlag" , 
+				a.CREATE_BY as "createBy" , 
+				a.CREATE_DATE as "createDate" , 
+				a.UPDATE_BY as "updateBy" , 
+			    a.UPDATE_DATE as "updateDate"
+	</sql>
+	
+	<sql id="pxglGnjxglJoins">
+	</sql>
+	
+	<select id="get" resultType="com.alibinshao.zhonghong.university.pxgl.entity.PxglGnjxgl">
+		SELECT 
+			<include refid="pxglGnjxglColumns"/>
+		FROM t_px_gnjx a
+		<include refid="pxglGnjxglJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT 
+			count(1)		
+		FROM t_px_gnjx a
+		<include refid="pxglGnjxglJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<sql id="findList_condition">
+		<if test="xm !=null and xm != '' ">
+			and a.xm=#{xm}
+		</if>
+		<if test="zgbh !=null and zgbh != '' ">
+			and a.zgbh = #{zgbh}
+		</if>
+		<if test="bklb !=null and bklb != '' ">
+			and a.bklb = #{bklb}
+		</if>
+		<if test="bkxx !=null and bkxx != '' ">
+			and a.bkxx = #{bkxx}
+		</if>
+		
+	</sql>
+	<select id="findList" resultType="com.alibinshao.zhonghong.university.pxgl.entity.PxglGnjxgl">
+		SELECT 
+			<include refid="pxglGnjxglColumns"/>
+		FROM t_px_gnjx a
+		<include refid="pxglGnjxglJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<include refid="findList_condition"/>
+			
+		</where>
+	</select>
+	
+	<select id="findAllList" resultType="com.alibinshao.zhonghong.university.pxgl.entity.PxglGnjxgl">
+		SELECT 
+			<include refid="pxglGnjxglColumns"/>
+		FROM t_px_gnjx a
+		<include refid="pxglGnjxglJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			
+		</where>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO t_px_gnjx(
+			ID ,
+			ry_id,
+				xm ,
+				zgbh ,
+				ywlx ,
+				bklb ,
+				sqrq ,
+				<if test="lxsj !=null and lxsj != '' ">
+				lxsj ,
+				</if>
+				bkxx ,
+				bkyx ,
+				bkzy ,
+				xl ,
+				ksrq ,
+				jzrq ,
+				xxlx ,
+				jmxf ,
+				xyxq ,
+				REMARKS ,
+				ENABLE_FLAG ,
+				DEL_FLAG ,
+				CREATE_BY ,
+				CREATE_DATE ,
+				UPDATE_BY ,
+				UPDATE_DATE
+			) values(
+    		#{id} , 
+    		#{ryId},
+	    		#{xm} , 
+	    		#{zgbh} , 
+	    		#{ywlx} , 
+	    		#{bklb} , 
+	    		#{sqrq} , 
+	    		<if test="lxsj !=null and lxsj != '' ">
+	    		#{lxsj} , 
+	    		</if>
+	    		#{bkxx} , 
+	    		#{bkyx} , 
+	    		#{bkzy} , 
+	    		#{xl} , 
+	    		#{ksrq} , 
+	    		#{jzrq} , 
+	    		#{xxlx} , 
+	    		#{jmxf} , 
+	    		#{xyxq} , 
+	    		#{remarks} , 
+	    		#{enableFlag} , 
+	    		#{delFlag} , 
+	    		#{createBy} , 
+	    		#{createDate} , 
+	    		#{updateBy} , 
+	    		#{updateDate} 
+			)
+	</insert>
+	
+	<update id="update">
+		update t_px_gnjx
+		<set>
+			xm = #{xm} ,
+			zgbh = #{zgbh} ,
+			ywlx = #{ywlx} ,
+			bklb = #{bklb} ,
+			sqrq = #{sqrq} ,
+			<if test="lxsj !=null and lxsj != '' ">
+			lxsj = #{lxsj} ,
+			</if>
+			bkxx = #{bkxx} ,
+			bkyx = #{bkyx} ,
+			bkzy = #{bkzy} ,
+			xl = #{xl} ,
+			ksrq = #{ksrq} ,
+			jzrq = #{jzrq} ,
+			xxlx = #{xxlx} ,
+			jmxf = #{jmxf} ,
+			xyxq = #{xyxq} ,
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		</set>
+		where id=#{id}
+	</update>
+
+	<delete id="delete" >
+		UPDATE t_px_gnjx SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</delete>
+
+</mapper>
+
