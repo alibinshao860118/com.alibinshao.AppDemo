@@ -59,7 +59,7 @@ public class HttpClient {
 		MultiValueMap<String, String> s =  new LinkedMultiValueMap<String, String>();
 		String useragent="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36";
 		s.add("User-Agent",useragent);
-		s.add("Host","www.baidu.com");
+		s.add("Host","https://www.baidu.com");
 		HttpHeaders headers =new HttpHeaders();
 		headers.add("User-Agent",useragent);
 		String baidu=sendGetRequest("https://www.baidu.com", s, headers);
