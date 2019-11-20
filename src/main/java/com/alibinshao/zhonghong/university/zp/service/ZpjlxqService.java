@@ -15,9 +15,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -157,29 +160,31 @@ public class ZpjlxqService {
 	 * 写花名册
 	 */
 	private void writeExcel4Hmc(XSSFWorkbook wb, List<Zpjlxq> dataList){
+		final HorizontalAlignment align_CENTER=HorizontalAlignment.CENTER;
+		final HorizontalAlignment align_LEFT=HorizontalAlignment.LEFT;
 		Sheet sheet = wb.getSheetAt(0);
 		
 		int rownum = 3;
 		for (Zpjlxq xq : dataList) {
 			Row row = sheet.createRow(rownum++);
 			int cellNum = 1;
-			setCellValue(wb,row,cellNum++,String.valueOf(rownum-3),CellStyle.ALIGN_CENTER);
-			setCellValue(wb,row,cellNum++,xq.getUsername(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getSfzhm(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getXb(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getCsrq(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getZzmmMc(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getJg(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getDyxlxx()+"、"+StringUtils.trimToEmpty(xq.getDyzy())+"、"+xq.getDyxlrxsj()+"/"+xq.getDyxlbysj(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getZgxlMc(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getZgxlxx()+"、"+StringUtils.trimToEmpty(xq.getSxzy())+"、"+xq.getZgxlrxsj()+"/"+xq.getZgxlbysj(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getSj(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getRpzhiwei(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getSsbm(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getZyyq(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getYx(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getXueke(),CellStyle.ALIGN_LEFT);
-			setCellValue(wb,row,cellNum++,xq.getBeizhu(),CellStyle.ALIGN_LEFT);
+			setCellValue(wb,row,cellNum++,String.valueOf(rownum-3),align_CENTER);
+			setCellValue(wb,row,cellNum++,xq.getUsername(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getSfzhm(),align_CENTER);
+			setCellValue(wb,row,cellNum++,xq.getXb(),align_CENTER);
+			setCellValue(wb,row,cellNum++,xq.getCsrq(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getZzmmMc(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getJg(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getDyxlxx()+"、"+StringUtils.trimToEmpty(xq.getDyzy())+"、"+xq.getDyxlrxsj()+"/"+xq.getDyxlbysj(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getZgxlMc(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getZgxlxx()+"、"+StringUtils.trimToEmpty(xq.getSxzy())+"、"+xq.getZgxlrxsj()+"/"+xq.getZgxlbysj(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getSj(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getRpzhiwei(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getSsbm(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getZyyq(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getYx(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getXueke(),align_LEFT);
+			setCellValue(wb,row,cellNum++,xq.getBeizhu(),align_LEFT);
 
 		}
 	}
@@ -339,8 +344,8 @@ public class ZpjlxqService {
             distCell.setCellComment(srcCell.getCellComment());  
         }  
         // 不同数据类型处理  
-        int srcCellType = srcCell.getCellType();  
-        distCell.setCellType(srcCellType);  
+        CellType cellType = srcCell.getCellType();  
+        distCell.setCellType(cellType);  
         distCell.setCellValue(srcCell.getStringCellValue());
     }  
     
@@ -378,13 +383,13 @@ public class ZpjlxqService {
         toStyle.setFont(fromStyle.getFont());
     }  
 	
-	private void setCellValue(Workbook wb,Row row, int cellNum, String cellValue,short align){
+	private void setCellValue(Workbook wb,Row row, int cellNum, String cellValue,HorizontalAlignment align){
 		CellStyle style = wb.createCellStyle();
 		style.setAlignment(align);
-		style.setBorderRight(CellStyle.BORDER_THIN);
-		style.setBorderLeft(CellStyle.BORDER_THIN);
-		style.setBorderTop(CellStyle.BORDER_THIN);
-		style.setBorderBottom(CellStyle.BORDER_THIN);
+		style.setBorderRight(BorderStyle.THIN);
+		style.setBorderLeft(BorderStyle.THIN);
+		style.setBorderTop(BorderStyle.THIN);
+		style.setBorderBottom(BorderStyle.THIN);
 		
 		Font font = wb.createFont();
 		font.setFontHeightInPoints((short) 10);

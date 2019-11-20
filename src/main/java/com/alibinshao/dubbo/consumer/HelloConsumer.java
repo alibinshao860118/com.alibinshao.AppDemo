@@ -8,6 +8,6 @@ import com.alibinshao.dubbo.service.IHelloService;
 @Component
 public class HelloConsumer {
 
-	@Reference(url = "dubbo://127.0.0.1:2181")
-	  private IHelloService iHelloService;
+//	@Reference(url = "dubbo://127.0.0.1:2181")
+//	  private IHelloService iHelloService;
 }

@@ -10,6 +10,6 @@ import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
 public class DubboProviderLauncher {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		//SpringApplication.run(Application.class, args);
 	}
 }

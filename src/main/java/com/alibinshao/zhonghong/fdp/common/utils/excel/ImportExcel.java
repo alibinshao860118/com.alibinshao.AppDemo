@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -188,15 +189,15 @@ public class ImportExcel {
 		try{
 			Cell cell = row.getCell(column);
 			if (cell != null){
-				if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+				if (cell.getCellType() == CellType.NUMERIC){
 					val = cell.getNumericCellValue();
-				}else if (cell.getCellType() == Cell.CELL_TYPE_STRING){
+				}else if (cell.getCellType() == CellType.STRING){
 					val = cell.getStringCellValue();
-				}else if (cell.getCellType() == Cell.CELL_TYPE_FORMULA){
+				}else if (cell.getCellType() == CellType.FORMULA){
 					val = cell.getCellFormula();
-				}else if (cell.getCellType() == Cell.CELL_TYPE_BOOLEAN){
+				}else if (cell.getCellType() == CellType.BOOLEAN){
 					val = cell.getBooleanCellValue();
-				}else if (cell.getCellType() == Cell.CELL_TYPE_ERROR){
+				}else if (cell.getCellType() == CellType.ERROR){
 					val = cell.getErrorCellValue();
 				}
 			}
